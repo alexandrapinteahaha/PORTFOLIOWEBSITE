@@ -17,11 +17,10 @@ export function SiteHeader() {
       <div className="container-shell flex min-h-16 items-center justify-between gap-6">
         <Link href="/" className="focus-ring flex items-center" aria-label="Alexandra Pintea — home">
           <Image
-            src="/logo-cropped.png"
+            src="/logo-transparent.png"
             alt="Alexandra Pintea"
             width={120}
             height={34}
-            className="mix-blend-multiply dark:mix-blend-screen"
             priority
           />
         </Link>
