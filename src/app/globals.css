@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f7f6f2;
+  color: #171717;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: #171717;
+  color: #fbfaf7;
+}
+
+.container-shell {
+  width: min(1180px, calc(100vw - 32px));
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .container-shell {
+    width: min(1180px, calc(100vw - 64px));
+  }
+}
+
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+}
+
+.focus-ring:focus-visible {
+  outline-color: #8f4d34;
+}
+
+.legal-note {
+  border-left: 2px solid #d8d4cc;
+  padding-left: 1rem;
+  font-size: 0.875rem;
+  color: #4b4a47;
+  line-height: 1.6;
+}
+
+.policy-section + .policy-section {
+  border-top: 1px solid #d8d4cc;
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
