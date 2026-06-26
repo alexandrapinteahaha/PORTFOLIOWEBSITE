@@ -22,7 +22,7 @@ export default async function AdminArtworksPage() {
       <AdminNav />
 
       <div className="mb-8">
-        <h1 className="font-serif text-4xl font-light">Artworks</h1>
+        <h1 className="font-title text-4xl font-light">Artworks</h1>
         <p className="mt-2 text-sm text-graphite">
           Add and manage archive entries. Status controls public visibility and purchase availability.
         </p>

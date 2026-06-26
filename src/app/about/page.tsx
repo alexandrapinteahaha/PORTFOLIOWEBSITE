@@ -10,7 +10,7 @@ export default function AboutPage() {
     <section className="container-shell py-14 md:py-20">
       <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <h1 className="font-serif text-5xl font-light leading-tight">
+          <h1 className="font-title text-5xl font-light leading-tight">
             About the artist
           </h1>
           <p className="mt-4 text-sm leading-7 text-graphite">
@@ -26,7 +26,7 @@ export default function AboutPage() {
 
         <div className="grid gap-8">
           <div>
-            <h2 className="font-serif text-2xl">Artist statement</h2>
+            <h2 className="font-title text-2xl">Artist statement</h2>
             <div className="mt-4 grid gap-4 text-sm leading-8 text-graphite">
               <p>
                 This section will hold Alexandra&apos;s artist statement: a
@@ -39,7 +39,7 @@ export default function AboutPage() {
           </div>
 
           <div className="border-t border-line pt-6">
-            <h2 className="font-serif text-2xl">Biography</h2>
+            <h2 className="font-title text-2xl">Biography</h2>
             <div className="mt-4 grid gap-4 text-sm leading-8 text-graphite">
               <p>
                 Biographical notes and professional context to be added here.
@@ -50,7 +50,7 @@ export default function AboutPage() {
           </div>
 
           <div className="border-t border-line pt-6">
-            <h2 className="font-serif text-2xl">Selected projects</h2>
+            <h2 className="font-title text-2xl">Selected projects</h2>
             <div className="mt-4 grid gap-4 text-sm leading-8 text-graphite">
               <p>
                 Key projects, series, and bodies of work can be listed here

@@ -10,7 +10,7 @@ export default function CommissionsPage() {
     <section className="container-shell py-14 md:py-20">
       <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <h1 className="font-serif text-5xl font-light leading-tight">
+          <h1 className="font-title text-5xl font-light leading-tight">
             Commission enquiry
           </h1>
           <div className="mt-6 grid gap-5 text-sm leading-7 text-graphite">

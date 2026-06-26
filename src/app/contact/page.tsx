@@ -10,7 +10,7 @@ export default function ContactPage() {
     <section className="container-shell py-14 md:py-20">
       <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <h1 className="font-serif text-5xl font-light leading-tight">Contact</h1>
+          <h1 className="font-title text-5xl font-light leading-tight">Contact</h1>
           <p className="mt-4 text-sm leading-7 text-graphite">
             For artwork enquiries, commissions, gallery conversations, and press
             requests.

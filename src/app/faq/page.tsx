@@ -58,7 +58,7 @@ export default function FaqPage() {
     <section className="container-shell py-14 md:py-20">
       <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <h1 className="font-serif text-5xl font-light leading-tight">FAQ</h1>
+          <h1 className="font-title text-5xl font-light leading-tight">FAQ</h1>
           <p className="mt-4 text-sm leading-7 text-graphite">
             Practical information for collecting work, joining Print Club, and
             understanding how the site works.
@@ -75,7 +75,7 @@ export default function FaqPage() {
         <div className="grid gap-0">
           {faqs.map((faq) => (
             <article key={faq.question} className="policy-section">
-              <h2 className="font-serif text-xl font-medium">{faq.question}</h2>
+              <h2 className="font-title text-xl font-medium">{faq.question}</h2>
               <p className="mt-3 text-sm leading-7 text-graphite">{faq.answer}</p>
             </article>
           ))}

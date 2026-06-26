@@ -105,7 +105,7 @@ export default async function AccountPrintClubPage() {
                 >
                   <div className="flex items-center justify-between gap-4 border-b border-line p-4">
                     <div>
-                      <h3 className="font-serif text-xl font-medium">{month.title}</h3>
+                      <h3 className="font-sans text-xl font-medium">{month.title}</h3>
                       <p className="text-xs text-graphite">
                         {monthName(month.month)} {month.year}
                       </p>

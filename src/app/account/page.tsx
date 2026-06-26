@@ -46,7 +46,7 @@ export default async function AccountPage() {
           </div>
 
           <div className="border border-line p-5">
-            <h2 className="font-serif text-2xl">Print Club</h2>
+            <h2 className="font-title text-2xl">Print Club</h2>
             <p className="mt-3 text-sm leading-7 text-graphite">
               View your subscription status, access monthly files, digital
               prints, process PDFs, and your monthly letter archive.

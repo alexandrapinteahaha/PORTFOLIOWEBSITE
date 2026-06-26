@@ -20,7 +20,7 @@ export default async function AdminNewsletterPage() {
       <AdminNav />
 
       <div className="mb-8">
-        <h1 className="font-serif text-4xl font-light">Newsletter signups</h1>
+        <h1 className="font-title text-4xl font-light">Newsletter signups</h1>
         <p className="mt-2 text-sm text-graphite">
           All email addresses are collected with explicit consent. Total:{" "}
           {(data ?? []).length}

@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Self-hosted Myanmar Text — drop MyanmarText.otf into public/fonts/ to activate */
+/* ─── Fonts ───────────────────────────────────────────── */
+
 @font-face {
   font-family: "Myanmar Text";
-  src: url("/fonts/MyanmarText.otf") format("opentype");
+  src: url("/fonts/MyanmarText.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -13,11 +14,37 @@
 
 @font-face {
   font-family: "Myanmar Text";
-  src: url("/fonts/MyanmarText-Bold.otf") format("opentype");
+  src: url("/fonts/MyanmarText-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: "Minion Pro";
+  src: url("/fonts/MinionPro-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Minion Pro";
+  src: url("/fonts/MinionPro-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Minion Pro";
+  src: url("/fonts/MinionPro-Variable.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Base ────────────────────────────────────────────── */
 
 :root {
   color-scheme: light;
@@ -35,11 +62,27 @@ body {
   margin: 0;
   background: #f7f6f2;
   color: #171717;
-  font-family: "Myanmar Text", "Segoe UI", system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.65;
+  font-family: "Minion Pro", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Myanmar Text: titles and main headers only */
+h1, h2 {
+  font-family: "Myanmar Text", serif;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+/* Minion Pro for all sub-headings and UI text */
+h3, h4, h5, h6 {
+  font-family: "Minion Pro", Georgia, serif;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 a {
@@ -47,11 +90,15 @@ a {
   text-decoration: none;
 }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
+button, input, select, textarea {
+  font-family: "Minion Pro", Georgia, serif;
+  font-size: inherit;
+}
+
+p {
+  font-family: "Minion Pro", Georgia, serif;
+  font-size: 15px;
+  line-height: 1.75;
 }
 
 ::selection {
@@ -59,7 +106,7 @@ textarea {
   color: #fbfaf7;
 }
 
-/* ─── Layout ─────────────────────────────────────────── */
+/* ─── Layout ──────────────────────────────────────────── */
 
 .container-shell {
   width: min(1180px, calc(100vw - 32px));
@@ -72,7 +119,7 @@ textarea {
   }
 }
 
-/* ─── Focus ──────────────────────────────────────────── */
+/* ─── Focus ───────────────────────────────────────────── */
 
 .focus-ring {
   outline: 2px solid transparent;
@@ -83,10 +130,11 @@ textarea {
   outline-color: #8f4d34;
 }
 
-/* ─── Archive design system ──────────────────────────── */
+/* ─── Design system ───────────────────────────────────── */
 
-/* Small all-caps label — the primary typographic unit */
+/* Label: Minion Pro, all-caps, tracked — used for field labels, nav, metadata */
 .label {
+  font-family: "Minion Pro", Georgia, serif;
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.22em;
@@ -94,53 +142,36 @@ textarea {
   color: #4b4a47;
 }
 
-/* Dotted horizontal rule — pulled from document design */
+/* Dotted rule — pulled from document design */
 .dotted-rule {
   border: 0;
   border-top: 1px dotted #d8d4cc;
-  margin: 0;
 }
 
 /* Thin solid rule */
 .thin-rule {
   border: 0;
   border-top: 1px solid #d8d4cc;
-  margin: 0;
 }
 
-/* Archive cell — bordered record field */
+/* Archive cell — thin-bordered field */
 .archive-cell {
   border: 1px solid #d8d4cc;
   padding: 0.75rem 1rem;
 }
 
-/* Legal / policy note */
+/* Legal note */
 .legal-note {
   border-left: 1px dotted #d8d4cc;
   padding-left: 1rem;
-  font-size: 12px;
+  font-family: "Minion Pro", Georgia, serif;
+  font-size: 13px;
   color: #4b4a47;
-  line-height: 1.7;
-  letter-spacing: 0.02em;
+  line-height: 1.75;
 }
 
 .policy-section + .policy-section {
   border-top: 1px dotted #d8d4cc;
   margin-top: 2.5rem;
   padding-top: 2.5rem;
-}
-
-/* ─── Typography defaults ─────────────────────────────── */
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Myanmar Text", "Segoe UI", system-ui, sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1.3;
-}
-
-p {
-  font-size: 14px;
-  line-height: 1.7;
 }

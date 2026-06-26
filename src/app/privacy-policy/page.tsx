@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage() {
     <section className="container-shell py-14 md:py-20">
       <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <h1 className="font-serif text-5xl font-light leading-tight">
+          <h1 className="font-title text-5xl font-light leading-tight">
             Privacy Policy
           </h1>
           <p className="mt-4 text-sm text-graphite">
@@ -24,7 +24,7 @@ export default function PrivacyPolicyPage() {
 
         <div className="grid gap-0">
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Data collected</h2>
+            <h2 className="font-title text-xl font-medium">Data collected</h2>
             <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
               <p>
                 This site collects the following categories of personal data in
@@ -41,7 +41,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Payment processing</h2>
+            <h2 className="font-title text-xl font-medium">Payment processing</h2>
             <div className="mt-4 text-sm leading-7 text-graphite">
               <p>
                 Payment details are processed by Stripe. Alexandra Pintea does
@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">How data is used</h2>
+            <h2 className="font-title text-xl font-medium">How data is used</h2>
             <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
               <p>
                 Personal data is used only for the purposes for which it was
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Data retention</h2>
+            <h2 className="font-title text-xl font-medium">Data retention</h2>
             <div className="mt-4 text-sm leading-7 text-graphite">
               <p>
                 Data retention periods and deletion rights should be defined
@@ -80,7 +80,7 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Contact</h2>
+            <h2 className="font-title text-xl font-medium">Contact</h2>
             <div className="mt-4 text-sm leading-7 text-graphite">
               <p>
                 For any data or privacy enquiries, contact the studio via the

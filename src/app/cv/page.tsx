@@ -66,7 +66,7 @@ export default function CvPage() {
     <section className="container-shell py-14 md:py-20">
       <div className="flex flex-wrap items-start justify-between gap-6">
         <div>
-          <h1 className="font-serif text-5xl font-light leading-tight">
+          <h1 className="font-title text-5xl font-light leading-tight">
             Alexandra Pintea
           </h1>
           <p className="mt-3 text-sm text-graphite">Artist CV</p>
@@ -79,7 +79,7 @@ export default function CvPage() {
       <div className="mt-12 grid gap-0">
         {cvSections.map((section) => (
           <div key={section.title} className="policy-section">
-            <h2 className="font-serif text-2xl font-light">{section.title}</h2>
+            <h2 className="font-title text-2xl font-light">{section.title}</h2>
             <dl className="mt-5 grid gap-4">
               {section.entries.map((entry, i) => (
                 <div

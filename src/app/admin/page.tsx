@@ -31,7 +31,7 @@ export default async function AdminPage() {
       <AdminNav />
 
       <div className="mb-8">
-        <h1 className="font-serif text-4xl font-light">Admin dashboard</h1>
+        <h1 className="font-title text-4xl font-light">Admin dashboard</h1>
         <p className="mt-2 text-sm text-graphite">
           Manage the archive, shop, Print Club, enquiries, and newsletter.
         </p>

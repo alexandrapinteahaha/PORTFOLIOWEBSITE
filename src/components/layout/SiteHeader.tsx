@@ -37,11 +37,8 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-6 md:flex">
-          <Link
-            href="/account"
-            className="focus-ring label transition-colors hover:text-ink"
-          >
+        <div className="hidden items-center md:flex">
+          <Link href="/account" className="focus-ring label transition-colors hover:text-ink">
             Account
           </Link>
         </div>

@@ -18,23 +18,15 @@ export function ProductCard({ product }: { product: Product }) {
           />
           {soldOut && (
             <div className="absolute bottom-3 left-3">
-              <span className="bg-ink px-2 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-chalk">
-                Sold
-              </span>
+              <span className="label bg-ink px-2 py-1 text-chalk">Sold</span>
             </div>
           )}
         </div>
-        <div className="mt-4 grid gap-1">
-          <div className="flex items-baseline justify-between gap-3">
-            <h3 className="font-serif text-2xl font-medium leading-tight">
-              {product.title}
-            </h3>
-          </div>
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-xs uppercase tracking-[0.1em] text-graphite">
-              {productTypeLabel(product.productType)}
-            </p>
-            <p className="text-sm font-medium">
+        <div className="mt-4 border-t border-dotted border-line pt-3">
+          <h3 className="font-title text-base leading-snug">{product.title}</h3>
+          <div className="mt-2 flex items-center justify-between gap-3">
+            <p className="label text-graphite">{productTypeLabel(product.productType)}</p>
+            <p className="label text-ink">
               {product.priceGbp ? `GBP ${product.priceGbp}` : "Enquire"}
             </p>
           </div>
@@ -53,6 +45,5 @@ function productTypeLabel(type: Product["productType"]) {
     commission_enquiry: "Commission",
     archive_only: "Archive"
   };
-
   return labels[type];
 }

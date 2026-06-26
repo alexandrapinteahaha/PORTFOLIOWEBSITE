@@ -16,7 +16,7 @@ export default async function HomePage() {
         <div className="container-shell py-20 md:py-28">
           <div className="grid gap-12 md:grid-cols-[1fr_380px]">
             <div>
-              <h1 className="font-serif text-6xl font-light leading-[0.92] tracking-tight md:text-8xl">
+              <h1 className="font-title text-6xl font-light leading-[0.92] tracking-tight md:text-8xl">
                 Alexandra Pintea
               </h1>
               <p className="mt-8 max-w-lg text-base leading-8 text-graphite md:text-lg">

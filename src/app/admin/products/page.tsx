@@ -22,7 +22,7 @@ export default async function AdminProductsPage() {
       <AdminNav />
 
       <div className="mb-8">
-        <h1 className="font-serif text-4xl font-light">Products</h1>
+        <h1 className="font-title text-4xl font-light">Products</h1>
         <p className="mt-2 text-sm text-graphite">
           Products link purchases to artworks, stock levels, and Stripe checkout. Each artwork can have one original product, one print product, and one digital product.
         </p>

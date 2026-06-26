@@ -15,17 +15,18 @@ const config: Config = {
         moss: "#566654"
       },
       fontFamily: {
-        sans: ["Myanmar Text", "Segoe UI", "system-ui", "sans-serif"],
-        serif: ["Myanmar Text", "Segoe UI", "system-ui", "sans-serif"],
-        mono: ["Myanmar Text", "Courier New", "monospace"]
+        title: ["Myanmar Text", "serif"],
+        sans: ["Minion Pro", "Georgia", "serif"],
+        serif: ["Minion Pro", "Georgia", "serif"],
+        mono: ["Minion Pro", "Courier New", "monospace"]
       },
       letterSpacing: {
         label: "0.22em",
-        wide: "0.15em",
-        widest: "0.35em"
+        wide: "0.12em",
+        title: "0.12em"
       },
-      borderStyle: {
-        dot: "dotted"
+      fontSize: {
+        label: ["11px", { letterSpacing: "0.22em" }]
       }
     }
   },

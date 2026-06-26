@@ -78,7 +78,7 @@ export function PrintClubMonthForm() {
 }
 
 function FormTitle({ title }: { title: string }) {
-  return <h2 className="font-serif text-3xl">{title}</h2>;
+  return <h2 className="font-title text-3xl">{title}</h2>;
 }
 
 function Input({

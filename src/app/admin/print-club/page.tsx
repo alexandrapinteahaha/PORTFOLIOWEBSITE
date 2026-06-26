@@ -30,7 +30,7 @@ export default async function AdminPrintClubPage() {
       <AdminNav />
 
       <div className="mb-8">
-        <h1 className="font-serif text-4xl font-light">Print Club</h1>
+        <h1 className="font-title text-4xl font-light">Print Club</h1>
         <p className="mt-2 text-sm text-graphite">
           Manage monthly entries. Each entry can hold an artwork image, digital print file, process PDF, and monthly letter reference.
         </p>

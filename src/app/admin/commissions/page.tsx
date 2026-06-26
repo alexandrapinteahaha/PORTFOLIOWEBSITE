@@ -21,7 +21,7 @@ export default async function AdminCommissionsPage() {
       <AdminNav />
 
       <div className="mb-8">
-        <h1 className="font-serif text-4xl font-light">Commission enquiries</h1>
+        <h1 className="font-title text-4xl font-light">Commission enquiries</h1>
         <p className="mt-2 text-sm text-graphite">
           Review enquiries and update status as they are processed.
         </p>
@@ -36,7 +36,7 @@ export default async function AdminCommissionsPage() {
           <article key={enquiry.id} className="border border-line bg-chalk">
             <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line p-4">
               <div>
-                <h2 className="font-serif text-2xl font-light">{enquiry.name}</h2>
+                <h2 className="font-title text-2xl font-light">{enquiry.name}</h2>
                 <p className="mt-1 text-xs text-graphite">
                   <a href={`mailto:${enquiry.email}`} className="hover:underline">
                     {enquiry.email}

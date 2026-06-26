@@ -9,7 +9,7 @@ export default function ShippingReturnsPage() {
     <section className="container-shell py-14 md:py-20">
       <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <h1 className="font-serif text-5xl font-light leading-tight">
+          <h1 className="font-title text-5xl font-light leading-tight">
             Shipping and Returns
           </h1>
           <p className="mt-4 text-sm leading-7 text-graphite">
@@ -24,7 +24,7 @@ export default function ShippingReturnsPage() {
 
         <div className="grid gap-0">
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Dispatch and handling</h2>
+            <h2 className="font-title text-xl font-medium">Dispatch and handling</h2>
             <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
               <p>
                 Physical works are packed carefully and dispatched from the UK.
@@ -44,7 +44,7 @@ export default function ShippingReturnsPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">International shipping and customs</h2>
+            <h2 className="font-title text-xl font-medium">International shipping and customs</h2>
             <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
               <p>
                 Alexandra ships to international destinations. International
@@ -63,7 +63,7 @@ export default function ShippingReturnsPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Digital editions and subscriber files</h2>
+            <h2 className="font-title text-xl font-medium">Digital editions and subscriber files</h2>
             <div className="mt-4 text-sm leading-7 text-graphite">
               <p>
                 Digital editions and Print Club files are delivered via the
@@ -74,7 +74,7 @@ export default function ShippingReturnsPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Returns and damage</h2>
+            <h2 className="font-title text-xl font-medium">Returns and damage</h2>
             <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
               <p>
                 If a physical work arrives damaged, please contact the studio

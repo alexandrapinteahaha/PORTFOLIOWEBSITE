@@ -9,7 +9,7 @@ export default function TermsPage() {
     <section className="container-shell py-14 md:py-20">
       <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr]">
         <div>
-          <h1 className="font-serif text-5xl font-light leading-tight">
+          <h1 className="font-title text-5xl font-light leading-tight">
             Terms and Conditions
           </h1>
           <p className="mt-4 text-sm text-graphite">
@@ -25,7 +25,7 @@ export default function TermsPage() {
 
         <div className="grid gap-0">
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Original artworks</h2>
+            <h2 className="font-title text-xl font-medium">Original artworks</h2>
             <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
               <p>
                 Original artworks are unique and can only be purchased once.
@@ -41,7 +41,7 @@ export default function TermsPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Prints and editions</h2>
+            <h2 className="font-title text-xl font-medium">Prints and editions</h2>
             <div className="mt-4 text-sm leading-7 text-graphite">
               <p>
                 Physical prints are shipped from the UK. Edition size, edition
@@ -53,7 +53,7 @@ export default function TermsPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Digital editions and subscriber files</h2>
+            <h2 className="font-title text-xl font-medium">Digital editions and subscriber files</h2>
             <div className="mt-4 text-sm leading-7 text-graphite">
               <p>
                 Digital products and subscriber files are for the purchaser or
@@ -65,7 +65,7 @@ export default function TermsPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Print Club</h2>
+            <h2 className="font-title text-xl font-medium">Print Club</h2>
             <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
               <p>
                 Print Club is a recurring monthly subscription. By subscribing,
@@ -83,7 +83,7 @@ export default function TermsPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">International purchases and customs</h2>
+            <h2 className="font-title text-xl font-medium">International purchases and customs</h2>
             <div className="mt-4 text-sm leading-7 text-graphite">
               <p>
                 Alexandra ships from the United Kingdom. International buyers
@@ -96,7 +96,7 @@ export default function TermsPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-serif text-xl font-medium">Intellectual property</h2>
+            <h2 className="font-title text-xl font-medium">Intellectual property</h2>
             <div className="mt-4 text-sm leading-7 text-graphite">
               <p>
                 Purchase of an artwork, print, or digital file does not transfer

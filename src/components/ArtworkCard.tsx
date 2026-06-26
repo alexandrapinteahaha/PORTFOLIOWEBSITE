@@ -18,25 +18,18 @@ export function ArtworkCard({ artwork }: { artwork: Artwork }) {
             <div className="absolute inset-0 bg-ink/5" />
           )}
         </div>
-        <div className="mt-4 grid gap-1">
-          <div className="flex items-baseline justify-between gap-4">
-            <h3 className="font-serif text-2xl font-medium leading-tight">
-              {artwork.title}
-            </h3>
+        <div className="mt-4 border-t border-dotted border-line pt-3">
+          <div className="flex items-start justify-between gap-4">
+            <h3 className="font-title text-base leading-snug">{artwork.title}</h3>
             {artwork.status === "sold" && (
-              <span className="shrink-0 text-xs uppercase tracking-[0.12em] text-rust">
-                Sold
-              </span>
+              <span className="label shrink-0 text-rust">Sold</span>
             )}
           </div>
-          <p className="text-sm text-graphite">
-            {artwork.year}
-            {artwork.medium ? `, ${artwork.medium}` : ""}
+          <p className="label mt-2 text-graphite">
+            {artwork.year}{artwork.medium ? ` — ${artwork.medium}` : ""}
           </p>
           {artwork.printAvailable && artwork.status === "sold" && (
-            <p className="text-xs uppercase tracking-[0.1em] text-moss">
-              Print available
-            </p>
+            <p className="label mt-1 text-moss">Print available</p>
           )}
         </div>
       </Link>
