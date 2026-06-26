@@ -14,7 +14,7 @@ const navItems = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur-sm">
-      <div className="container-shell flex min-h-32 items-center justify-between gap-6">
+      <div className="container-shell flex min-h-32 items-center justify-between gap-8">
         <Link href="/" className="focus-ring flex items-center" aria-label="Alexandra Pintea — home">
           <Image
             src="/logo-transparent.png"
@@ -25,22 +25,22 @@ export function SiteHeader() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-10 md:flex">
           {navItems.map(([label, href]) => (
             <Link
               key={href}
               href={href}
-              className="focus-ring text-sm uppercase tracking-[0.12em] text-graphite transition-colors hover:text-ink"
+              className="focus-ring label transition-colors hover:text-ink"
             >
               {label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           <Link
             href="/account"
-            className="focus-ring text-sm uppercase tracking-[0.12em] text-graphite transition-colors hover:text-ink"
+            className="focus-ring label transition-colors hover:text-ink"
           >
             Account
           </Link>

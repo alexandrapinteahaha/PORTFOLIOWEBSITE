@@ -20,22 +20,20 @@ const practiceLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-ink text-chalk">
-      <div className="container-shell grid gap-12 py-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <footer className="border-t border-dotted border-line bg-ink text-chalk">
+      <div className="container-shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <p className="font-serif text-2xl font-medium">Alexandra Pintea</p>
-          <p className="mt-4 max-w-xs text-sm leading-7 text-chalk/70">
+          <p className="text-sm uppercase tracking-label text-chalk/90">Alexandra Pintea</p>
+          <p className="mt-5 max-w-xs text-xs leading-7 text-chalk/50 tracking-wide">
             A living archive of sculpture, multimedia work, photography, and
             digital studies.
           </p>
-          <p className="mt-5 text-xs uppercase tracking-[0.1em] text-chalk/40">
-            Instagram
-          </p>
+          <p className="mt-6 text-[11px] uppercase tracking-label text-chalk/30">Instagram</p>
           <a
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 block text-sm text-chalk/60 transition-colors hover:text-chalk"
+            className="mt-1.5 block text-xs tracking-wide text-chalk/50 transition-colors hover:text-chalk"
             aria-label="Alexandra Pintea on Instagram"
           >
             @alexandrapintea
@@ -43,10 +41,8 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-chalk/40">
-            Practice
-          </p>
-          <ul className="mt-4 grid gap-2.5 text-sm text-chalk/70">
+          <p className="label text-chalk/40">Practice</p>
+          <ul className="mt-5 grid gap-3 text-xs tracking-wide text-chalk/55">
             {practiceLinks.map(([label, href]) => (
               <li key={href}>
                 <Link href={href} className="focus-ring transition-colors hover:text-chalk">
@@ -58,10 +54,8 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-chalk/40">
-            Information
-          </p>
-          <ul className="mt-4 grid gap-2.5 text-sm text-chalk/70">
+          <p className="label text-chalk/40">Information</p>
+          <ul className="mt-5 grid gap-3 text-xs tracking-wide text-chalk/55">
             {infoLinks.map(([label, href]) => (
               <li key={href}>
                 <Link href={href} className="focus-ring transition-colors hover:text-chalk">
@@ -70,10 +64,7 @@ export function Footer() {
               </li>
             ))}
             <li>
-              <Link
-                href="/admin"
-                className="focus-ring transition-colors hover:text-chalk"
-              >
+              <Link href="/admin" className="focus-ring transition-colors hover:text-chalk">
                 Admin
               </Link>
             </li>
@@ -81,23 +72,20 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-chalk/40">
-            Newsletter
-          </p>
-          <p className="mt-4 text-sm leading-6 text-chalk/60">
+          <p className="label text-chalk/40">Newsletter</p>
+          <p className="mt-5 text-xs leading-7 tracking-wide text-chalk/45">
             Occasional updates on new work and Print Club releases.
           </p>
-          <div className="mt-4">
+          <div className="mt-5">
             <NewsletterForm dark />
           </div>
         </div>
       </div>
 
-      <div className="border-t border-chalk/10">
-        <div className="container-shell flex flex-wrap items-center justify-between gap-3 py-5 text-xs text-chalk/35">
-          <span>Alexandra Pintea. All rights reserved.</span>
-          <span>Ships from the United Kingdom.</span>
-        </div>
+      <hr className="dotted-rule border-chalk/10" />
+      <div className="container-shell flex flex-wrap items-center justify-between gap-3 py-5">
+        <span className="label text-chalk/30">Alexandra Pintea. All rights reserved.</span>
+        <span className="label text-chalk/30">Ships from the United Kingdom.</span>
       </div>
     </footer>
   );

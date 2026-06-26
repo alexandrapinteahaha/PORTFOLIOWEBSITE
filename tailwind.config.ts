@@ -15,11 +15,17 @@ const config: Config = {
         moss: "#566654"
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "serif"]
+        sans: ["Myanmar Text", "Segoe UI", "system-ui", "sans-serif"],
+        serif: ["Myanmar Text", "Segoe UI", "system-ui", "sans-serif"],
+        mono: ["Myanmar Text", "Courier New", "monospace"]
       },
-      boxShadow: {
-        soft: "0 18px 45px rgba(23, 23, 23, 0.08)"
+      letterSpacing: {
+        label: "0.22em",
+        wide: "0.15em",
+        widest: "0.35em"
+      },
+      borderStyle: {
+        dot: "dotted"
       }
     }
   },
