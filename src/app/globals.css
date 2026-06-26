@@ -48,6 +48,7 @@
 
 :root {
   color-scheme: light;
+  --header-h: 8rem;
 }
 
 * {
@@ -69,16 +70,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Myanmar Text: titles and main headers only */
 h1, h2 {
   font-family: "Myanmar Text", serif;
   font-weight: 400;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
-/* Minion Pro for all sub-headings and UI text */
 h3, h4, h5, h6 {
   font-family: "Minion Pro", Georgia, serif;
   font-weight: 400;
@@ -98,7 +97,7 @@ button, input, select, textarea {
 p {
   font-family: "Minion Pro", Georgia, serif;
   font-size: 15px;
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
 ::selection {
@@ -132,7 +131,6 @@ p {
 
 /* ─── Design system ───────────────────────────────────── */
 
-/* Label: Minion Pro, all-caps, tracked — used for field labels, nav, metadata */
 .label {
   font-family: "Minion Pro", Georgia, serif;
   font-size: 11px;
@@ -142,25 +140,21 @@ p {
   color: #4b4a47;
 }
 
-/* Dotted rule — pulled from document design */
 .dotted-rule {
   border: 0;
   border-top: 1px dotted #d8d4cc;
 }
 
-/* Thin solid rule */
 .thin-rule {
   border: 0;
   border-top: 1px solid #d8d4cc;
 }
 
-/* Archive cell — thin-bordered field */
 .archive-cell {
   border: 1px solid #d8d4cc;
   padding: 0.75rem 1rem;
 }
 
-/* Legal note */
 .legal-note {
   border-left: 1px dotted #d8d4cc;
   padding-left: 1rem;
@@ -174,4 +168,145 @@ p {
   border-top: 1px dotted #d8d4cc;
   margin-top: 2.5rem;
   padding-top: 2.5rem;
+}
+
+/* ─── Keyframes ───────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ─── Animation utilities ─────────────────────────────── */
+
+.animate-fade-up {
+  animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.7s ease both;
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 40s linear infinite;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 0.10s; }
+.delay-200 { animation-delay: 0.20s; }
+.delay-300 { animation-delay: 0.30s; }
+.delay-400 { animation-delay: 0.40s; }
+.delay-500 { animation-delay: 0.50s; }
+.delay-600 { animation-delay: 0.65s; }
+
+/* ─── Scroll reveal ───────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity  0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── Reduced motion ──────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-scale-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .animate-marquee {
+    animation-duration: 0.001s;
+  }
+}
+
+/* ─── Nav link hover (sliding underline) ─────────────── */
+
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  width: 100%;
+}
+
+/* ─── Image hover utility ─────────────────────────────── */
+
+.img-hover img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.img-hover:hover img {
+  transform: scale(1.04);
+}
+
+/* ─── Button fill animation ───────────────────────────── */
+
+.btn-fill {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.btn-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #8f4d34;
+  transform: translateX(-101%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
+}
+
+.btn-fill:hover::before {
+  transform: translateX(0);
 }

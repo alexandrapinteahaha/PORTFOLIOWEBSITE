@@ -1,14 +1,6 @@
 import Link from "next/link";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 
-const infoLinks = [
-  ["FAQ", "/faq"],
-  ["Shipping and Returns", "/shipping-returns"],
-  ["Privacy Policy", "/privacy-policy"],
-  ["Terms and Conditions", "/terms-and-conditions"],
-  ["Contact", "/contact"]
-];
-
 const practiceLinks = [
   ["Portfolio", "/portfolio"],
   ["Gallery", "/gallery"],
@@ -18,34 +10,52 @@ const practiceLinks = [
   ["CV", "/cv"]
 ];
 
+const infoLinks = [
+  ["FAQ", "/faq"],
+  ["Shipping and Returns", "/shipping-returns"],
+  ["Privacy Policy", "/privacy-policy"],
+  ["Terms and Conditions", "/terms-and-conditions"],
+  ["Contact", "/contact"],
+  ["Admin", "/admin"]
+];
+
 export function Footer() {
   return (
-    <footer className="border-t border-dotted border-line bg-ink text-chalk">
-      <div className="container-shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <footer className="bg-ink text-chalk">
+      <div className="container-shell grid gap-12 py-16 md:grid-cols-[1.6fr_1fr_1fr_1.4fr] md:py-20">
+
+        {/* Brand */}
         <div>
-          <p className="text-sm uppercase tracking-label text-chalk/90">Alexandra Pintea</p>
-          <p className="mt-5 max-w-xs text-xs leading-7 text-chalk/50 tracking-wide">
+          <p className="label text-chalk/80">Alexandra Pintea</p>
+          <p className="mt-5 max-w-xs text-xs leading-7 text-chalk/40">
             A living archive of sculpture, multimedia work, photography, and
-            digital studies.
+            digital studies. Original works, selected prints, and monthly Print
+            Club releases.
           </p>
-          <p className="mt-6 text-[11px] uppercase tracking-label text-chalk/30">Instagram</p>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1.5 block text-xs tracking-wide text-chalk/50 transition-colors hover:text-chalk"
-            aria-label="Alexandra Pintea on Instagram"
-          >
-            @alexandrapintea
-          </a>
+          <div className="mt-8 grid gap-2">
+            <p className="label text-chalk/25">Instagram</p>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link text-xs tracking-wide text-chalk/45 transition-colors hover:text-chalk"
+              aria-label="Alexandra Pintea on Instagram"
+            >
+              @alexandrapintea
+            </a>
+          </div>
         </div>
 
+        {/* Practice */}
         <div>
-          <p className="label text-chalk/40">Practice</p>
-          <ul className="mt-5 grid gap-3 text-xs tracking-wide text-chalk/55">
+          <p className="label text-chalk/30">Practice</p>
+          <ul className="mt-5 grid gap-3">
             {practiceLinks.map(([label, href]) => (
               <li key={href}>
-                <Link href={href} className="focus-ring transition-colors hover:text-chalk">
+                <Link
+                  href={href}
+                  className="nav-link text-xs tracking-wide text-chalk/50 transition-colors hover:text-chalk"
+                >
                   {label}
                 </Link>
               </li>
@@ -53,28 +63,29 @@ export function Footer() {
           </ul>
         </div>
 
+        {/* Information */}
         <div>
-          <p className="label text-chalk/40">Information</p>
-          <ul className="mt-5 grid gap-3 text-xs tracking-wide text-chalk/55">
+          <p className="label text-chalk/30">Information</p>
+          <ul className="mt-5 grid gap-3">
             {infoLinks.map(([label, href]) => (
               <li key={href}>
-                <Link href={href} className="focus-ring transition-colors hover:text-chalk">
+                <Link
+                  href={href}
+                  className="nav-link text-xs tracking-wide text-chalk/50 transition-colors hover:text-chalk"
+                >
                   {label}
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/admin" className="focus-ring transition-colors hover:text-chalk">
-                Admin
-              </Link>
-            </li>
           </ul>
         </div>
 
+        {/* Newsletter */}
         <div>
-          <p className="label text-chalk/40">Newsletter</p>
-          <p className="mt-5 text-xs leading-7 tracking-wide text-chalk/45">
-            Occasional updates on new work and Print Club releases.
+          <p className="label text-chalk/30">Newsletter</p>
+          <p className="mt-5 text-xs leading-7 text-chalk/40">
+            Occasional updates on new work and Print Club releases. No regular
+            schedule.
           </p>
           <div className="mt-5">
             <NewsletterForm dark />
@@ -82,10 +93,14 @@ export function Footer() {
         </div>
       </div>
 
-      <hr className="dotted-rule border-chalk/10" />
-      <div className="container-shell flex flex-wrap items-center justify-between gap-3 py-5">
-        <span className="label text-chalk/30">Alexandra Pintea. All rights reserved.</span>
-        <span className="label text-chalk/30">Ships from the United Kingdom.</span>
+      {/* Bottom bar */}
+      <div className="border-t border-chalk/10">
+        <div className="container-shell flex flex-wrap items-center justify-between gap-3 py-5">
+          <span className="label text-chalk/25">
+            © {new Date().getFullYear()} Alexandra Pintea. All rights reserved.
+          </span>
+          <span className="label text-chalk/25">Ships from the United Kingdom.</span>
+        </div>
       </div>
     </footer>
   );

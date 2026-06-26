@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { ArtworkCard } from "@/components/ArtworkCard";
 import { GalleryFilters } from "@/components/GalleryFilters";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Reveal } from "@/components/ui/Reveal";
 import { getArtworks } from "@/lib/data/loaders";
 import type { ArtworkCategory, ArtworkStatus } from "@/lib/types";
 
@@ -43,38 +43,51 @@ export default async function GalleryPage({ searchParams }: GalleryPageProps) {
   });
 
   return (
-    <section className="container-shell py-14 md:py-20">
-      <SectionHeader
-        title="Gallery"
-        intro="The full picture archive. Filter by type, availability, series, or year."
-      />
-      <Suspense fallback={null}>
-        <GalleryFilters
-          years={years}
-          series={series}
-          current={{
-            category: params.category,
-            status: params.status,
-            year: params.year,
-            series: params.series
-          }}
-        />
-      </Suspense>
-      {filtered.length > 0 ? (
-        <div className="mt-12 grid gap-x-8 gap-y-12 md:grid-cols-3">
-          {filtered.map((artwork) => (
-            <ArtworkCard key={artwork.id} artwork={artwork} />
-          ))}
+    <>
+      <section className="border-b border-line">
+        <div className="container-shell py-14 md:py-20">
+          <Reveal>
+            <p className="label text-graphite">Archive</p>
+            <h1 className="mt-2 font-title text-4xl md:text-6xl">Gallery</h1>
+            <p className="mt-5 max-w-xl text-sm leading-8 text-graphite">
+              The full picture archive. Filter by type, availability, series, or year.
+            </p>
+          </Reveal>
         </div>
-      ) : (
-        <div className="mt-12">
-          <EmptyState
-            message="No works match the current filters."
-            hint="Try adjusting or clearing the filters above."
+      </section>
+
+      <section className="container-shell py-14 md:py-20">
+        <Suspense fallback={null}>
+          <GalleryFilters
+            years={years}
+            series={series}
+            current={{
+              category: params.category,
+              status: params.status,
+              year: params.year,
+              series: params.series
+            }}
           />
-        </div>
-      )}
-    </section>
+        </Suspense>
+
+        {filtered.length > 0 ? (
+          <div className="mt-12 grid gap-x-8 gap-y-14 sm:grid-cols-2 md:grid-cols-3">
+            {filtered.map((artwork, i) => (
+              <Reveal key={artwork.id} delay={Math.min(i % 3, 2) * 100}>
+                <ArtworkCard artwork={artwork} />
+              </Reveal>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-12">
+            <EmptyState
+              message="No works match the current filters."
+              hint="Try adjusting or clearing the filters above."
+            />
+          </div>
+        )}
+      </section>
+    </>
   );
 }
 

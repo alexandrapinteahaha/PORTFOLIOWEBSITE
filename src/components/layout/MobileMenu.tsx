@@ -14,7 +14,7 @@ const navItems = [
   ["Account", "/account"]
 ];
 
-export function MobileMenu() {
+export function MobileMenu({ dark }: { dark?: boolean }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -23,14 +23,8 @@ export function MobileMenu() {
   }, [pathname]);
 
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   return (
@@ -44,28 +38,41 @@ export function MobileMenu() {
       >
         <span className="grid gap-[5px]">
           <span
-            className={`block h-px w-5 bg-ink transition-all duration-200 ${open ? "translate-y-[6px] rotate-45" : ""}`}
+            className={[
+              "block h-px w-5 transition-all duration-200",
+              dark ? "bg-chalk" : "bg-ink",
+              open ? "translate-y-[6px] rotate-45" : ""
+            ].join(" ")}
           />
           <span
-            className={`block h-px w-5 bg-ink transition-all duration-200 ${open ? "opacity-0" : ""}`}
+            className={[
+              "block h-px w-5 transition-all duration-200",
+              dark ? "bg-chalk" : "bg-ink",
+              open ? "opacity-0" : ""
+            ].join(" ")}
           />
           <span
-            className={`block h-px w-5 bg-ink transition-all duration-200 ${open ? "-translate-y-[6px] -rotate-45" : ""}`}
+            className={[
+              "block h-px w-5 transition-all duration-200",
+              dark ? "bg-chalk" : "bg-ink",
+              open ? "-translate-y-[6px] -rotate-45" : ""
+            ].join(" ")}
           />
         </span>
       </button>
 
       {open && (
-        <div className="fixed inset-0 top-16 z-30 bg-paper md:hidden">
+        <div className="fixed inset-0 top-32 z-40 bg-paper md:hidden">
           <nav className="container-shell py-8">
             <ul className="grid gap-1">
               {navItems.map(([label, href]) => (
                 <li key={href}>
                   <Link
                     href={href}
-                    className={`focus-ring block border-b border-line py-4 font-sans text-base uppercase tracking-[0.1em] transition ${
+                    className={[
+                      "focus-ring block border-b border-line py-5 font-sans text-base uppercase tracking-[0.1em] transition",
                       pathname === href ? "text-ink" : "text-graphite hover:text-ink"
-                    }`}
+                    ].join(" ")}
                   >
                     {label}
                   </Link>
