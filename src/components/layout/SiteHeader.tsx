@@ -56,7 +56,7 @@ export function SiteHeader() {
 
         {/* ── Logo row — flush left ───────────────────────── */}
         <div className="border-b border-line">
-          <div className="flex items-center py-5 pl-4 md:pl-6">
+          <div className="flex items-center py-5 pl-1 md:pl-2">
             <Link href="/" className="focus-ring" aria-label="Alexandra Pintea — home">
               <Image
                 src="/logo-transparent.png"
