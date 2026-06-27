@@ -34,12 +34,10 @@ export default async function HomePage() {
           </p>
 
           <h1
-            className="animate-fade-up mt-6 font-title font-bold text-chalk delay-200"
-            style={{ fontSize: "clamp(3rem, 9vw, 7.5rem)", letterSpacing: "0.08em", lineHeight: 1.05 }}
+            className="animate-fade-up mt-6 whitespace-nowrap font-title font-bold text-chalk delay-200"
+            style={{ fontSize: "clamp(2rem, 6vw, 5.5rem)", letterSpacing: "0.08em", lineHeight: 1.05 }}
           >
-            Alexandra
-            <br />
-            Pintea
+            Alexandra Pintea
           </h1>
 
           <p className="animate-fade-up mt-7 max-w-md text-sm leading-8 delay-300" style={{ color: "#fbfaf7" }}>
