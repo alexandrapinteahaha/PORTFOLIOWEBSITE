@@ -73,7 +73,7 @@ export default async function HomePage() {
       <section className="bg-ink text-chalk">
         <div className="container-shell py-20 md:py-28">
 
-          {/* Title + CTA */}
+          {/* Title + description */}
           <Reveal>
             <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,250,247,0.4)" }}>
               2026 Collection
@@ -81,6 +81,9 @@ export default async function HomePage() {
             <h2 className="mt-3 font-title text-5xl text-chalk md:text-6xl">
               Print Club
             </h2>
+            <p className="mt-6 max-w-lg text-sm leading-8" style={{ color: "rgba(251,250,247,0.7)" }}>
+              A hand-signed art print every single month, (plus a bonus for your birthday!) for just £10.
+            </p>
           </Reveal>
           <Reveal delay={100} className="mt-10">
             <ButtonLink href="/print-club/join" variant="ghost">
@@ -94,21 +97,21 @@ export default async function HomePage() {
               {/* Dashed connector */}
               <div
                 className="absolute left-0 right-0"
-                style={{ top: "11px", borderTop: "1px dashed rgba(251,250,247,0.5)" }}
+                style={{ top: "12px", borderTop: "1px dashed rgba(251,250,247,0.35)" }}
               />
               {[
-                ["01", "A Personal Letter"],
-                ["02", "High Quality Print"],
-                ["03", "Process Log Access"],
-                ["04", "Birthday Print"],
+                ["1", "Letter"],
+                ["2", "Print"],
+                ["3", "Process\nLog"],
+                ["4", "Birthday\nPrint"],
               ].map(([num, title]) => (
                 <div key={num} className="relative z-10 flex flex-1 flex-col items-center">
                   {/* Ball */}
                   <div className="flex h-6 w-6 items-center justify-center rounded-full bg-chalk">
-                    <span className="font-title text-[8px] font-bold leading-none text-ink">{num}</span>
+                    <span className="font-title text-[9px] font-bold leading-none text-ink">{num}</span>
                   </div>
                   {/* Label */}
-                  <p className="mt-4 max-w-[90px] text-center" style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(251,250,247,0.6)", lineHeight: 1.7 }}>
+                  <p className="mt-4 max-w-[80px] whitespace-pre-line text-center" style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(251,250,247,0.55)", lineHeight: 1.7 }}>
                     {title}
                   </p>
                 </div>
