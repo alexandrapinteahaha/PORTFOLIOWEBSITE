@@ -2,8 +2,6 @@ import Link from "next/link";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 
 const practiceLinks = [
-  ["Portfolio", "/portfolio"],
-  ["Gallery", "/gallery"],
   ["Archive", "/archive"],
   ["Print Club", "/print-club"],
   ["Commissions", "/commissions"],
