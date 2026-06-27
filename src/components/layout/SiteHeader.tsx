@@ -179,7 +179,7 @@ export function SiteHeader() {
                   <circle cx="13.5" cy="17" r="1" fill="currentColor"/>
                 </svg>
                 {itemCount > 0 && (
-                  <span className="absolute -right-1.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-ink text-[9px] font-bold text-chalk">
+                  <span className="absolute -right-2 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-chalk shadow-sm">
                     {itemCount}
                   </span>
                 )}
