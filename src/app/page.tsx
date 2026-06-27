@@ -94,15 +94,10 @@ export default async function HomePage() {
           {/* Timeline */}
           <Reveal delay={200} className="mt-16 md:mt-20">
             <div className="relative flex items-start justify-between">
-              {/* Dashed connector — from centre of first circle to centre of last */}
+              {/* Dashed connector — full width, edge to edge */}
               <div
-                className="absolute"
-                style={{
-                  top: "19px",
-                  left: "calc(12.5% - 1px)",
-                  right: "calc(12.5% - 1px)",
-                  borderTop: "1.5px dashed rgba(251,250,247,0.4)"
-                }}
+                className="absolute left-0 right-0"
+                style={{ top: "19px", borderTop: "1.5px dashed rgba(251,250,247,0.4)" }}
               />
               {[
                 ["1", "Letter"],
