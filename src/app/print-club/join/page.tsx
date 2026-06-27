@@ -110,9 +110,14 @@ export default function JoinPrintClubPage() {
             }
           ].map(({ num, title, body }) => (
             <Reveal key={num}>
-              <div className="grid gap-6 border-b border-line py-8 md:grid-cols-[60px_260px_1fr]">
-                <span className="label text-graphite/30">{num}</span>
-                <h3 className="font-title text-sm font-bold uppercase tracking-[0.12em] text-ink">{title}</h3>
+              <div className="grid gap-6 border-b border-line py-8 md:grid-cols-[72px_260px_1fr]">
+                {/* Number — bold Myanmar Text with subtle circle */}
+                <div className="relative flex h-9 w-9 items-center justify-center">
+                  <div className="absolute inset-0 rounded-full bg-black/5" />
+                  <span className="relative font-title text-sm font-bold text-ink">{num}</span>
+                </div>
+                {/* Title — light label style (Minion Pro, not bold) */}
+                <p className="self-center text-[11px] font-normal uppercase tracking-[0.22em] text-ink">{title}</p>
                 <p className="text-sm leading-7 text-graphite">{body}</p>
               </div>
             </Reveal>
