@@ -72,50 +72,50 @@ export default async function HomePage() {
       {/* ── Print Club (dark editorial) ───────────────────── */}
       <section className="bg-ink text-chalk">
         <div className="container-shell py-20 md:py-28">
-          <div className="grid gap-16 md:grid-cols-[1fr_1fr]">
-            <Reveal>
-              <p className="label text-chalk/40">2026 Collection</p>
-              <h2 className="mt-3 font-title text-3xl text-chalk md:text-4xl">
-                Print Club
-              </h2>
-              <p className="mt-6 text-sm leading-8 text-chalk/55">
-                Each year, a mini project begins — creating 12 pieces in total,
-                with an additional birthday print. A mini collection 2026
-                explores identity.
-              </p>
-              <p className="mt-4 text-sm leading-8 text-chalk/45">
-                Making a creative process accessible. Inspiration, influence and
-                process — shared with subscribers each month.
-              </p>
-              <div className="mt-10">
-                <ButtonLink href="/print-club" variant="ghost">
-                  Join Print Club
-                </ButtonLink>
-              </div>
-            </Reveal>
 
-            <Reveal delay={100} className="self-center">
-              <ul className="grid gap-0">
-                {[
-                  ["01", "A personal letter", "Handwritten and included monthly"],
-                  ["02", "High quality print", "Physical print posted to your door"],
-                  ["03", "Process log access", "Digital access to inspiration & influence"],
-                  ["04", "Birthday print", "An additional print each year"]
-                ].map(([num, title, sub]) => (
-                  <li
-                    key={num}
-                    className="flex items-start gap-6 border-t border-chalk/10 py-5 last:border-b last:border-chalk/10"
-                  >
-                    <span className="label mt-0.5 text-chalk/20">{num}</span>
-                    <div>
-                      <p className="label text-chalk/75">{title}</p>
-                      <p className="mt-1 text-xs leading-6 text-chalk/35">{sub}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
+          {/* Title + CTA */}
+          <Reveal>
+            <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,250,247,0.4)" }}>
+              2026 Collection
+            </p>
+            <h2 className="mt-3 font-title text-5xl text-chalk md:text-6xl">
+              Print Club
+            </h2>
+          </Reveal>
+          <Reveal delay={100} className="mt-10">
+            <ButtonLink href="/print-club/join" variant="ghost">
+              Join Print Club
+            </ButtonLink>
+          </Reveal>
+
+          {/* Timeline */}
+          <Reveal delay={200} className="mt-16 md:mt-20">
+            <div className="relative flex items-start justify-between">
+              {/* Dashed connector */}
+              <div
+                className="absolute left-0 right-0"
+                style={{ top: "11px", borderTop: "1px dashed rgba(251,250,247,0.5)" }}
+              />
+              {[
+                ["01", "A Personal Letter"],
+                ["02", "High Quality Print"],
+                ["03", "Process Log Access"],
+                ["04", "Birthday Print"],
+              ].map(([num, title]) => (
+                <div key={num} className="relative z-10 flex flex-1 flex-col items-center">
+                  {/* Ball */}
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-chalk">
+                    <span className="font-title text-[8px] font-bold leading-none text-ink">{num}</span>
+                  </div>
+                  {/* Label */}
+                  <p className="mt-4 max-w-[90px] text-center" style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(251,250,247,0.6)", lineHeight: 1.7 }}>
+                    {title}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
         </div>
       </section>
 
