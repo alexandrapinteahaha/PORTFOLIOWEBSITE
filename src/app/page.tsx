@@ -42,12 +42,7 @@ export default async function HomePage() {
             Pintea
           </h1>
 
-          <p className="animate-fade-up mt-7 max-w-md text-sm leading-8 delay-300" style={{ color: "#fbfaf7" }}>
-            A living archive of sculpture, multimedia work, photography, and
-            digital studies.
-          </p>
-
-          <div className="animate-fade-up mt-10 flex flex-wrap items-center justify-center gap-4 delay-400">
+          <div className="animate-fade-up mt-10 flex flex-wrap items-center justify-center gap-4 delay-300">
             <ButtonLink href="/archive" variant="ghost">
               View Archive
             </ButtonLink>
