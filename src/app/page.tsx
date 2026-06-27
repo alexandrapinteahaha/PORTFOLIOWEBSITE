@@ -29,7 +29,7 @@ export default async function HomePage() {
 
         {/* Hero content — centered like Maura K Spain */}
         <div className="relative z-10 flex min-h-[72vh] flex-col items-center justify-center px-6 text-center">
-          <p className="animate-fade-in label text-chalk/40 delay-100">
+          <p className="animate-fade-in label text-chalk delay-100">
             Contemporary Artist · United Kingdom
           </p>
 
@@ -61,15 +61,12 @@ export default async function HomePage() {
       {/* ── Marquee ──────────────────────────────────────── */}
       <Marquee
         items={[
-          "Archive",
-          "Sculpture",
-          "Multimedia",
-          "Photography",
-          "Digital Studies",
-          "Print Club",
-          "Original Works",
-          "UK Based",
-          "Ships Internationally"
+          "Print Club 2026",
+          "Coming Soon",
+          "New Mini Collection",
+          "Print Club 2026",
+          "Coming Soon",
+          "New Mini Collection"
         ]}
       />
 
