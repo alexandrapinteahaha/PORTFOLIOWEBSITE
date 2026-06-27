@@ -94,10 +94,15 @@ export default async function HomePage() {
           {/* Timeline */}
           <Reveal delay={200} className="mt-16 md:mt-20">
             <div className="relative flex items-start justify-between">
-              {/* Dashed connector */}
+              {/* Dashed connector — from centre of first circle to centre of last */}
               <div
-                className="absolute left-0 right-0"
-                style={{ top: "12px", borderTop: "1px dashed rgba(251,250,247,0.35)" }}
+                className="absolute"
+                style={{
+                  top: "19px",
+                  left: "calc(12.5% - 1px)",
+                  right: "calc(12.5% - 1px)",
+                  borderTop: "1.5px dashed rgba(251,250,247,0.4)"
+                }}
               />
               {[
                 ["1", "Letter"],
@@ -106,12 +111,17 @@ export default async function HomePage() {
                 ["4", "Birthday\nPrint"],
               ].map(([num, title]) => (
                 <div key={num} className="relative z-10 flex flex-1 flex-col items-center">
-                  {/* Ball */}
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-chalk">
-                    <span className="font-title text-[9px] font-bold leading-none text-ink">{num}</span>
+                  {/* Circle */}
+                  <div
+                    className="rounded-full bg-chalk"
+                    style={{ width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center" }}
+                  >
+                    <span style={{ fontFamily: "'Myanmar Text', serif", fontWeight: 700, fontSize: "13px", lineHeight: 1, color: "#171717" }}>
+                      {num}
+                    </span>
                   </div>
                   {/* Label */}
-                  <p className="mt-4 max-w-[80px] whitespace-pre-line text-center" style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(251,250,247,0.55)", lineHeight: 1.7 }}>
+                  <p className="mt-5 max-w-[90px] whitespace-pre-line text-center" style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(251,250,247,0.6)", lineHeight: 1.8 }}>
                     {title}
                   </p>
                 </div>
