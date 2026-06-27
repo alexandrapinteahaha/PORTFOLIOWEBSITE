@@ -40,7 +40,7 @@ export default function CommissionsPage() {
     <>
       {/* ── Dark hero ──────────────────────────────────────── */}
       <section className="bg-ink text-chalk">
-        <div className="container-shell py-20 md:py-28">
+        <div className="container-shell py-20 md:py-28 flex flex-col items-center text-center">
           <Reveal>
             <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,250,247,0.4)" }}>
               Bespoke work
@@ -48,7 +48,7 @@ export default function CommissionsPage() {
             <h1 className="mt-3 font-title text-5xl text-chalk md:text-6xl">
               Commission / Enquiry
             </h1>
-            <div className="mt-8 max-w-2xl grid gap-5" style={{ fontSize: "17px", lineHeight: "1.85", color: "rgba(251,250,247,0.72)" }}>
+            <div className="mt-8 max-w-2xl grid gap-5 mx-auto" style={{ fontSize: "17px", lineHeight: "1.85", color: "rgba(251,250,247,0.72)" }}>
               <p>
                 Commissions are reviewed individually. Use the form to introduce your project, share context, and indicate budget range and timeframe.
               </p>
