@@ -26,7 +26,12 @@ const config: Config = {
         title: "0.12em"
       },
       fontSize: {
-        label: ["11px", { letterSpacing: "0.22em" }]
+        label: ["11px", { letterSpacing: "0.22em" }],
+        xs:   ["0.875rem",  { lineHeight: "1.5" }],   /* 14px */
+        sm:   ["1.0625rem", { lineHeight: "1.8" }],   /* 17px — was 14px */
+        base: ["1.25rem",   { lineHeight: "1.85" }],  /* 20px — was 16px */
+        lg:   ["1.375rem",  { lineHeight: "1.75" }],  /* 22px */
+        xl:   ["1.5rem",    { lineHeight: "1.65" }],  /* 24px */
       }
     }
   },

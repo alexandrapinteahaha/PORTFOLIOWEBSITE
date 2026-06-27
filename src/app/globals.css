@@ -64,8 +64,8 @@ body {
   background: #f7f6f2;
   color: #171717;
   font-family: "Minion Pro", Georgia, serif;
-  font-size: 17px;
-  line-height: 1.75;
+  font-size: 20px;
+  line-height: 1.85;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -90,7 +90,7 @@ button, input, select, textarea {
 
 p {
   font-family: "Minion Pro", Georgia, serif;
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.85;
 }
 
