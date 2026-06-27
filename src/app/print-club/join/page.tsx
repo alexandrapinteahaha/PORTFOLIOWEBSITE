@@ -87,31 +87,26 @@ export default function JoinPrintClubPage() {
         </Reveal>
 
         <div className="mt-10 grid gap-0">
-          {[
+          [
             {
               num: "01",
               title: "A personal letter",
-              body: "Each month includes a handwritten letter from Alexandra — thoughts on the work, the process, the month."
+              body: "A personal letter reflecting on the artwork, the ideas behind it, and the process of making."
             },
             {
               num: "02",
-              title: "High quality physical print",
-              body: "A museum-quality physical print, posted directly to your door as part of the subscription."
+              title: "High quality print",
+              body: "A museum-quality print produced exclusively for subscribers."
             },
             {
               num: "03",
-              title: "Digital access to a process log",
-              body: "Subscribers receive access to an ongoing digital log — inspiration, influences, and working notes for each piece."
+              title: "Digital process log",
+              body: "A digital archive of sketches, references and thoughts behind each artwork."
             },
             {
               num: "04",
-              title: "Inspiration, influence and process",
-              body: "The creative process made visible. What sparked the work, what shaped it, how it was made."
-            },
-            {
-              num: "05",
-              title: "Birthday print",
-              body: "Every subscriber receives an additional birthday print each year — a thirteenth piece, personal and separate from the main collection."
+              title: "An annual collector’s print",
+              body: "Each year, subscribers receive an additional birthday print."
             }
           ].map(({ num, title, body }) => (
             <Reveal key={num}>
