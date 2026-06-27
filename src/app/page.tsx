@@ -1,110 +1,101 @@
+import Link from "next/link";
 import { ArtworkCard } from "@/components/ArtworkCard";
-import { ProductCard } from "@/components/ProductCard";
-import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Marquee } from "@/components/ui/Marquee";
 import { Reveal } from "@/components/ui/Reveal";
-import { getArtworks, getProducts } from "@/lib/data/loaders";
+import { NewsletterForm } from "@/components/forms/NewsletterForm";
+import { getArtworks } from "@/lib/data/loaders";
 
 export default async function HomePage() {
-  const [artworks, products] = await Promise.all([getArtworks(), getProducts()]);
-  const featuredArtworks = artworks.filter((a) => a.status !== "hidden").slice(0, 3);
-  const featuredProducts = products.filter((p) => p.isActive).slice(0, 3);
+  const artworks = await getArtworks();
+  const featured = artworks.filter((a) => a.status !== "hidden").slice(0, 3);
 
   return (
     <>
-      {/* ─── Hero ─────────────────────────────────────────── */}
-      <section className="relative -mt-32 min-h-screen overflow-hidden bg-ink">
-        {/* Placeholder gradient — replace with real image */}
+      {/* ── Hero ─────────────────────────────────────────── */}
+      <section className="relative overflow-hidden" style={{ minHeight: "72vh" }}>
+        {/* Background — replace src with real artwork once uploaded */}
         <div
           className="absolute inset-0"
           style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 60% 40%, #2a2520 0%, #171717 100%)"
+            background: "linear-gradient(135deg, #1c1917 0%, #292524 40%, #1c1917 100%)"
           }}
         />
 
-        {/* Grain texture overlay */}
+        {/* Subtle texture */}
         <div
-          className="absolute inset-0 opacity-[0.15]"
+          className="absolute inset-0 opacity-[0.12]"
           style={{
             backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")",
-            backgroundSize: "256px 256px"
+              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+            backgroundSize: "200px"
           }}
         />
 
-        {/* Content */}
-        <div className="container-shell relative z-10 flex min-h-screen flex-col justify-between pb-12 pt-56 md:pt-64">
-          {/* Top label */}
-          <div className="animate-fade-in delay-100">
-            <p className="label text-chalk/40">Contemporary Artist · UK</p>
-          </div>
+        {/* Hero content — centered like Maura K Spain */}
+        <div className="relative z-10 flex min-h-[72vh] flex-col items-center justify-center px-6 text-center">
+          <p className="animate-fade-in label text-chalk/40 delay-100">
+            Contemporary Artist · United Kingdom
+          </p>
 
-          {/* Main text block */}
-          <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
-            <div>
-              <h1 className="animate-fade-up delay-200 font-title text-[clamp(3.5rem,10vw,8rem)] leading-none text-chalk">
-                Alexandra
-                <br />
-                Pintea
-              </h1>
-              <p className="animate-fade-up delay-300 mt-6 max-w-md text-sm leading-8 text-chalk/55">
-                A living archive of sculpture, multimedia work, photography, and
-                digital studies. Original works, selected prints, and monthly
-                Print Club releases.
-              </p>
-            </div>
+          <h1
+            className="animate-fade-up mt-6 font-title font-bold text-chalk delay-200"
+            style={{ fontSize: "clamp(3rem, 9vw, 7.5rem)", letterSpacing: "0.08em", lineHeight: 1.05 }}
+          >
+            Alexandra
+            <br />
+            Pintea
+          </h1>
 
-            {/* CTAs */}
-            <div className="animate-fade-up delay-400 flex flex-col gap-3 md:items-end">
-              <ButtonLink href="/portfolio" variant="ghost">
-                View portfolio
-              </ButtonLink>
-              <ButtonLink href="/print-club" variant="ghost">
-                Join Print Club
-              </ButtonLink>
-            </div>
-          </div>
+          <p className="animate-fade-up mt-7 max-w-md text-sm leading-8 text-chalk/50 delay-300">
+            A living archive of sculpture, multimedia work, photography, and
+            digital studies.
+          </p>
 
-          {/* Scroll indicator */}
-          <div className="animate-fade-in delay-600 flex items-center gap-3">
-            <span className="h-px w-8 bg-chalk/25" />
-            <span className="label text-chalk/30">Scroll</span>
+          <div className="animate-fade-up mt-10 flex flex-wrap items-center justify-center gap-4 delay-400">
+            <ButtonLink href="/archive" variant="ghost">
+              View Archive
+            </ButtonLink>
+            <ButtonLink href="/print-club" variant="ghost">
+              Join Print Club
+            </ButtonLink>
           </div>
         </div>
       </section>
 
-      {/* ─── Ticker ───────────────────────────────────────── */}
+      {/* ── Marquee ──────────────────────────────────────── */}
       <Marquee
         items={[
+          "Archive",
           "Sculpture",
           "Multimedia",
           "Photography",
           "Digital Studies",
           "Print Club",
-          "Based in the UK",
-          "Ships Internationally",
           "Original Works",
-          "Monthly Prints"
+          "UK Based",
+          "Ships Internationally"
         ]}
       />
 
-      {/* ─── Selected Works ───────────────────────────────── */}
-      {featuredArtworks.length > 0 && (
+      {/* ── Selected Works ────────────────────────────────── */}
+      {featured.length > 0 && (
         <section className="container-shell py-20 md:py-28">
           <Reveal className="flex items-end justify-between gap-6 border-b border-line pb-6">
             <div>
               <p className="label text-graphite">Selected works</p>
-              <h2 className="mt-2 font-title text-2xl md:text-3xl">Recent Archive</h2>
+              <h2 className="mt-2 font-title text-2xl md:text-3xl">Recent Works</h2>
             </div>
-            <ButtonLink href="/gallery" variant="quiet">
-              View all
-            </ButtonLink>
+            <Link
+              href="/archive"
+              className="nav-link label text-graphite transition-colors hover:text-ink"
+            >
+              View archive →
+            </Link>
           </Reveal>
 
-          <div className="mt-10 grid gap-x-8 gap-y-12 md:grid-cols-3">
-            {featuredArtworks.map((artwork, i) => (
+          <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 md:grid-cols-3">
+            {featured.map((artwork, i) => (
               <Reveal key={artwork.id} delay={i * 120}>
                 <ArtworkCard artwork={artwork} />
               </Reveal>
@@ -113,50 +104,46 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ─── Print Club (dark editorial) ──────────────────── */}
+      {/* ── Print Club (dark editorial) ───────────────────── */}
       <section className="bg-ink text-chalk">
         <div className="container-shell py-20 md:py-28">
           <div className="grid gap-16 md:grid-cols-[1fr_1fr]">
-            {/* Left: text */}
-            <div>
-              <Reveal>
-                <p className="label text-chalk/40">Membership</p>
-                <h2 className="mt-3 font-title text-3xl text-chalk md:text-4xl">
-                  Print Club
-                </h2>
-                <p className="mt-6 text-sm leading-8 text-chalk/55">
-                  A slower way to collect. One physical print each month from a
-                  yearly project of twelve works — alongside process notes, a
-                  digital file, and a short letter from Alexandra.
-                </p>
-                <p className="mt-4 text-sm leading-8 text-chalk/55">
-                  One subscription tier. Subscriber archive and digital content
-                  unlocked immediately after subscribing.
-                </p>
-              </Reveal>
-              <Reveal delay={150} className="mt-10">
+            <Reveal>
+              <p className="label text-chalk/40">2026 Collection</p>
+              <h2 className="mt-3 font-title text-3xl text-chalk md:text-4xl">
+                Print Club
+              </h2>
+              <p className="mt-6 text-sm leading-8 text-chalk/55">
+                Each year, a mini project begins — creating 12 pieces in total,
+                with an additional birthday print. A mini collection 2026
+                explores identity.
+              </p>
+              <p className="mt-4 text-sm leading-8 text-chalk/45">
+                Making a creative process accessible. Inspiration, influence and
+                process — shared with subscribers each month.
+              </p>
+              <div className="mt-10">
                 <ButtonLink href="/print-club" variant="ghost">
-                  Join Print Club — £15 / month
+                  Join Print Club
                 </ButtonLink>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
 
-            {/* Right: feature list */}
             <Reveal delay={100} className="self-center">
               <ul className="grid gap-0">
                 {[
-                  ["01", "Monthly physical print", "Posted directly to your door"],
-                  ["02", "Digital file", "High-resolution print-ready file"],
-                  ["03", "Process notes", "Studio PDF + monthly letter"],
-                  ["04", "Subscriber archive", "Digital access unlocked"]
+                  ["01", "A personal letter", "Handwritten and included monthly"],
+                  ["02", "High quality print", "Physical print posted to your door"],
+                  ["03", "Process log access", "Digital access to inspiration & influence"],
+                  ["04", "Birthday print", "An additional print each year"]
                 ].map(([num, title, sub]) => (
                   <li
                     key={num}
                     className="flex items-start gap-6 border-t border-chalk/10 py-5 last:border-b last:border-chalk/10"
                   >
-                    <span className="label mt-0.5 text-chalk/25">{num}</span>
+                    <span className="label mt-0.5 text-chalk/20">{num}</span>
                     <div>
-                      <p className="label text-chalk/80">{title}</p>
+                      <p className="label text-chalk/75">{title}</p>
                       <p className="mt-1 text-xs leading-6 text-chalk/35">{sub}</p>
                     </div>
                   </li>
@@ -167,31 +154,29 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ─── Available Works ──────────────────────────────── */}
-      {featuredProducts.length > 0 && (
-        <section className="container-shell py-20 md:py-28">
-          <Reveal className="flex items-end justify-between gap-6 border-b border-line pb-6">
-            <div>
-              <p className="label text-graphite">Shop</p>
-              <h2 className="mt-2 font-title text-2xl md:text-3xl">Available Works</h2>
-            </div>
-            <ButtonLink href="/shop" variant="quiet">
-              Visit shop
-            </ButtonLink>
-          </Reveal>
-
-          <div className="mt-10 grid gap-x-8 gap-y-12 md:grid-cols-3">
-            {featuredProducts.map((product, i) => (
-              <Reveal key={product.id} delay={i * 120}>
-                <ProductCard product={product} />
-              </Reveal>
-            ))}
+      {/* ── Commission teaser ────────────────────────────── */}
+      <section className="border-y border-line">
+        <div className="container-shell py-16 md:py-20">
+          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
+            <Reveal>
+              <p className="label text-graphite">Bespoke work</p>
+              <h2 className="mt-2 font-title text-2xl md:text-3xl">Commission a Work</h2>
+              <p className="mt-4 max-w-lg text-sm leading-8 text-graphite">
+                Original commissions across sculpture, multimedia, photography, and digital
+                practice. Each commission is developed in close collaboration.
+              </p>
+            </Reveal>
+            <Reveal delay={100}>
+              <ButtonLink href="/commissions" variant="secondary">
+                Start a conversation
+              </ButtonLink>
+            </Reveal>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* ─── Newsletter ───────────────────────────────────── */}
-      <section className="border-t border-line bg-chalk">
+      {/* ── Newsletter ───────────────────────────────────── */}
+      <section className="bg-chalk">
         <div className="container-shell py-20 md:py-24">
           <div className="grid gap-12 md:grid-cols-[1fr_440px] md:items-end">
             <Reveal>
