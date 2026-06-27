@@ -115,9 +115,9 @@ export default function JoinPrintClubPage() {
             }
           ].map(({ num, title, body }) => (
             <Reveal key={num}>
-              <div className="grid gap-6 border-b border-line py-8 md:grid-cols-[60px_240px_1fr]">
+              <div className="grid gap-6 border-b border-line py-8 md:grid-cols-[60px_260px_1fr]">
                 <span className="label text-graphite/30">{num}</span>
-                <p className="label text-ink">{title}</p>
+                <h3 className="font-title text-sm font-bold uppercase tracking-[0.12em] text-ink">{title}</h3>
                 <p className="text-sm leading-7 text-graphite">{body}</p>
               </div>
             </Reveal>
