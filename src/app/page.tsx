@@ -34,10 +34,12 @@ export default async function HomePage() {
           </p>
 
           <h1
-            className="animate-fade-up mt-6 whitespace-nowrap font-title font-bold text-chalk delay-200"
-            style={{ fontSize: "clamp(2rem, 6vw, 5.5rem)", letterSpacing: "0.08em", lineHeight: 1.05 }}
+            className="animate-fade-up mt-6 font-title font-bold text-chalk delay-200"
+            style={{ fontSize: "clamp(3rem, 9vw, 7.5rem)", letterSpacing: "0.08em", lineHeight: 1.1 }}
           >
-            Alexandra Pintea
+            Alexandra
+            <br />
+            Pintea
           </h1>
 
           <p className="animate-fade-up mt-7 max-w-md text-sm leading-8 delay-300" style={{ color: "#fbfaf7" }}>
@@ -82,7 +84,7 @@ export default async function HomePage() {
             <h2 className="mt-3 font-title text-5xl text-chalk md:text-6xl" style={{ marginLeft: 0 }}>
               Print Club
             </h2>
-            <p className="mt-6 max-w-lg leading-8" style={{ fontSize: "16px", color: "rgba(251,250,247,0.75)" }}>
+            <p className="mt-6 whitespace-nowrap leading-8" style={{ fontSize: "20px", color: "rgba(251,250,247,0.75)" }}>
               A hand-signed art print every single month, (plus a bonus for your birthday!) for just £10.
             </p>
           </Reveal>
