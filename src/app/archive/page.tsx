@@ -21,11 +21,6 @@ export default async function ArchivePage() {
           <Reveal>
             <p className="label text-graphite">Works</p>
             <h1 className="mt-2 font-title text-4xl md:text-6xl">Archive</h1>
-            <p className="mt-5 max-w-xl text-sm leading-8 text-graphite">
-              All works across sculpture, multimedia, photography, digital
-              practice, and print. Each piece is individually priced. Sold
-              originals remain visible — prints may still be available.
-            </p>
           </Reveal>
         </div>
       </section>
