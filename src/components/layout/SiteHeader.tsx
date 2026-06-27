@@ -46,7 +46,8 @@ export function SiteHeader() {
           <div className="container-shell py-2.5 text-center">
             <Link
               href="/print-club/join"
-              className="label text-chalk transition-colors hover:text-chalk/80"
+              className="transition-colors hover:opacity-80"
+              style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#fbfaf7" }}
             >
               Print Club 2026 — A Mini Collection · Exploring Identity · 12 prints + birthday print
               <span className="ml-2">→</span>

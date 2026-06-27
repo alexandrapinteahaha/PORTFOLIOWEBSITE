@@ -29,7 +29,7 @@ export default async function HomePage() {
 
         {/* Hero content — centered like Maura K Spain */}
         <div className="relative z-10 flex min-h-[72vh] flex-col items-center justify-center px-6 text-center">
-          <p className="animate-fade-in label text-chalk delay-100">
+          <p className="animate-fade-in delay-100" style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#fbfaf7" }}>
             Contemporary Artist · United Kingdom
           </p>
 
@@ -42,7 +42,7 @@ export default async function HomePage() {
             Pintea
           </h1>
 
-          <p className="animate-fade-up mt-7 max-w-md text-sm leading-8 text-chalk/50 delay-300">
+          <p className="animate-fade-up mt-7 max-w-md text-sm leading-8 delay-300" style={{ color: "#fbfaf7" }}>
             A living archive of sculpture, multimedia work, photography, and
             digital studies.
           </p>
