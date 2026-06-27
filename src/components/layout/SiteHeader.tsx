@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MobileMenu } from "@/components/layout/MobileMenu";
+import { useCart } from "@/lib/cart";
 
 type DropdownKey = "archive" | "printclub" | null;
 
@@ -32,6 +33,7 @@ function ChevronDown() {
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState<DropdownKey>(null);
+  const { itemCount, openCart } = useCart();
 
   const close = () => setOpen(null);
   const toggle = (key: DropdownKey) => setOpen((prev) => (prev === key ? null : key));
@@ -154,7 +156,7 @@ export function SiteHeader() {
               </Link>
             </nav>
 
-            {/* Right: Account + mobile toggle */}
+            {/* Right: Account + Cart + mobile toggle */}
             <div className="flex items-center gap-4">
               <Link
                 href="/account"
@@ -163,6 +165,26 @@ export function SiteHeader() {
               >
                 Account
               </Link>
+
+              {/* Cart icon */}
+              <button
+                onClick={openCart}
+                className="relative flex h-11 items-center text-graphite transition-colors hover:text-ink"
+                aria-label="Open cart"
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M3 4h14l-1.5 9.5H4.5L3 4z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+                  <path d="M7.5 4V3a2.5 2.5 0 015 0v1" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+                  <circle cx="7.5" cy="17" r="1" fill="currentColor"/>
+                  <circle cx="13.5" cy="17" r="1" fill="currentColor"/>
+                </svg>
+                {itemCount > 0 && (
+                  <span className="absolute -right-1.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-ink text-[9px] font-bold text-chalk">
+                    {itemCount}
+                  </span>
+                )}
+              </button>
+
               <MobileMenu />
             </div>
 
