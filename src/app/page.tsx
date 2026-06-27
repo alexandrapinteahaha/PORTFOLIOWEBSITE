@@ -74,27 +74,23 @@ export default async function HomePage() {
         <div className="container-shell py-20 md:py-28">
 
           {/* Title + description */}
-          <Reveal>
+          {/* Title + description — flush left */}
+          <Reveal className="pl-0">
             <p style={{ fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(251,250,247,0.4)" }}>
               2026 Collection
             </p>
-            <h2 className="mt-3 font-title text-5xl text-chalk md:text-6xl">
+            <h2 className="mt-3 font-title text-5xl text-chalk md:text-6xl" style={{ marginLeft: 0 }}>
               Print Club
             </h2>
-            <p className="mt-6 max-w-lg text-sm leading-8" style={{ color: "rgba(251,250,247,0.7)" }}>
+            <p className="mt-6 max-w-lg leading-8" style={{ fontSize: "16px", color: "rgba(251,250,247,0.75)" }}>
               A hand-signed art print every single month, (plus a bonus for your birthday!) for just £10.
             </p>
           </Reveal>
-          <Reveal delay={100} className="mt-10">
-            <ButtonLink href="/print-club/join" variant="ghost">
-              Join Print Club
-            </ButtonLink>
-          </Reveal>
 
           {/* Timeline */}
-          <Reveal delay={200} className="mt-16 md:mt-20">
+          <Reveal delay={100} className="mt-10">
             <div className="relative flex items-start justify-between">
-              {/* Dashed connector — breaks out of container to full viewport width */}
+              {/* Dashed connector — full viewport width */}
               <div
                 className="absolute"
                 style={{
@@ -111,7 +107,6 @@ export default async function HomePage() {
                 ["4", "Birthday\nPrint"],
               ].map(([num, title]) => (
                 <div key={num} className="relative z-10 flex flex-1 flex-col items-center">
-                  {/* Circle */}
                   <div
                     className="rounded-full bg-chalk"
                     style={{ width: 44, height: 44, position: "relative" }}
@@ -130,13 +125,19 @@ export default async function HomePage() {
                       {num}
                     </span>
                   </div>
-                  {/* Label */}
                   <p className="mt-5 max-w-[90px] whitespace-pre-line text-center" style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(251,250,247,0.6)", lineHeight: 1.8 }}>
                     {title}
                   </p>
                 </div>
               ))}
             </div>
+          </Reveal>
+
+          {/* Join button — centred below timeline */}
+          <Reveal delay={200} className="mt-12 flex justify-center">
+            <ButtonLink href="/print-club/join" variant="ghost">
+              Join Print Club
+            </ButtonLink>
           </Reveal>
 
         </div>
