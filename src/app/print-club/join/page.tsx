@@ -87,7 +87,7 @@ export default function JoinPrintClubPage() {
         </Reveal>
 
         <div className="mt-10 grid gap-0">
-          [
+          {[
             {
               num: "01",
               title: "A personal letter",
