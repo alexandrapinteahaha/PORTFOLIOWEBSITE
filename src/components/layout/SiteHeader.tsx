@@ -17,7 +17,7 @@ const printClubLinks: [string, string][] = [
 
 // Shared class for every nav item — buttons and links identical
 const navItem = [
-  "nav-link inline-flex items-center gap-1 py-4 pr-10",
+  "nav-link inline-flex h-11 items-center gap-1 pr-10",
   "label transition-colors hover:text-ink"
 ].join(" ");
 
@@ -61,8 +61,8 @@ export function SiteHeader() {
               <Image
                 src="/logo-transparent.png"
                 alt="Alexandra Pintea"
-                width={240}
-                height={60}
+                width={190}
+                height={48}
                 priority
               />
             </Link>
@@ -71,7 +71,7 @@ export function SiteHeader() {
 
         {/* ── Nav row ─────────────────────────────────────── */}
         <div className="border-b border-line">
-          <div className="container-shell flex items-center justify-between">
+          <div className="container-shell flex h-11 items-center justify-between">
 
             {/* Left nav */}
             <nav className="flex items-center">

@@ -260,13 +260,12 @@ p {
 
 .nav-link {
   position: relative;
-  padding-bottom: 2px;
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   width: 0;
   height: 1px;
