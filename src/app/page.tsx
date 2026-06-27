@@ -118,7 +118,7 @@ export default async function HomePage() {
                   >
                     <span style={{
                       position: "absolute",
-                      top: "50%",
+                      top: "54%",
                       left: "50%",
                       transform: "translate(-50%, -50%)",
                       fontFamily: "'Myanmar Text', serif",
