@@ -70,7 +70,7 @@ export default async function HomePage() {
 
 
       {/* ── Print Club (dark editorial) ───────────────────── */}
-      <section className="bg-ink text-chalk">
+      <section className="bg-ink text-chalk overflow-x-hidden">
         <div className="container-shell py-20 md:py-28">
 
           {/* Title + description */}
@@ -94,10 +94,15 @@ export default async function HomePage() {
           {/* Timeline */}
           <Reveal delay={200} className="mt-16 md:mt-20">
             <div className="relative flex items-start justify-between">
-              {/* Dashed connector — full width, edge to edge */}
+              {/* Dashed connector — breaks out of container to full viewport width */}
               <div
-                className="absolute left-0 right-0"
-                style={{ top: "19px", borderTop: "1.5px dashed rgba(251,250,247,0.4)" }}
+                className="absolute"
+                style={{
+                  top: "19px",
+                  left: "calc(50% - 50vw)",
+                  right: "calc(50% - 50vw)",
+                  borderTop: "1.5px dashed rgba(251,250,247,0.4)"
+                }}
               />
               {[
                 ["1", "Letter"],
