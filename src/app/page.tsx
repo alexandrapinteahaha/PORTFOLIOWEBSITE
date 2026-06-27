@@ -98,7 +98,7 @@ export default async function HomePage() {
               <div
                 className="absolute"
                 style={{
-                  top: "19px",
+                  top: "21px",
                   left: "calc(50% - 50vw)",
                   right: "calc(50% - 50vw)",
                   borderTop: "1.5px dashed rgba(251,250,247,0.4)"
@@ -114,9 +114,19 @@ export default async function HomePage() {
                   {/* Circle */}
                   <div
                     className="rounded-full bg-chalk"
-                    style={{ width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center" }}
+                    style={{ width: 44, height: 44, position: "relative" }}
                   >
-                    <span style={{ fontFamily: "'Myanmar Text', serif", fontWeight: 700, fontSize: "13px", lineHeight: 1, color: "#171717" }}>
+                    <span style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      fontFamily: "'Myanmar Text', serif",
+                      fontWeight: 700,
+                      fontSize: "15px",
+                      lineHeight: 1,
+                      color: "#171717"
+                    }}>
                       {num}
                     </span>
                   </div>
