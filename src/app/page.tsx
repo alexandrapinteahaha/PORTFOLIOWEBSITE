@@ -1,14 +1,9 @@
-import Link from "next/link";
-import { ArtworkCard } from "@/components/ArtworkCard";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Marquee } from "@/components/ui/Marquee";
 import { Reveal } from "@/components/ui/Reveal";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
-import { getArtworks } from "@/lib/data/loaders";
 
 export default async function HomePage() {
-  const artworks = await getArtworks();
-  const featured = artworks.filter((a) => a.status !== "hidden").slice(0, 3);
 
   return (
     <>
@@ -78,31 +73,6 @@ export default async function HomePage() {
         ]}
       />
 
-      {/* ── Selected Works ────────────────────────────────── */}
-      {featured.length > 0 && (
-        <section className="container-shell py-20 md:py-28">
-          <Reveal className="flex items-end justify-between gap-6 border-b border-line pb-6">
-            <div>
-              <p className="label text-graphite">Selected works</p>
-              <h2 className="mt-2 font-title text-2xl md:text-3xl">Recent Works</h2>
-            </div>
-            <Link
-              href="/archive"
-              className="nav-link label text-graphite transition-colors hover:text-ink"
-            >
-              View archive →
-            </Link>
-          </Reveal>
-
-          <div className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 md:grid-cols-3">
-            {featured.map((artwork, i) => (
-              <Reveal key={artwork.id} delay={i * 120}>
-                <ArtworkCard artwork={artwork} />
-              </Reveal>
-            ))}
-          </div>
-        </section>
-      )}
 
       {/* ── Print Club (dark editorial) ───────────────────── */}
       <section className="bg-ink text-chalk">
