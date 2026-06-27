@@ -86,7 +86,7 @@ export default async function ArchivePage() {
             ))}
           </div>
         ) : (
-          <EmptyState message="No works in the archive yet." />
+          <EmptyState message="Coming soon." />
         )}
       </section>
     </>
