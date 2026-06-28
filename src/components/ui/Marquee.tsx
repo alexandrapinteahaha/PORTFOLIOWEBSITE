@@ -4,18 +4,21 @@ type MarqueeProps = {
 };
 
 export function Marquee({ items, className = "" }: MarqueeProps) {
-  const text = items.join("  ·  ") + "  ·  ";
+  const text = items.join("     ·     ") + "     ·     ";
   const repeated = text.repeat(6);
 
   return (
     <div
       aria-hidden="true"
       className={[
-        "overflow-hidden border-y border-line py-3.5 select-none",
+        "overflow-hidden border-y border-line py-4 select-none",
         className
       ].join(" ")}
     >
-      <span className="animate-marquee label whitespace-nowrap text-graphite">
+      <span
+        className="animate-marquee whitespace-nowrap text-graphite"
+        style={{ fontSize: "15px", letterSpacing: "0.18em", textTransform: "uppercase", fontFamily: "'Minion Pro', Georgia, serif" }}
+      >
         {repeated}
       </span>
     </div>
