@@ -21,7 +21,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-paper border-b border-line">
-      <div className="container-shell flex h-16 items-center justify-between">
+      <div className="container-shell relative flex h-16 items-center justify-between">
 
         {/* Logo */}
         <Link href="/" className="focus-ring shrink-0" aria-label="Alexandra Pintea — home">
@@ -33,6 +33,14 @@ export function SiteHeader() {
             priority
           />
         </Link>
+
+        {/* Name — centered in header */}
+        <span
+          className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 select-none md:block"
+          style={{ fontFamily: "'Minion Pro', Georgia, serif", fontWeight: 300, fontSize: "14px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--color-graphite)" }}
+        >
+          Alexandra Pintea
+        </span>
 
         {/* Nav — desktop */}
         <nav className="hidden md:flex items-center gap-7">

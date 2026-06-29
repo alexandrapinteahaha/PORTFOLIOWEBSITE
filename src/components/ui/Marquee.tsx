@@ -4,7 +4,7 @@ type MarqueeProps = {
 };
 
 export function Marquee({ items, className = "" }: MarqueeProps) {
-  const text = items.join("     ·     ") + "     ·     ";
+  const text = items.join("                    ·                    ") + "                    ·                    ";
   const repeated = text.repeat(6);
 
   return (
