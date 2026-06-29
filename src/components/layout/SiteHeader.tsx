@@ -21,29 +21,29 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-paper border-b border-line">
-      <div className="container-shell relative flex h-16 items-center justify-between">
+      <div className="container-shell flex h-16 items-center">
 
-        {/* Logo + name */}
-        <div className="flex items-center gap-4 shrink-0">
-          <span
-            className="hidden select-none md:block"
-            style={{ fontFamily: "'Minion Pro', Georgia, serif", fontWeight: 300, fontSize: "13px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--color-graphite)" }}
-          >
-            Alexandra Pintea
-          </span>
-          <Link href="/" className="focus-ring" aria-label="Alexandra Pintea — home">
-            <Image
-              src="/logo-transparent.png"
-              alt="Alexandra Pintea"
-              width={170}
-              height={42}
-              priority
-            />
-          </Link>
-        </div>
+        {/* Name — far left */}
+        <span
+          className="hidden shrink-0 select-none md:block"
+          style={{ fontFamily: "'Minion Pro', Georgia, serif", fontWeight: 300, fontSize: "13px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--color-graphite)" }}
+        >
+          Alexandra Pintea
+        </span>
 
-        {/* Nav — desktop */}
-        <nav className="hidden md:flex items-center gap-7">
+        {/* Logo — centred */}
+        <Link href="/" className="focus-ring mx-auto shrink-0" aria-label="Alexandra Pintea — home">
+          <Image
+            src="/logo-transparent.png"
+            alt="Alexandra Pintea"
+            width={170}
+            height={42}
+            priority
+          />
+        </Link>
+
+        {/* Nav — desktop, flush right */}
+        <nav className="hidden shrink-0 md:flex items-center gap-7">
           {navLinks.map(([label, href]) => (
             <Link
               key={href}
