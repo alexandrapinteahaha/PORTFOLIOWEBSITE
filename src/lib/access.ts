@@ -2,16 +2,16 @@ import { redirect } from "next/navigation";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function requireUser(loginPath = "/login") {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-
-  if (!user) {
+  try {
+    const supabase = await createSupabaseServerClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) redirect(loginPath);
+    return user;
+  } catch (err) {
+    // Re-throw Next.js redirects, treat everything else as unauthenticated
+    if ((err as { digest?: string })?.digest?.startsWith("NEXT_REDIRECT")) throw err;
     redirect(loginPath);
   }
-
-  return user;
 }
 
 export async function requireAdmin() {

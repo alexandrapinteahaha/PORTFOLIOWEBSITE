@@ -18,13 +18,19 @@ const adminLinks = [
 
 export default async function AdminPage() {
   await requireAdmin();
-  const supabase = createSupabaseAdminClient();
-  const [artworks, products, enquiries, signups] = await Promise.all([
-    supabase.from("artworks").select("id", { count: "exact", head: true }),
-    supabase.from("products").select("id", { count: "exact", head: true }),
-    supabase.from("commission_enquiries").select("id", { count: "exact", head: true }),
-    supabase.from("newsletter_signups").select("id", { count: "exact", head: true })
-  ]);
+
+  let artworks = { count: 0 }, products = { count: 0 }, enquiries = { count: 0 }, signups = { count: 0 };
+  try {
+    const supabase = createSupabaseAdminClient();
+    [artworks, products, enquiries, signups] = await Promise.all([
+      supabase.from("artworks").select("id", { count: "exact", head: true }),
+      supabase.from("products").select("id", { count: "exact", head: true }),
+      supabase.from("commission_enquiries").select("id", { count: "exact", head: true }),
+      supabase.from("newsletter_signups").select("id", { count: "exact", head: true })
+    ]) as [typeof artworks, typeof products, typeof enquiries, typeof signups];
+  } catch {
+    // Supabase not configured — show zero counts
+  }
 
   return (
     <section className="container-shell py-14">
