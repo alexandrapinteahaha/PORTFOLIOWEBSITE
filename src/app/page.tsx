@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Marquee } from "@/components/ui/Marquee";
 import { getArtworks } from "@/lib/data/loaders";
 
 export const dynamic = "force-dynamic";
@@ -10,11 +11,14 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* ── Marquee ──────────────────────────────────────── */}
+      <Marquee items={["UPCOMING — 2026 PRINT CLUB"]} />
+
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="container-shell pt-20 pb-16 md:pt-28 md:pb-20">
-        <p className="label text-graphite">Contemporary Artist · United Kingdom</p>
+      <section className="relative flex min-h-[60vh] flex-col items-center justify-center bg-ink px-6 text-center">
+        <p className="label text-chalk/60">Contemporary Artist · United Kingdom</p>
         <h1
-          className="mt-4 font-title font-bold"
+          className="mt-4 font-title font-bold text-chalk"
           style={{ fontSize: "clamp(2.8rem, 8vw, 6.5rem)", lineHeight: 1.05, letterSpacing: "0.06em" }}
         >
           Alexandra<br />Pintea
@@ -23,7 +27,7 @@ export default async function HomePage() {
 
       {/* ── Works grid ───────────────────────────────────── */}
       {visible.length > 0 && (
-        <section className="container-shell pb-24 md:pb-32">
+        <section className="container-shell pt-16 pb-24 md:pt-20 md:pb-32">
           <p className="label mb-10 text-graphite">Selected Works</p>
           <div className="grid gap-x-8 gap-y-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {visible.map((artwork) => (

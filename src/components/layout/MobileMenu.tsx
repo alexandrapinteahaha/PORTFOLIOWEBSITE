@@ -5,13 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems: [string, string][] = [
-  ["Archive", "/archive"],
-  ["Join Print Club", "/print-club"],
-  ["Catch Up Prints", "/print-club/catch-up"],
-  ["Complete Collections", "/print-club/collections"],
+  ["Works", "/archive"],
+  ["Print Club", "/print-club"],
   ["Commission", "/commissions"],
   ["About", "/about"],
-  ["Account", "/account"]
+  ["Contact", "/contact"],
+  ["Account", "/login"]
 ];
 
 export function MobileMenu() {

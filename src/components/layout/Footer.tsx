@@ -1,10 +1,11 @@
 import Link from "next/link";
 
 const footerLinks: [string, string][] = [
-  ["Archive", "/archive"],
+  ["Works", "/archive"],
   ["Print Club", "/print-club"],
   ["Commission", "/commissions"],
   ["About", "/about"],
+  ["Contact", "/contact"],
   ["Privacy", "/privacy"],
   ["Admin", "/admin"],
 ];

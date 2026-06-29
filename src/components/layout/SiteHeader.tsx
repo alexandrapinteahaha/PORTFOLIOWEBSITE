@@ -7,7 +7,7 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 import { useCart } from "@/lib/cart";
 
 const navLinks: [string, string][] = [
-  ["Archive", "/archive"],
+  ["Works", "/archive"],
   ["Print Club", "/print-club"],
   ["Commission", "/commissions"],
   ["About", "/about"],
@@ -63,17 +63,17 @@ export function SiteHeader() {
             </svg>
           </a>
 
-          {/* Email */}
-          <a
-            href="mailto:alexandrapinteaart@gmail.com"
+          {/* Account — log in for Print Club */}
+          <Link
+            href="/login"
             className="text-graphite transition-colors hover:text-ink"
-            aria-label="Email"
+            aria-label="Account login"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="M2 7l10 7 10-7" />
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" />
             </svg>
-          </a>
+          </Link>
 
           {/* Cart */}
           <button
