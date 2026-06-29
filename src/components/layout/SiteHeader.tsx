@@ -50,7 +50,7 @@ export function SiteHeader() {
 
           {/* Instagram */}
           <a
-            href="https://instagram.com/alexandrapintea"
+            href="https://instagram.com/byalxndra"
             target="_blank"
             rel="noopener noreferrer"
             className="text-graphite transition-colors hover:text-ink"
