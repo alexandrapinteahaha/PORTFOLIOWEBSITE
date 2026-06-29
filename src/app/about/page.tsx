@@ -94,16 +94,6 @@ export default function AboutPage() {
             </Reveal>
 
 
-            <Reveal className="border-t border-line pt-12">
-              <p className="label text-graphite">Work</p>
-              <h2 className="mt-3 font-title text-2xl">Selected Projects</h2>
-              <div className="mt-5 grid gap-4 text-sm leading-8 text-graphite">
-                <p>
-                  Key projects, series, and bodies of work can be listed here
-                  with brief notes for context.
-                </p>
-              </div>
-            </Reveal>
 
             <Reveal className="border-t border-line pt-10">
               <p className="text-xs leading-6 text-graphite">
