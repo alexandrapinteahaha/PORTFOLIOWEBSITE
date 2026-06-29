@@ -11,7 +11,7 @@ const practiceLinks = [
 const infoLinks = [
   ["FAQ", "/faq"],
   ["Shipping and Returns", "/shipping-returns"],
-  ["Privacy Policy", "/privacy-policy"],
+  ["Privacy Policy", "/privacy"],
   ["Terms and Conditions", "/terms-and-conditions"],
   ["Contact", "/contact"],
   ["Admin", "/admin"]
