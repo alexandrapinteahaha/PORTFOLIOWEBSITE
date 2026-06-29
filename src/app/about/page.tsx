@@ -83,15 +83,12 @@ export default function AboutPage() {
               <h2 className="mt-3 font-title text-2xl">Artist Statement</h2>
               <div className="mt-5 grid gap-4 text-sm leading-8 text-graphite">
                 <p>
-                  This section will hold Alexandra&apos;s artist statement: a
-                  considered, specific account of her practice, methods, and
-                  ongoing interests. The tone should remain direct and
-                  gallery-appropriate, without inflated claims or generic studio
-                  language.
-                </p>
-                <p>
-                  The work operates across form and process, moving between the
-                  material and the digital, the durable and the ephemeral.
+                  Alexandra Pintea is a Romanian multidisciplinary artist whose practice explores
+                  the intersection of folklore, industrial systems and female identity. Through
+                  sculpture and painting, she investigates how cultural traditions, labour and
+                  mechanisms of production shape the body, transforming familiar symbols into
+                  unsettling industrial forms that question the connection between the human and
+                  the industrial.
                 </p>
               </div>
             </Reveal>
@@ -101,9 +98,7 @@ export default function AboutPage() {
               <h2 className="mt-3 font-title text-2xl">Biography</h2>
               <div className="mt-5 grid gap-4 text-sm leading-8 text-graphite">
                 <p>
-                  Biographical notes and professional context to be added here.
-                  This section should introduce Alexandra&apos;s background,
-                  where she is based, and the scope of her practice.
+                  Based in the United Kingdom. Originally from Romania.
                 </p>
               </div>
             </Reveal>
