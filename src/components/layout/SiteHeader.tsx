@@ -65,7 +65,7 @@ export function SiteHeader() {
 
           {/* Email */}
           <a
-            href="mailto:art@pinteaalexandra.com"
+            href="mailto:alexandrapinteaart@gmail.com"
             className="text-graphite transition-colors hover:text-ink"
             aria-label="Email"
           >

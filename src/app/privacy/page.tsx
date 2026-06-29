@@ -43,8 +43,8 @@ export default function PrivacyPage() {
             <p className="mt-4">
               You may unsubscribe from our mailing list at any time by clicking the unsubscribe
               link located at the bottom of any email received, or by contacting us at{" "}
-              <a href="mailto:art@pinteaalexandra.com" className="underline underline-offset-4 hover:text-ink transition-colors">
-                art@pinteaalexandra.com
+              <a href="mailto:alexandrapinteaart@gmail.com" className="underline underline-offset-4 hover:text-ink transition-colors">
+                alexandrapinteaart@gmail.com
               </a>.
             </p>
           </div>
@@ -116,8 +116,8 @@ export default function PrivacyPage() {
             </ul>
             <p className="mt-4">
               To exercise any of these rights, please contact us at{" "}
-              <a href="mailto:art@pinteaalexandra.com" className="underline underline-offset-4 hover:text-ink transition-colors">
-                art@pinteaalexandra.com
+              <a href="mailto:alexandrapinteaart@gmail.com" className="underline underline-offset-4 hover:text-ink transition-colors">
+                alexandrapinteaart@gmail.com
               </a>.
               You also have the right to lodge a complaint with the Information Commissioner&apos;s
               Office (ICO) at{" "}
@@ -140,8 +140,8 @@ export default function PrivacyPage() {
             </p>
             <div className="mt-4">
               <p className="font-title text-sm">Alexandra Pintea</p>
-              <a href="mailto:art@pinteaalexandra.com" className="underline underline-offset-4 hover:text-ink transition-colors">
-                art@pinteaalexandra.com
+              <a href="mailto:alexandrapinteaart@gmail.com" className="underline underline-offset-4 hover:text-ink transition-colors">
+                alexandrapinteaart@gmail.com
               </a>
             </div>
           </div>

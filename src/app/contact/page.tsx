@@ -13,10 +13,10 @@ export default function ContactPage() {
       title: "Email",
       content: (
         <a
-          href="mailto:studio@alexandrapintea.com"
+          href="mailto:alexandrapinteaart@gmail.com"
           className="text-ink underline-offset-4 hover:underline"
         >
-          studio@alexandrapintea.com
+          alexandrapinteaart@gmail.com
         </a>
       ),
       note: "For artwork enquiries, gallery conversations, and press requests."
@@ -26,12 +26,12 @@ export default function ContactPage() {
       title: "Instagram",
       content: (
         <a
-          href="https://instagram.com/alexandrapintea"
+          href="https://instagram.com/byalxndra"
           target="_blank"
           rel="noopener noreferrer"
           className="text-ink underline-offset-4 hover:underline"
         >
-          @alexandrapintea
+          @byalxndra
         </a>
       ),
       note: "Process, new work, and updates."
@@ -49,7 +49,7 @@ export default function ContactPage() {
     {
       label: "Press",
       title: "Press and Institutions",
-      content: <span className="text-graphite">studio@alexandrapintea.com</span>,
+      content: <span className="text-graphite">alexandrapinteaart@gmail.com</span>,
       note: "A CV and press pack are available on request."
     }
   ];

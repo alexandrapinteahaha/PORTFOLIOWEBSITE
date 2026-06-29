@@ -55,10 +55,10 @@ export default function AboutPage() {
               <div>
                 <p className="label text-graphite">Contact</p>
                 <a
-                  href="mailto:studio@alexandrapintea.com"
+                  href="mailto:alexandrapinteaart@gmail.com"
                   className="mt-2 block text-sm text-ink underline-offset-4 hover:underline"
                 >
-                  studio@alexandrapintea.com
+                  alexandrapinteaart@gmail.com
                 </a>
               </div>
               <hr className="dotted-rule" />
