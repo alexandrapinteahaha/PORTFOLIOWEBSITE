@@ -66,7 +66,7 @@ export default async function ArchivePage() {
 
                   {/* Info */}
                   <div className="mt-3">
-                    <h2 className="font-title text-sm leading-snug">{artwork.title}</h2>
+                    <h2 className="font-title text-sm font-bold leading-snug">{artwork.title}</h2>
                     <div className="mt-1.5 flex items-center justify-between gap-3">
                       <p className="label text-graphite">
                         {artwork.year}
