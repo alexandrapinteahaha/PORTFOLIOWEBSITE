@@ -93,15 +93,6 @@ export default function AboutPage() {
               </div>
             </Reveal>
 
-            <Reveal className="border-t border-line pt-12">
-              <p className="label text-graphite">Background</p>
-              <h2 className="mt-3 font-title text-2xl">Biography</h2>
-              <div className="mt-5 grid gap-4 text-sm leading-8 text-graphite">
-                <p>
-                  Based in the United Kingdom. Originally from Romania.
-                </p>
-              </div>
-            </Reveal>
 
             <Reveal className="border-t border-line pt-12">
               <p className="label text-graphite">Work</p>
