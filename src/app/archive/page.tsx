@@ -5,6 +5,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { getArtworks } from "@/lib/data/loaders";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Archive"
 };
