@@ -7,8 +7,8 @@ import { usePathname } from "next/navigation";
 const navItems: [string, string][] = [
   ["Works", "/archive"],
   ["Print Club", "/print-club"],
-  ["Commission", "/commissions"],
   ["About", "/about"],
+  ["Commission", "/commissions"],
   ["Contact", "/contact"],
   ["Account", "/login"]
 ];

@@ -9,8 +9,8 @@ import { useCart } from "@/lib/cart";
 const navLinks: [string, string][] = [
   ["Works", "/archive"],
   ["Print Club", "/print-club"],
-  ["Commission", "/commissions"],
   ["About", "/about"],
+  ["Commission", "/commissions"],
 ];
 
 export function SiteHeader() {
