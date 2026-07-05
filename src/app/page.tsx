@@ -121,25 +121,56 @@ export default async function HomePage() {
       ──────────────────────────────────────────────────────────────────────── */}
       <section className="border-t border-line bg-ink text-chalk">
         <div className="container-shell py-16 md:py-20">
-          <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-end">
+          <div className="mb-10 flex items-start justify-between gap-6">
             <div>
               <p className="label text-chalk/40">Collectors Programme</p>
               <h2 className="mt-3 font-title text-3xl text-chalk md:text-4xl">Print Club</h2>
-              <p className="mt-5 max-w-md text-sm leading-8 text-chalk/65">
-                A curated monthly release of hand-signed, limited-edition works — each produced in a single numbered edition with a certificate of authenticity. Available exclusively to members.
-              </p>
-              <div className="mt-6 grid gap-1.5 text-xs leading-6 text-chalk/35">
-                <p>One signed edition per month</p>
-                <p>Certificate of authenticity with every piece</p>
-                <p>A birthday edition for every member</p>
-                <p>From £10 / month</p>
-              </div>
             </div>
-            <div className="self-end">
+            <div className="shrink-0 self-end">
               <ButtonLink href="/print-club" variant="ghost">
                 Become a Member
               </ButtonLink>
             </div>
+          </div>
+
+          {/* Timeline — numbered circles connected by dashed line */}
+          <div className="relative flex items-start justify-between">
+            {/* Dashed connector */}
+            <div
+              className="absolute"
+              style={{
+                top: "21px",
+                left: "calc(50% - 50vw + 1.5rem)",
+                right: "calc(50% - 50vw + 1.5rem)",
+                borderTop: "1.5px dashed rgba(251,250,247,0.25)"
+              }}
+            />
+            {[
+              ["1", "Letter"],
+              ["2", "Print"],
+              ["3", "Process\nLog"],
+              ["4", "Birthday\nPrint"],
+            ].map(([num, label]) => (
+              <div key={num} className="relative z-10 flex flex-1 flex-col items-center">
+                <div
+                  className="flex items-center justify-center rounded-full bg-chalk"
+                  style={{ width: 42, height: 42 }}
+                >
+                  <span
+                    className="font-title font-bold text-ink"
+                    style={{ fontSize: "15px", lineHeight: 1 }}
+                  >
+                    {num}
+                  </span>
+                </div>
+                <p
+                  className="mt-4 max-w-[80px] whitespace-pre-line text-center"
+                  style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(251,250,247,0.5)", lineHeight: 1.8 }}
+                >
+                  {label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
