@@ -1,60 +1,35 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { useCart } from "@/lib/cart";
 
-const navLinks: [string, string][] = [
-  ["Works", "/archive"],
-  ["Print Club", "/print-club"],
-  ["About", "/about"],
-  ["Commission", "/commissions"],
-];
-
 export function SiteHeader() {
-  const pathname = usePathname();
   const { itemCount, openCart } = useCart();
-  const isActive = (path: string) =>
-    pathname.startsWith(path) ? "text-ink" : "text-graphite";
 
   return (
     <header className="sticky top-0 z-50 bg-paper border-b border-line">
-      <div className="container-shell flex h-16 items-center">
+      <div className="container-shell flex h-16 items-center justify-between">
 
-        {/* Name — far left */}
-        <span
-          className="hidden shrink-0 select-none md:block"
-          style={{ fontFamily: "'Minion Pro', Georgia, serif", fontWeight: 300, fontSize: "13px", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--color-graphite)" }}
+        {/* Name — far left, thin, text only */}
+        <Link
+          href="/"
+          aria-label="Alexandra Pintea — home"
+          className="focus-ring select-none"
+          style={{
+            fontFamily: "'Minion Pro', Georgia, serif",
+            fontWeight: 300,
+            fontSize: "13px",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: "var(--color-graphite)"
+          }}
         >
           Alexandra Pintea
-        </span>
-
-        {/* Logo — centred */}
-        <Link href="/" className="focus-ring mx-auto shrink-0" aria-label="Alexandra Pintea — home">
-          <Image
-            src="/logo-transparent.png"
-            alt="Alexandra Pintea"
-            width={170}
-            height={42}
-            priority
-          />
         </Link>
 
-        {/* Nav — desktop, flush right */}
-        <nav className="hidden shrink-0 md:flex items-center gap-7">
-          {navLinks.map(([label, href]) => (
-            <Link
-              key={href}
-              href={href}
-              className={`nav-link label transition-colors hover:text-ink ${isActive(href)}`}
-            >
-              {label}
-            </Link>
-          ))}
-
-          <span className="h-3 w-px bg-line" />
+        {/* Icons + hamburger — far right */}
+        <div className="flex items-center gap-5">
 
           {/* Instagram */}
           <a
@@ -71,7 +46,7 @@ export function SiteHeader() {
             </svg>
           </a>
 
-          {/* Account — log in for Print Club */}
+          {/* Account */}
           <Link
             href="/login"
             className="text-graphite transition-colors hover:text-ink"
@@ -101,9 +76,10 @@ export function SiteHeader() {
               </span>
             )}
           </button>
-        </nav>
 
-        <MobileMenu />
+          {/* Hamburger */}
+          <MobileMenu />
+        </div>
       </div>
     </header>
   );

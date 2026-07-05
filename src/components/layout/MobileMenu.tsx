@@ -31,7 +31,7 @@ export function MobileMenu() {
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
-        className="focus-ring flex h-10 w-10 cursor-pointer items-center justify-center md:hidden"
+        className="focus-ring flex h-10 w-10 cursor-pointer items-center justify-center"
       >
         <span className="grid gap-[5px]">
           <span className={`block h-px w-5 bg-ink transition-all duration-200 ${open ? "translate-y-[6px] rotate-45" : ""}`} />
@@ -41,7 +41,7 @@ export function MobileMenu() {
       </button>
 
       {open && (
-        <div className="fixed inset-0 top-[calc(var(--header-h,8rem)+2px)] z-40 bg-paper md:hidden overflow-y-auto">
+        <div className="fixed inset-0 top-[65px] z-40 bg-paper overflow-y-auto">
           <nav className="container-shell py-6">
             <ul className="grid gap-0">
               {navItems.map(([label, href]) => (
