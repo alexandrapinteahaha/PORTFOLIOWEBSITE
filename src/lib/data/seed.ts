@@ -12,7 +12,7 @@ export const seedArtworks: Artwork[] = [
     status: "available",
     categories: ["original", "sculpture"],
     series: null,
-    priceGbp: 1800,
+    priceGbp: 2500,
     editionInfo: "Original 1 of 1",
     shippingNotes: null,
     certificateNote: "Certificate of authenticity included.",
