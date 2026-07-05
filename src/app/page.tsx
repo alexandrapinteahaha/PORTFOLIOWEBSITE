@@ -31,8 +31,20 @@ export default async function HomePage() {
           Black box is a deliberate placeholder for a full-bleed artwork image.
           Name is large but not the only thing on screen.
       ──────────────────────────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-[42vh] flex-col items-center justify-center bg-ink px-8 py-14 md:px-14">
-        <div className="text-center">
+      <section className="relative flex min-h-[42vh] flex-col items-center justify-center px-8 py-14 md:px-14" style={{ backgroundColor: "#171717" }}>
+        {/* Background image */}
+        <Image
+          src="/hero-bg.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
+        {/* Dark overlay so white text remains legible */}
+        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.52)" }} />
+
+        <div className="relative z-10 text-center">
           <p className="label text-chalk mb-4">Contemporary Artist · United Kingdom</p>
 
           <div
@@ -63,6 +75,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
 
       {/* ── Selected Works ───────────────────────────────────────────────────
           Primary content focus. Minimal top padding so the first row of
