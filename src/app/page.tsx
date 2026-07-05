@@ -119,22 +119,22 @@ export default async function HomePage() {
           Dark section creates visual separation and elevates the offering.
           Details listed as quiet facts, not bullet-point marketing.
       ──────────────────────────────────────────────────────────────────────── */}
-      <section className="border-t border-line bg-ink text-chalk">
+      <section className="border-t border-line bg-paper">
         <div className="container-shell py-16 md:py-20">
-          <div className="mb-10 flex items-start justify-between gap-6">
+          <div className="mb-12 flex items-start justify-between gap-6">
             <div>
-              <p className="label text-chalk/40">Collectors Programme</p>
-              <h2 className="mt-3 font-title text-3xl text-chalk md:text-4xl">Print Club</h2>
+              <p className="label text-graphite">Collectors Programme</p>
+              <h2 className="mt-3 font-title text-3xl text-ink md:text-4xl">Print Club</h2>
             </div>
             <div className="shrink-0 self-end">
-              <ButtonLink href="/print-club" variant="ghost">
+              <ButtonLink href="/print-club" variant="secondary">
                 Become a Member
               </ButtonLink>
             </div>
           </div>
 
-          {/* Timeline — numbered circles connected by dashed line */}
-          <div className="relative flex items-start justify-between">
+          {/* Timeline */}
+          <div className="relative flex items-start justify-around gap-4">
             {/* Dashed connector */}
             <div
               className="absolute"
@@ -142,30 +142,27 @@ export default async function HomePage() {
                 top: "21px",
                 left: "calc(50% - 50vw + 1.5rem)",
                 right: "calc(50% - 50vw + 1.5rem)",
-                borderTop: "1.5px dashed rgba(251,250,247,0.25)"
+                borderTop: "1.5px dashed rgba(0,0,0,0.15)"
               }}
             />
             {[
-              ["1", "High Quality\nPrint"],
-              ["2", "Personal\nLetter"],
-              ["3", "Digital Studio\nJournal"],
+              ["1", "High Quality Print"],
+              ["2", "Personal Letter"],
+              ["3", "Digital Studio Journal"],
             ].map(([num, label]) => (
-              <div key={num} className="relative z-10 flex flex-1 flex-col items-center">
+              <div key={num} className="relative z-10 flex flex-col items-center gap-5 text-center">
                 <div
-                  className="flex items-center justify-center rounded-full bg-chalk"
-                  style={{ width: 42, height: 42 }}
+                  className="flex items-center justify-center rounded-full bg-ink"
+                  style={{ width: 42, height: 42, flexShrink: 0 }}
                 >
                   <span
-                    className="font-title font-bold text-ink"
+                    className="font-title font-bold text-chalk"
                     style={{ fontSize: "15px", lineHeight: 1 }}
                   >
                     {num}
                   </span>
                 </div>
-                <p
-                  className="mt-4 max-w-[80px] whitespace-pre-line text-center"
-                  style={{ fontSize: "10px", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(251,250,247,0.5)", lineHeight: 1.8 }}
-                >
+                <p className="label text-graphite max-w-[110px] leading-5">
                   {label}
                 </p>
               </div>
