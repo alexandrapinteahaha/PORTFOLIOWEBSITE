@@ -31,25 +31,22 @@ export default async function HomePage() {
           Black box is a deliberate placeholder for a full-bleed artwork image.
           Name is large but not the only thing on screen.
       ──────────────────────────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-[42vh] flex-col items-center justify-center bg-ink px-8 md:px-14">
+      <section className="relative flex min-h-[42vh] flex-col items-center justify-center bg-ink px-8 py-14 md:px-14">
         <div className="text-center">
-          <p className="label text-chalk/50 mb-4">Contemporary Artist · United Kingdom</p>
+          <p className="label text-chalk/80 mb-4">Contemporary Artist · United Kingdom</p>
 
-          {/* Name — inline-grid so both lines share the same width.
-              PINTEA uses flex justify-between to spread letters
-              from the first character of Alexandra to the last. */}
           <div
             className="font-title font-bold text-chalk"
             style={{ display: "inline-grid", lineHeight: 1.0 }}
           >
-            <span style={{ fontSize: "clamp(2.8rem, 7vw, 6.5rem)", letterSpacing: "0.04em" }}>
+            <span style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)", letterSpacing: "0.04em" }}>
               ALEXANDRA
             </span>
             <span
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                fontSize: "clamp(2.8rem, 7vw, 6.5rem)",
+                fontSize: "clamp(2.2rem, 5.5vw, 5rem)",
                 letterSpacing: 0,
               }}
             >
@@ -59,10 +56,7 @@ export default async function HomePage() {
             </span>
           </div>
 
-          <p className="mt-6 text-sm leading-7 text-chalk/60 max-w-xs mx-auto">
-            Sculpture and painting that transforms cultural symbols into unsettling industrial forms.
-          </p>
-          <div className="mt-7 flex justify-center">
+          <div className="mt-10 flex justify-center">
             <ButtonLink href="/archive" variant="ghost">
               View Selected Works
             </ButtonLink>
