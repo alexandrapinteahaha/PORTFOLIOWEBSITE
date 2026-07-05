@@ -131,7 +131,7 @@ export default async function HomePage() {
               <p className="label text-graphite">Collectors Programme</p>
               <h2 className="mt-3 font-title text-3xl text-ink md:text-4xl">Print Club</h2>
 
-              <div className="mt-12 flex items-start justify-between gap-4">
+              <div className="mt-12 grid grid-cols-3 w-full">
                 {[
                   ["1", "High Quality Print"],
                   ["2", "Personal Letter"],
@@ -150,8 +150,8 @@ export default async function HomePage() {
                       </span>
                     </div>
                     <p
-                      className="font-title font-bold max-w-[120px] text-center"
-                      style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", opacity: 0.5, lineHeight: 1.6 }}
+                      className="font-title font-bold w-full px-1 whitespace-nowrap text-center"
+                      style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.5 }}
                     >
                       {label}
                     </p>
