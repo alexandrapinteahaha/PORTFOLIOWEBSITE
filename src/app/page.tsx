@@ -43,7 +43,7 @@ export default async function HomePage() {
             style={{ display: "inline-grid", lineHeight: 1.0 }}
           >
             <span style={{ fontSize: "clamp(2.8rem, 7vw, 6.5rem)", letterSpacing: "0.04em" }}>
-              Alexandra
+              ALEXANDRA
             </span>
             <span
               style={{
