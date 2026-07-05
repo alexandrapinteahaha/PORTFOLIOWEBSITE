@@ -31,8 +31,8 @@ export default async function HomePage() {
           Black box is a deliberate placeholder for a full-bleed artwork image.
           Name is large but not the only thing on screen.
       ──────────────────────────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-[42vh] flex-col justify-end bg-ink px-8 pb-10 md:px-14 md:pb-14">
-        <div>
+      <section className="relative flex min-h-[42vh] flex-col items-center justify-center bg-ink px-8 md:px-14">
+        <div className="text-center">
           <p className="label text-chalk/50 mb-4">Contemporary Artist · United Kingdom</p>
 
           {/* Name — inline-grid so both lines share the same width.
@@ -59,10 +59,10 @@ export default async function HomePage() {
             </span>
           </div>
 
-          <p className="mt-6 text-sm leading-7 text-chalk/60 max-w-xs">
+          <p className="mt-6 text-sm leading-7 text-chalk/60 max-w-xs mx-auto">
             Sculpture and painting that transforms cultural symbols into unsettling industrial forms.
           </p>
-          <div className="mt-7">
+          <div className="mt-7 flex justify-center">
             <ButtonLink href="/archive" variant="ghost">
               View Selected Works
             </ButtonLink>
