@@ -33,7 +33,7 @@ export default async function HomePage() {
       ──────────────────────────────────────────────────────────────────────── */}
       <section className="relative flex min-h-[42vh] flex-col items-center justify-center bg-ink px-8 py-14 md:px-14">
         <div className="text-center">
-          <p className="label text-chalk/80 mb-4">Contemporary Artist · United Kingdom</p>
+          <p className="label text-chalk mb-4">Contemporary Artist · United Kingdom</p>
 
           <div
             className="font-title font-bold text-chalk"
