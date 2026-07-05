@@ -113,38 +113,6 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* ── About ────────────────────────────────────────────────────────────
-          Before commerce. Gallery visitors need to know who they are dealing
-          with before they are willing to buy. Credibility before conversion.
-          Two-column: left is factual/biographical, right is the voice.
-          No walls of text — one tight paragraph, then a link to full bio.
-      ──────────────────────────────────────────────────────────────────────── */}
-      <section className="border-t border-line">
-        <div className="container-shell grid gap-10 py-16 md:grid-cols-[200px_1fr] md:gap-20 md:py-20">
-          <div>
-            <p className="label text-graphite">About</p>
-            <h2 className="mt-3 font-title text-2xl">Alexandra<br />Pintea</h2>
-            <div className="mt-6 grid gap-1.5 text-xs leading-6 text-graphite">
-              <p>Based · United Kingdom</p>
-              <p>Origin · Romania</p>
-              <p>Practice · Sculpture, Painting</p>
-            </div>
-            <Link
-              href="/about"
-              className="mt-8 inline-block label text-graphite/60 hover:text-ink transition-colors"
-            >
-              Full biography →
-            </Link>
-          </div>
-          <p
-            className="self-center text-base leading-9 text-ink md:text-lg md:leading-10"
-            style={{ fontFamily: "'Minion Pro', Georgia, serif" }}
-          >
-            Alexandra Pintea is a Romanian multidisciplinary artist whose practice explores the intersection of folklore, industrial systems, and female identity — transforming familiar symbols into unsettling forms that question the boundary between the human and the industrial.
-          </p>
-        </div>
-      </section>
-
       {/* ── Print Club ───────────────────────────────────────────────────────
           Framed as a collectors programme, not a shop product.
           Language: curated, limited, exclusive, certified — not "buy" or "shop".
