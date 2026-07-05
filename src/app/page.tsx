@@ -32,15 +32,34 @@ export default async function HomePage() {
           Name is large but not the only thing on screen.
       ──────────────────────────────────────────────────────────────────────── */}
       <section className="relative flex min-h-[42vh] flex-col justify-end bg-ink px-8 pb-10 md:px-14 md:pb-14">
-        <div className="max-w-lg">
-          <p className="label text-chalk/50">Contemporary Artist · United Kingdom</p>
-          <h1
-            className="mt-3 font-title font-bold text-chalk"
-            style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.8rem)", lineHeight: 1.05, letterSpacing: "0.04em" }}
+        <div>
+          <p className="label text-chalk/50 mb-4">Contemporary Artist · United Kingdom</p>
+
+          {/* Name — inline-grid so both lines share the same width.
+              PINTEA uses flex justify-between to spread letters
+              from the first character of Alexandra to the last. */}
+          <div
+            className="font-title font-bold text-chalk"
+            style={{ display: "inline-grid", lineHeight: 1.0 }}
           >
-            Alexandra<br />Pintea
-          </h1>
-          <p className="mt-4 text-sm leading-7 text-chalk/60 max-w-xs">
+            <span style={{ fontSize: "clamp(2.8rem, 7vw, 6.5rem)", letterSpacing: "0.04em" }}>
+              Alexandra
+            </span>
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                fontSize: "clamp(2.8rem, 7vw, 6.5rem)",
+                letterSpacing: 0,
+              }}
+            >
+              {["P","I","N","T","E","A"].map((c) => (
+                <span key={c}>{c}</span>
+              ))}
+            </span>
+          </div>
+
+          <p className="mt-6 text-sm leading-7 text-chalk/60 max-w-xs">
             Sculpture and painting that transforms cultural symbols into unsettling industrial forms.
           </p>
           <div className="mt-7">
