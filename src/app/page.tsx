@@ -49,26 +49,12 @@ export default async function HomePage() {
             Contemporary Artist · United Kingdom
           </p>
 
-          <div
+          <h1
             className="font-title font-bold text-chalk"
-            style={{ display: "inline-grid", lineHeight: 1.0 }}
+            style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)", letterSpacing: "0.08em", lineHeight: 1.0 }}
           >
-            <span style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)", letterSpacing: "0.04em", textAlign: "center" }}>
-              ALEXANDRA
-            </span>
-            <span
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                fontSize: "clamp(2.2rem, 5.5vw, 5rem)",
-                letterSpacing: 0,
-              }}
-            >
-              {["P","I","N","T","E","A"].map((c) => (
-                <span key={c}>{c}</span>
-              ))}
-            </span>
-          </div>
+            ALEXANDRA PINTEA
+          </h1>
         </div>
       </section>
 
