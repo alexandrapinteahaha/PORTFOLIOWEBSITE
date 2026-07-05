@@ -15,7 +15,7 @@ export const seedArtworks: Artwork[] = [
     priceGbp: 2500,
     editionInfo: "Original 1 of 1",
     shippingNotes: null,
-    certificateNote: "Certificate of authenticity included.",
+    certificateNote: "Certificate of authenticity included.\nProgress photography archive included.",
     printAvailable: false,
     imageUrl: "/artworks/baby-machine.jpg",
     gallery: []

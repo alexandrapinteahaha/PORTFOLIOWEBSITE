@@ -115,11 +115,11 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
             </p>
           )}
 
-          {artwork.certificateNote && (
-            <p className="mt-5 text-xs leading-6 text-graphite">
-              {artwork.certificateNote}
+          {artwork.certificateNote && artwork.certificateNote.split("\n").map((note, i) => (
+            <p key={i} className="mt-3 text-xs leading-6 text-graphite">
+              {note}
             </p>
-          )}
+          ))}
 
           {artwork.shippingNotes && (
             <p className="mt-3 text-xs leading-6 text-graphite">
