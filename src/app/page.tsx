@@ -144,12 +144,17 @@ export default async function HomePage() {
                     >
                       <span
                         className="font-title font-bold text-chalk"
-                        style={{ fontSize: "15px", lineHeight: 1 }}
+                        style={{ fontSize: "15px", lineHeight: 1, paddingTop: "3px" }}
                       >
                         {num}
                       </span>
                     </div>
-                    <p className="label text-graphite max-w-[90px] leading-5">{label}</p>
+                    <p
+                      className="font-title font-bold max-w-[120px] text-center"
+                      style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", opacity: 0.5, lineHeight: 1.6 }}
+                    >
+                      {label}
+                    </p>
                   </div>
                 ))}
               </div>
