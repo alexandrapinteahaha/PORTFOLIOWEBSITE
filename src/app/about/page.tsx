@@ -23,6 +23,8 @@ export default function AboutPage() {
           <p style={labelStyle} className="text-ink">Bio</p>
           <p className="mt-6 text-sm leading-8 text-ink">
             Alexandra (b. 2004) is a Romanian visual artist based in the United Kingdom.
+          </p>
+          <p className="mt-6 text-sm leading-8 text-ink">
             Working across sculpture, painting, and mixed media, her practice explores the
             relationship between Romanian folklore, industrial systems, and human connection.
             Through material experimentation, she investigates the tension between the organic
