@@ -156,7 +156,7 @@ export default async function HomePage() {
 
               <div className="mt-10">
                 <ButtonLink href="/print-club" variant="secondary">
-                  Become a Member
+                  Sign me up
                 </ButtonLink>
               </div>
             </div>
