@@ -119,54 +119,48 @@ export default async function HomePage() {
           Dark section creates visual separation and elevates the offering.
           Details listed as quiet facts, not bullet-point marketing.
       ──────────────────────────────────────────────────────────────────────── */}
-      <section className="border-t border-line bg-paper">
+      <section className="border-t border-line" style={{ backgroundColor: "#f0eeec" }}>
         <div className="container-shell py-16 md:py-20">
-          <div className="mb-12 flex items-start justify-between gap-6">
+          <div className="grid gap-10 md:grid-cols-[1fr_1fr] md:items-center md:gap-16">
+
+            {/* Left — image placeholder */}
+            <div className="aspect-square w-full bg-mist" />
+
+            {/* Right — heading + timeline */}
             <div>
               <p className="label text-graphite">Collectors Programme</p>
               <h2 className="mt-3 font-title text-3xl text-ink md:text-4xl">Print Club</h2>
-            </div>
-            <div className="shrink-0 self-end">
-              <ButtonLink href="/print-club" variant="secondary">
-                Become a Member
-              </ButtonLink>
-            </div>
-          </div>
 
-          {/* Timeline */}
-          <div className="relative flex items-start justify-around gap-4">
-            {/* Dashed connector */}
-            <div
-              className="absolute"
-              style={{
-                top: "21px",
-                left: "calc(50% - 50vw + 1.5rem)",
-                right: "calc(50% - 50vw + 1.5rem)",
-                borderTop: "1.5px dashed rgba(0,0,0,0.15)"
-              }}
-            />
-            {[
-              ["1", "High Quality Print"],
-              ["2", "Personal Letter"],
-              ["3", "Digital Studio Journal"],
-            ].map(([num, label]) => (
-              <div key={num} className="relative z-10 flex flex-col items-center gap-5 text-center">
-                <div
-                  className="flex items-center justify-center rounded-full bg-ink"
-                  style={{ width: 42, height: 42, flexShrink: 0 }}
-                >
-                  <span
-                    className="font-title font-bold text-chalk"
-                    style={{ fontSize: "15px", lineHeight: 1 }}
-                  >
-                    {num}
-                  </span>
-                </div>
-                <p className="label text-graphite max-w-[110px] leading-5">
-                  {label}
-                </p>
+              <div className="mt-12 flex items-start justify-between gap-4">
+                {[
+                  ["1", "High Quality Print"],
+                  ["2", "Personal Letter"],
+                  ["3", "Digital Studio Journal"],
+                ].map(([num, label]) => (
+                  <div key={num} className="flex flex-col items-center gap-4 text-center">
+                    <div
+                      className="flex items-center justify-center rounded-full bg-ink"
+                      style={{ width: 42, height: 42, flexShrink: 0 }}
+                    >
+                      <span
+                        className="font-title font-bold text-chalk"
+                        style={{ fontSize: "15px", lineHeight: 1 }}
+                      >
+                        {num}
+                      </span>
+                    </div>
+                    <p className="label text-graphite max-w-[90px] leading-5">{label}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              <div className="mt-10">
+                <ButtonLink href="/print-club" variant="secondary">
+                  Become a Member
+                </ButtonLink>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
