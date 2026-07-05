@@ -4,6 +4,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { CartProvider } from "@/lib/cart";
 import { CartDrawer } from "@/components/ui/CartDrawer";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +18,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className="cursor-none">
+        <CustomCursor />
         <CartProvider>
           <SiteHeader />
           <CartDrawer />
