@@ -146,10 +146,9 @@ export default async function HomePage() {
               }}
             />
             {[
-              ["1", "Letter"],
-              ["2", "Print"],
-              ["3", "Process\nLog"],
-              ["4", "Birthday\nPrint"],
+              ["1", "High Quality\nPrint"],
+              ["2", "Personal\nLetter"],
+              ["3", "Digital Studio\nJournal"],
             ].map(([num, label]) => (
               <div key={num} className="relative z-10 flex flex-1 flex-col items-center">
                 <div
