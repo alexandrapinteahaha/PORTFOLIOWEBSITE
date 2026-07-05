@@ -44,14 +44,16 @@ export default async function HomePage() {
         {/* Dark overlay so white text remains legible */}
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.52)" }} />
 
-        <div className="relative z-10 text-center">
-          <p className="label text-chalk mb-4">Contemporary Artist · United Kingdom</p>
+        <div className="relative z-10 flex flex-col items-center text-center">
+          <p className="label mb-5" style={{ color: "rgba(255,255,255,0.55)" }}>
+            Contemporary Artist · United Kingdom
+          </p>
 
           <div
             className="font-title font-bold text-chalk"
             style={{ display: "inline-grid", lineHeight: 1.0 }}
           >
-            <span style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)", letterSpacing: "0.04em" }}>
+            <span style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)", letterSpacing: "0.04em", textAlign: "center" }}>
               ALEXANDRA
             </span>
             <span
@@ -66,12 +68,6 @@ export default async function HomePage() {
                 <span key={c}>{c}</span>
               ))}
             </span>
-          </div>
-
-          <div className="mt-10 flex justify-center">
-            <ButtonLink href="/archive" variant="ghost">
-              View Selected Works
-            </ButtonLink>
           </div>
         </div>
       </section>
