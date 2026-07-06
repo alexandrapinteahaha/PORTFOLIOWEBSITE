@@ -22,7 +22,7 @@ export function MemberLoginForm() {
       }
       window.location.assign("/print-club/membership");
     } catch {
-      setMessage("Sign in is not available right now.");
+      setMessage("Sign in is not yet configured on this deployment. Please check back soon or contact alexandrapinteaart@gmail.com.");
     } finally {
       setLoading(false);
     }
