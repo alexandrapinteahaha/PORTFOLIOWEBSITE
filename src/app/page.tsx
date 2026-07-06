@@ -114,12 +114,20 @@ export default async function HomePage() {
             {/* Left — image placeholder */}
             <div className="aspect-square w-full bg-mist" />
 
-            {/* Right — heading + timeline */}
+            {/* Right — heading + description + timeline */}
             <div>
               <p className="label text-graphite">Collectors Programme</p>
-              <h2 className="mt-3 font-title text-3xl text-ink md:text-4xl">Print Club</h2>
+              <h2
+                className="mt-3 font-title font-bold text-ink"
+                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", lineHeight: 1.15 }}
+              >
+                Become a Studio Collector.
+              </h2>
+              <p className="mt-5 text-sm leading-7 text-graphite max-w-xs">
+                Receive a hand-signed print every month (including a birthday bonus).
+              </p>
 
-              <div className="mt-12 grid grid-cols-3 w-full">
+              <div className="mt-10 grid grid-cols-3 w-full">
                 {[
                   ["1", "High Quality Print"],
                   ["2", "Personal Letter"],
