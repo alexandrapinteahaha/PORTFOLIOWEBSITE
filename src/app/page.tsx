@@ -108,14 +108,14 @@ export default async function HomePage() {
           Details listed as quiet facts, not bullet-point marketing.
       ──────────────────────────────────────────────────────────────────────── */}
       <section className="border-t border-line" style={{ backgroundColor: "#f0eeec" }}>
-        <div className="container-shell py-16 md:py-20">
-          <div className="grid gap-10 md:grid-cols-[1fr_1fr] md:items-center md:gap-16">
+        <div className="py-10 md:py-14">
+          <div className="grid md:grid-cols-[1fr_1fr] md:items-center">
 
-            {/* Left — image placeholder */}
+            {/* Left — image placeholder, bleeds to edge */}
             <div className="aspect-square w-full bg-mist" />
 
-            {/* Right — heading + description + timeline */}
-            <div>
+            {/* Right — text */}
+            <div className="px-10 md:px-16">
               <p className="label text-graphite">Collectors Programme</p>
               <h2
                 className="mt-3 font-title font-bold text-ink"
@@ -123,40 +123,12 @@ export default async function HomePage() {
               >
                 Become a Studio Collector.
               </h2>
-              <p className="mt-5 text-sm leading-7 text-graphite max-w-xs">
+              <p className="mt-5 leading-7 text-graphite max-w-xs" style={{ fontSize: "15px" }}>
                 Receive a hand-signed print every month (including a birthday bonus).
               </p>
 
-              <div className="mt-10 grid grid-cols-3 w-full">
-                {[
-                  ["1", "High Quality Print"],
-                  ["2", "Personal Letter"],
-                  ["3", "Digital Studio Journal"],
-                ].map(([num, label]) => (
-                  <div key={num} className="flex flex-col items-center gap-4 text-center">
-                    <div
-                      className="flex items-center justify-center rounded-full bg-ink"
-                      style={{ width: 42, height: 42, flexShrink: 0 }}
-                    >
-                      <span
-                        className="font-title font-bold text-chalk"
-                        style={{ fontSize: "15px", lineHeight: 1, paddingTop: "3px" }}
-                      >
-                        {num}
-                      </span>
-                    </div>
-                    <p
-                      className="font-title font-bold w-full px-1 whitespace-nowrap text-center"
-                      style={{ fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", opacity: 0.5 }}
-                    >
-                      {label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-10">
-                <ButtonLink href="/print-club" variant="secondary">
+              <div className="mt-8">
+                <ButtonLink href="/print-club" variant="primary">
                   Sign me up
                 </ButtonLink>
               </div>
