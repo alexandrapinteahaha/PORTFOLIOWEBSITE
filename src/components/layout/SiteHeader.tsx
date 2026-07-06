@@ -7,9 +7,16 @@ import { useCart } from "@/lib/cart";
 
 const navLinks: [string, string][] = [
   ["Selected Works", "/archive"],
-  ["Print Club",     "/print-club"],
   ["About",          "/about"],
   ["Contact",        "/contact"],
+];
+
+const printClubDropdown: [string, string][] = [
+  ["Join Print Club",      "/print-club"],
+  ["Catchup Prints",       "/print-club/catchup"],
+  ["Complete Collection",  "/print-club/collection"],
+  ["Manage Membership",    "/print-club/membership"],
+  ["FAQ",                  "/print-club/faq"],
 ];
 
 export function SiteHeader() {
@@ -41,7 +48,40 @@ export function SiteHeader() {
 
         {/* Nav + icons — desktop */}
         <nav className="hidden md:flex items-center gap-7">
-          {navLinks.map(([label, href]) => (
+          {/* Selected Works */}
+          <Link
+            href="/archive"
+            className={`nav-link label transition-colors hover:text-ink ${isActive("/archive")}`}
+          >
+            Selected Works
+          </Link>
+
+          {/* Print Club with dropdown */}
+          <div className="group relative">
+            <Link
+              href="/print-club"
+              className={`nav-link label transition-colors hover:text-ink ${isActive("/print-club")}`}
+            >
+              Print Club
+            </Link>
+            {/* Dropdown panel */}
+            <div className="pointer-events-none absolute right-0 top-full z-50 pt-3 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100">
+              <div className="min-w-[196px] border border-line bg-paper shadow-sm">
+                {printClubDropdown.map(([label, href]) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="block border-b border-line px-5 py-3 last:border-b-0 label text-graphite transition-colors hover:bg-chalk hover:text-ink"
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* About + Contact */}
+          {navLinks.slice(1).map(([label, href]) => (
             <Link
               key={href}
               href={href}
