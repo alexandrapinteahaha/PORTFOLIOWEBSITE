@@ -60,10 +60,10 @@ export default async function MembershipPage() {
   /* ── 2. Not logged in — show login form ────────────────────────────────── */
   if (!user) {
     return (
-      <section className="container-shell py-14 md:py-20">
-        <div className="max-w-sm">
-          <p className="label text-graphite mb-3">Print Club</p>
-          <h1 className="font-title text-3xl mb-8">Member Portal</h1>
+      <section className="flex min-h-[70vh] items-center justify-center px-6">
+        <div className="w-full max-w-sm">
+          <p className="label text-graphite mb-3 text-center">Print Club</p>
+          <h1 className="font-title text-3xl mb-8 text-center">Member Portal</h1>
           <MemberLoginForm />
           <p className="mt-6 text-sm text-graphite">
             Not yet a member?{" "}
