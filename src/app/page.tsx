@@ -88,13 +88,6 @@ export default async function HomePage() {
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
                   />
-                  {artwork.status === "available" && artwork.priceGbp && (
-                    <div className="absolute inset-x-0 bottom-0 translate-y-1 p-3 opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
-                      <span className="label bg-paper/90 px-2 py-1 text-ink backdrop-blur-sm">
-                        £{artwork.priceGbp}
-                      </span>
-                    </div>
-                  )}
                 </div>
                 <div className="mt-3">
                   <h2 className="font-title text-sm font-bold leading-snug">{artwork.title}</h2>
