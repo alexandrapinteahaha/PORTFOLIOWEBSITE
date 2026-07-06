@@ -57,12 +57,22 @@ export function SiteHeader() {
           </Link>
 
           {/* Print Club with dropdown */}
-          <div className="group relative">
+          <div className="group relative flex items-center">
             <Link
               href="/print-club"
-              className={`nav-link label transition-colors hover:text-ink ${isActive("/print-club")}`}
+              className={`nav-link label inline-flex items-center gap-1 transition-colors hover:text-ink ${isActive("/print-club")}`}
             >
               Print Club
+              <svg
+                width="9"
+                height="9"
+                viewBox="0 0 9 9"
+                fill="none"
+                aria-hidden="true"
+                className="transition-transform duration-150 group-hover:translate-y-0.5"
+              >
+                <path d="M1.5 3L4.5 6L7.5 3" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </Link>
             {/* Dropdown panel */}
             <div className="pointer-events-none absolute right-0 top-full z-50 pt-3 opacity-0 transition-opacity duration-150 group-hover:pointer-events-auto group-hover:opacity-100">
