@@ -108,17 +108,24 @@ export default async function HomePage() {
           Details listed as quiet facts, not bullet-point marketing.
       ──────────────────────────────────────────────────────────────────────── */}
       <section className="border-t border-line" style={{ backgroundColor: "#f0eeec" }}>
-        <div className="py-10 md:py-14">
+        <div className="py-8 md:py-10">
           <div className="grid md:grid-cols-[1fr_1fr] md:items-center">
 
-            {/* Left — image placeholder, bleeds to edge */}
-            <div className="aspect-square w-full bg-mist" />
+            {/* Left — image */}
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-mist">
+              <Image
+                src="/print-club-feature.png"
+                alt="Print Club — monthly art print"
+                fill
+                className="object-cover"
+                sizes="50vw"
+              />
+            </div>
 
             {/* Right — text */}
             <div className="px-10 md:px-16">
-              <p className="label text-graphite">Collectors Programme</p>
               <h2
-                className="mt-3 font-title font-bold text-ink"
+                className="font-title font-bold text-ink"
                 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", lineHeight: 1.15 }}
               >
                 The Print Club — Built For Collectors.
