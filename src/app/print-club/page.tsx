@@ -30,6 +30,14 @@ export default async function PrintClubPage() {
               Print Club
             </h1>
           </Reveal>
+          <Reveal delay={150} className="mt-10 flex flex-col items-center gap-3">
+            <div className="flex gap-3">
+              <SubscribeButton />
+            </div>
+            <p className="text-xs text-graphite/60">
+              UK £8/month · International £10/month (includes shipping)
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -59,14 +67,6 @@ export default async function PrintClubPage() {
             <p className="mt-6 text-sm leading-8 text-graphite">
               Subscribe before the 26th to receive the current month&apos;s print.
               New sign-ups will receive July&apos;s edition.
-            </p>
-          </Reveal>
-          <Reveal delay={150} className="mt-10 flex flex-col items-center gap-3">
-            <div className="w-full max-w-sm">
-              <SubscribeButton />
-            </div>
-            <p className="text-xs text-graphite">
-              UK £8/month · International £10/month (includes shipping)
             </p>
           </Reveal>
         </div>
