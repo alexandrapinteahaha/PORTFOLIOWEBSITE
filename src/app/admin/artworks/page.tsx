@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { deleteArtwork } from "@/app/admin/actions";
+import { deleteArtwork, updateArtwork } from "@/app/admin/actions";
 import { ArtworkForm } from "@/components/AdminForms";
 import { AdminNav } from "@/components/layout/AdminNav";
 import { requireAdmin } from "@/lib/access";
@@ -14,7 +14,7 @@ export default async function AdminArtworksPage() {
   const supabase = createSupabaseAdminClient();
   const { data } = await supabase
     .from("artworks")
-    .select("id,title,year,status,print_available")
+    .select("id,title,slug,year,status,print_available,medium,dimensions,edition_info,description")
     .order("created_at", { ascending: false });
 
   return (
@@ -40,31 +40,61 @@ export default async function AdminArtworksPage() {
               <p className="text-sm text-graphite">No artworks added yet.</p>
             )}
             {(data ?? []).map((artwork) => (
-              <div
+              <details
                 key={artwork.id}
-                className="grid gap-3 border border-line bg-chalk p-4 md:grid-cols-[1fr_auto]"
+                className="border border-line bg-chalk"
               >
-                <div>
-                  <p className="font-serif text-xl">{artwork.title}</p>
-                  <p className="mt-1 text-xs text-graphite">
-                    {artwork.year}
-                    <span className="mx-1.5 text-line">|</span>
-                    {artwork.status}
-                    {artwork.print_available && (
-                      <>
-                        <span className="mx-1.5 text-line">|</span>
-                        print available
-                      </>
-                    )}
-                  </p>
+                <summary className="flex cursor-pointer items-center justify-between gap-4 p-4">
+                  <div>
+                    <p className="font-serif text-xl">{artwork.title}</p>
+                    <p className="mt-1 text-xs text-graphite">
+                      {artwork.year}
+                      <span className="mx-1.5 text-line">|</span>
+                      {artwork.status}
+                      {artwork.print_available && (
+                        <>
+                          <span className="mx-1.5 text-line">|</span>
+                          print available
+                        </>
+                      )}
+                    </p>
+                  </div>
+                  <span className="text-xs text-graphite">Edit ▾</span>
+                </summary>
+
+                <div className="border-t border-line p-4">
+                  <form action={updateArtwork} className="grid gap-4">
+                    <input type="hidden" name="id" value={artwork.id} />
+                    <div className="grid gap-1">
+                      <label className="text-xs text-graphite uppercase tracking-[0.12em]">Dimensions</label>
+                      <input name="dimensions" defaultValue={artwork.dimensions ?? ""} className="border border-line bg-paper px-3 py-2 text-sm" />
+                    </div>
+                    <div className="grid gap-1">
+                      <label className="text-xs text-graphite uppercase tracking-[0.12em]">Edition</label>
+                      <input name="edition_info" defaultValue={artwork.edition_info ?? ""} className="border border-line bg-paper px-3 py-2 text-sm" />
+                    </div>
+                    <div className="grid gap-1">
+                      <label className="text-xs text-graphite uppercase tracking-[0.12em]">Materials</label>
+                      <input name="medium" defaultValue={artwork.medium ?? ""} className="border border-line bg-paper px-3 py-2 text-sm" />
+                    </div>
+                    <div className="grid gap-1">
+                      <label className="text-xs text-graphite uppercase tracking-[0.12em]">Description</label>
+                      <textarea name="description" defaultValue={artwork.description ?? ""} rows={5} className="border border-line bg-paper px-3 py-2 text-sm" />
+                    </div>
+                    <div className="flex gap-3">
+                      <button type="submit" className="focus-ring border border-ink bg-ink px-4 py-2 text-xs text-chalk transition hover:bg-graphite">
+                        Save
+                      </button>
+                      <form action={deleteArtwork}>
+                        <input type="hidden" name="id" value={artwork.id} />
+                        <button className="focus-ring border border-rust px-4 py-2 text-xs text-rust transition hover:bg-rust hover:text-chalk">
+                          Delete
+                        </button>
+                      </form>
+                    </div>
+                  </form>
                 </div>
-                <form action={deleteArtwork}>
-                  <input type="hidden" name="id" value={artwork.id} />
-                  <button className="focus-ring border border-rust px-3 py-2 text-xs text-rust transition hover:bg-rust hover:text-chalk">
-                    Delete
-                  </button>
-                </form>
-              </div>
+              </details>
             ))}
           </div>
         </div>

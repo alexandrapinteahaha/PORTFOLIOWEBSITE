@@ -19,7 +19,7 @@ export default async function HomePage() {
       <div className="border-b border-line bg-paper">
         <p className="py-2.5 text-center label text-graphite">
           2026 Print Club — Opening Soon.{" "}
-          <Link href="/print-club" className="underline underline-offset-4 hover:text-ink transition-colors">
+          <Link href="/print-club" className="underline underline-offset-4 hover:text-ink transition-colors opacity-50 hover:opacity-100">
             Learn More
           </Link>
         </p>

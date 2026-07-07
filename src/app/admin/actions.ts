@@ -34,6 +34,20 @@ export async function createArtwork(formData: FormData) {
   revalidatePath("/portfolio");
 }
 
+export async function updateArtwork(formData: FormData) {
+  await requireAdmin();
+  const supabase = createSupabaseAdminClient();
+  const id = String(formData.get("id") ?? "");
+  await supabase.from("artworks").update({
+    description: String(formData.get("description") ?? ""),
+    medium: String(formData.get("medium") ?? ""),
+    dimensions: String(formData.get("dimensions") ?? ""),
+    edition_info: String(formData.get("edition_info") ?? "") || null,
+  }).eq("id", id);
+  revalidatePath("/admin/artworks");
+  revalidatePath("/archive");
+}
+
 export async function deleteArtwork(formData: FormData) {
   await requireAdmin();
   const supabase = createSupabaseAdminClient();

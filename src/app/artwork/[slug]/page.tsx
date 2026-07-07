@@ -80,7 +80,6 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
         <div className="lg:sticky lg:top-24">
           <div className="flex flex-wrap items-center gap-2">
             {isSold && <StatusLabel tone="sold">Sold</StatusLabel>}
-            {isAvailable && <StatusLabel tone="available">Available</StatusLabel>}
             {artwork.printAvailable && (
               <StatusLabel tone="neutral">Print available</StatusLabel>
             )}
@@ -91,36 +90,23 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
           </h1>
           <p className="mt-2 text-base text-graphite">
             {artwork.year}
-            {artwork.medium ? `, ${artwork.medium}` : ""}
           </p>
 
           <dl className="mt-8 grid gap-0 border-y border-line py-6 text-sm">
             {artwork.dimensions && (
               <MetaRow label="Dimensions" value={artwork.dimensions} />
             )}
-            {artwork.series && (
-              <MetaRow label="Series" value={artwork.series} />
-            )}
             {artwork.editionInfo && (
               <MetaRow label="Edition" value={artwork.editionInfo} />
+            )}
+            {artwork.medium && (
+              <MetaRow label="Materials" value={artwork.medium} />
             )}
           </dl>
 
           {artwork.description && (
             <p className="mt-7 text-sm leading-8 text-graphite">
               {artwork.description}
-            </p>
-          )}
-
-          {artwork.certificateNote && artwork.certificateNote.split("\n").map((note, i) => (
-            <p key={i} className="mt-3 text-xs leading-6 text-graphite">
-              {note}
-            </p>
-          ))}
-
-          {artwork.shippingNotes && (
-            <p className="mt-3 text-xs leading-6 text-graphite">
-              {artwork.shippingNotes}
             </p>
           )}
 
@@ -138,15 +124,9 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
                 Order a print
               </ButtonLink>
             ) : null}
-            {!isAvailable && !artwork.printAvailable ? (
-              <ButtonLink href="/commissions" variant="quiet">
-                Enquire
-              </ButtonLink>
-            ) : (
-              <ButtonLink href="/commissions" variant="quiet">
-                Enquire
-              </ButtonLink>
-            )}
+            <ButtonLink href="/commissions" variant="secondary">
+              Enquire
+            </ButtonLink>
           </div>
 
           {related.length > 0 && (
