@@ -3,7 +3,7 @@ import Image from "next/image";
 import { SubscribeButton } from "@/components/forms/SubscribeButton";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { Reveal } from "@/components/ui/Reveal";
-import { Marquee } from "@/components/ui/Marquee";
+import { HeroSlider } from "@/components/ui/HeroSlider";
 import { getPrintClubMonths } from "@/lib/data/loaders";
 
 export const metadata: Metadata = {
@@ -16,53 +16,34 @@ export default async function PrintClubPage() {
   return (
     <>
       {/* ─── Hero ─────────────────────────────────────────── */}
-      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-mist">
-        {/* Placeholder — replace with <Image fill> when artwork is ready */}
-        <div className="absolute inset-0 bg-mist" />
-
-        {/* Overlay so text stays legible over future images */}
-        <div className="absolute inset-0 bg-chalk/30" />
-
-        <div className="relative z-10 px-6 text-center">
-          <Reveal>
-            <p className="label text-graphite/60 mb-4">Membership</p>
-            <h1 className="font-title text-6xl text-ink md:text-8xl lg:text-9xl">
-              Print Club
-            </h1>
-          </Reveal>
-          <Reveal delay={150} className="mt-10 flex justify-center">
-            <SubscribeButton />
-          </Reveal>
+      <section className="bg-paper py-10 md:py-14">
+        <div className="container-shell">
+          {/* Image box with title overlaid */}
+          <div className="relative flex min-h-[55vh] items-center justify-center overflow-hidden bg-mist">
+            <HeroSlider />
+            <div className="relative z-10 px-6 text-center">
+              <h1 className="font-title text-6xl text-ink md:text-8xl lg:text-9xl">
+                Print Club
+              </h1>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ─── Ticker ───────────────────────────────────────── */}
-      <Marquee
-        items={[
-          "Monthly Print",
-          "Digital File",
-          "Process Notes",
-          "Monthly Letter",
-          "Subscriber Archive",
-          "Twelve Works Per Year",
-          "From £8 Per Month",
-          "Cut Off Date: 26th July"
-        ]}
-        className="bg-paper"
-      />
-
-      {/* ─── Cut-off / Subscribe ──────────────────────────── */}
+      {/* ─── Next Shipment / Subscribe ────────────────────── */}
       <section className="bg-chalk border-b border-line">
         <div className="container-shell py-20 md:py-28 text-center max-w-2xl mx-auto">
           <Reveal>
-            <p className="label text-graphite mb-4">Next Shipment</p>
             <h2 className="font-title text-4xl md:text-5xl">
-              Cut Off Date: 26th July
+              Next Shipment: 26th July
             </h2>
-            <p className="mt-6 text-sm leading-8 text-graphite">
+            <p className="mt-6 text-sm font-bold uppercase tracking-[0.12em] leading-8 text-ink">
               Subscribe before the 26th to receive the current month&apos;s print.
               New sign-ups will receive July&apos;s edition.
             </p>
+          </Reveal>
+          <Reveal delay={150} className="mt-10 flex justify-center">
+            <SubscribeButton />
           </Reveal>
         </div>
       </section>
