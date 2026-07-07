@@ -33,15 +33,8 @@ export function SiteHeader() {
         <Link
           href="/"
           aria-label="Alexandra Pintea — home"
-          className="focus-ring shrink-0 select-none"
-          style={{
-            fontFamily: "'Minion Pro', Georgia, serif",
-            fontWeight: 300,
-            fontSize: "13px",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            color: "var(--color-graphite)"
-          }}
+          className="focus-ring shrink-0 select-none font-title text-graphite"
+          style={{ fontSize: "13px", letterSpacing: "0.18em" }}
         >
           Alexandra Pintea
         </Link>
@@ -120,7 +113,7 @@ export function SiteHeader() {
 
           {/* Account */}
           <Link
-            href="/login"
+            href="/print-club/membership"
             className="text-graphite transition-colors hover:text-ink"
             aria-label="Account login"
           >
@@ -165,7 +158,7 @@ export function SiteHeader() {
               <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
             </svg>
           </a>
-          <Link href="/login" className="text-graphite" aria-label="Account">
+          <Link href="/print-club/membership" className="text-graphite" aria-label="Account">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <circle cx="12" cy="8" r="4" />
               <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" />

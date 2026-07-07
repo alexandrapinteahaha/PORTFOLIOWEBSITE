@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getSiteUrl, getStripe } from "@/lib/stripe";
 import { checkoutSchema } from "@/lib/validation";
 import { seedProducts } from "@/lib/data/seed";
@@ -15,8 +16,13 @@ export async function POST(request: Request) {
   const stripe = getStripe();
   const siteUrl = getSiteUrl();
 
-  if (parsed.data.productId === "print-club-subscription") {
-    const price = process.env.STRIPE_PRINT_CLUB_PRICE_ID;
+  const isUkSub = parsed.data.productId === "print-club-subscription-uk";
+  const isIntlSub = parsed.data.productId === "print-club-subscription-intl";
+
+  if (isUkSub || isIntlSub) {
+    const price = isUkSub
+      ? process.env.STRIPE_PRINT_CLUB_PRICE_ID_UK
+      : process.env.STRIPE_PRINT_CLUB_PRICE_ID_INTL;
 
     if (!price) {
       return NextResponse.json(
@@ -25,13 +31,29 @@ export async function POST(request: Request) {
       );
     }
 
+    // Require a logged-in user so we can link the subscription back to their profile
+    let userId: string | null = null;
+    let userEmail: string | null = null;
+    try {
+      const supabase = await createSupabaseServerClient();
+      const { data } = await supabase.auth.getUser();
+      userId = data.user?.id ?? null;
+      userEmail = data.user?.email ?? null;
+    } catch {}
+
+    if (!userId) {
+      return NextResponse.json({ error: "login_required" }, { status: 401 });
+    }
+
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
       line_items: [{ price, quantity: 1 }],
-      success_url: `${siteUrl}/account/print-club?success=true`,
-      cancel_url: `${siteUrl}/print-club?cancelled=true`,
+      customer_email: userEmail ?? undefined,
+      success_url: `${siteUrl}/print-club/membership?subscribed=true`,
+      cancel_url: `${siteUrl}/print-club`,
       metadata: {
-        product_type: "print_club_subscription"
+        product_type: "print_club_subscription",
+        user_id: userId,
       }
     });
 

@@ -22,7 +22,7 @@ export async function POST() {
   const stripe = getStripe();
   const portal = await stripe.billingPortal.sessions.create({
     customer: data.stripe_customer_id,
-    return_url: `${getSiteUrl()}/account/print-club`
+    return_url: `${getSiteUrl()}/print-club/membership`
   });
 
   return NextResponse.json({ url: portal.url });

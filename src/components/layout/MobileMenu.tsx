@@ -10,7 +10,7 @@ const navItems: [string, string][] = [
   ["About", "/about"],
   ["Commission", "/commissions"],
   ["Contact", "/contact"],
-  ["Account", "/login"]
+  ["Account", "/print-club/membership"]
 ];
 
 export function MobileMenu() {

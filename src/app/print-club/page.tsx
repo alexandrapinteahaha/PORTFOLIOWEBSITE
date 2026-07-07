@@ -34,6 +34,9 @@ export default async function PrintClubPage() {
               </Reveal>
               <Reveal delay={150} className="mt-10">
                 <SubscribeButton />
+                <p className="mt-3 text-xs text-chalk/35">
+                  UK £8/month · International £10/month (includes shipping)
+                </p>
               </Reveal>
             </div>
 
@@ -77,7 +80,8 @@ export default async function PrintClubPage() {
           "Monthly Letter",
           "Subscriber Archive",
           "Twelve Works Per Year",
-          "£15 Per Month"
+          "From £8 Per Month",
+          "Cut Off Date 26th July"
         ]}
         className="bg-paper"
       />

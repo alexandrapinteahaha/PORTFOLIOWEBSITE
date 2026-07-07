@@ -70,7 +70,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6,
+.font-title {
   font-family: "Myanmar Text", serif;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -126,9 +127,9 @@ p {
 /* ─── Design system ───────────────────────────────────── */
 
 .label {
-  font-family: "Minion Pro", Georgia, serif;
+  font-family: "Myanmar Text", serif;
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #4b4a47;

@@ -49,19 +49,31 @@ export async function POST(request: Request) {
     }
 
     if (productType === "print_club_subscription") {
+      const stripeCustomerId = String(session.customer);
+      const userId = session.metadata?.user_id;
+
       await supabase.from("subscriptions").upsert(
         {
           stripe_subscription_id: String(session.subscription),
-          stripe_customer_id: String(session.customer),
+          stripe_customer_id: stripeCustomerId,
           status: "active",
           current_period_end: null
         },
         { onConflict: "stripe_subscription_id" }
       );
+
+      // Link the Stripe customer ID to the user's profile so the portal button works
+      if (userId) {
+        await supabase
+          .from("profiles")
+          .update({ stripe_customer_id: stripeCustomerId })
+          .eq("id", userId);
+      }
     }
   }
 
   if (
+    event.type === "customer.subscription.created" ||
     event.type === "customer.subscription.updated" ||
     event.type === "customer.subscription.deleted"
   ) {
