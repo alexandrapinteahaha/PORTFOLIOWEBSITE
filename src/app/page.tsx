@@ -118,7 +118,8 @@ export default async function HomePage() {
                 alt="Print Club — monthly art print"
                 fill
                 className="object-cover"
-                sizes="50vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={95}
               />
             </div>
 
