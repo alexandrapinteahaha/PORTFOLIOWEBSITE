@@ -15,59 +15,21 @@ export default async function PrintClubPage() {
 
   return (
     <>
-      {/* ─── Hero (dark) ───────────────────────────────────── */}
-      <section className="bg-ink text-chalk">
-        <div className="container-shell py-20 md:py-28">
-          <div className="grid gap-14 md:grid-cols-[1fr_380px]">
-            <div>
-              <Reveal>
-                <p className="label text-chalk/40">Membership</p>
-                <h1 className="mt-3 font-title text-5xl text-chalk md:text-7xl">
-                  Print Club
-                </h1>
-                <p className="mt-7 max-w-lg text-sm leading-8 text-chalk/55">
-                  A slower way to collect. Each month, subscribers receive one
-                  physical print from a yearly project of twelve works, alongside
-                  process notes, a digital file, and a short letter from
-                  Alexandra.
-                </p>
-              </Reveal>
-              <Reveal delay={150} className="mt-10">
-                <SubscribeButton />
-                <p className="mt-3 text-xs text-chalk/35">
-                  UK £8/month · International £10/month (includes shipping)
-                </p>
-              </Reveal>
-            </div>
+      {/* ─── Hero ─────────────────────────────────────────── */}
+      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-mist">
+        {/* Placeholder — replace with <Image fill> when artwork is ready */}
+        <div className="absolute inset-0 bg-mist" />
 
-            {/* What's included */}
-            <Reveal delay={200} className="self-center">
-              <div className="border border-chalk/15 p-6">
-                <p className="label text-chalk/40">What is included</p>
-                <ul className="mt-5 grid gap-0">
-                  {[
-                    "One physical print per month",
-                    "Digital print file (high-res)",
-                    "Process PDF and studio notes",
-                    "Monthly letter from Alexandra",
-                    "Access to subscriber digital archive",
-                    "Twelve prints across one year"
-                  ].map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-baseline gap-4 border-b border-chalk/10 py-3.5 text-sm leading-6 text-chalk/65 last:border-b-0"
-                    >
-                      <span className="h-px w-4 shrink-0 translate-y-[-3px] bg-chalk/25" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <p className="mt-4 text-xs leading-6 text-chalk/30">
-                One subscription tier. Account required to access subscriber files.
-              </p>
-            </Reveal>
-          </div>
+        {/* Overlay so text stays legible over future images */}
+        <div className="absolute inset-0 bg-chalk/30" />
+
+        <div className="relative z-10 px-6 text-center">
+          <Reveal>
+            <p className="label text-graphite/60 mb-4">Membership</p>
+            <h1 className="font-title text-6xl text-ink md:text-8xl lg:text-9xl">
+              Print Club
+            </h1>
+          </Reveal>
         </div>
       </section>
 
@@ -85,6 +47,63 @@ export default async function PrintClubPage() {
         ]}
         className="bg-paper"
       />
+
+      {/* ─── Cut-off / Subscribe ──────────────────────────── */}
+      <section className="bg-chalk border-b border-line">
+        <div className="container-shell py-20 md:py-28 text-center max-w-2xl mx-auto">
+          <Reveal>
+            <p className="label text-graphite mb-4">Next Shipment</p>
+            <h2 className="font-title text-4xl md:text-5xl">
+              Cut Off Date: 26th July
+            </h2>
+            <p className="mt-6 text-sm leading-8 text-graphite">
+              Subscribe before the 26th to receive the current month&apos;s print.
+              New sign-ups will receive July&apos;s edition.
+            </p>
+          </Reveal>
+          <Reveal delay={150} className="mt-10 flex flex-col items-center gap-3">
+            <div className="w-full max-w-sm">
+              <SubscribeButton />
+            </div>
+            <p className="text-xs text-graphite">
+              UK £8/month · International £10/month (includes shipping)
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ─── What's included ──────────────────────────────── */}
+      <section className="bg-paper border-b border-line">
+        <div className="container-shell py-16 md:py-20">
+          <Reveal className="border-b border-line pb-6 max-w-2xl">
+            <p className="label text-graphite">Membership</p>
+            <h2 className="mt-2 font-title text-2xl md:text-3xl">What Is Included</h2>
+          </Reveal>
+          <div className="mt-10 max-w-2xl">
+            <ul className="grid gap-0">
+              {[
+                "One physical print per month",
+                "Digital print file (high-res)",
+                "Process PDF and studio notes",
+                "Monthly letter from Alexandra",
+                "Access to subscriber digital archive",
+                "Twelve prints across one year"
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex items-baseline gap-4 border-b border-line py-4 text-sm leading-6 text-graphite last:border-b-0"
+                >
+                  <span className="h-px w-4 shrink-0 translate-y-[-3px] bg-graphite/30" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-xs text-graphite/60">
+              One subscription tier. Account required to access subscriber files.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* ─── Monthly archive ──────────────────────────────── */}
       <section className="container-shell py-16 md:py-24">
