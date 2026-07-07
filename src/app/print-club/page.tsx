@@ -81,7 +81,7 @@ export default async function PrintClubPage() {
           "Subscriber Archive",
           "Twelve Works Per Year",
           "From £8 Per Month",
-          "Cut Off Date 26th July"
+          "Cut Off Date: 26th July"
         ]}
         className="bg-paper"
       />
