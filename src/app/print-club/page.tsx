@@ -30,13 +30,8 @@ export default async function PrintClubPage() {
               Print Club
             </h1>
           </Reveal>
-          <Reveal delay={150} className="mt-10 flex flex-col items-center gap-3">
-            <div className="flex gap-3">
-              <SubscribeButton />
-            </div>
-            <p className="text-xs text-graphite/60">
-              UK £8/month · International £10/month (includes shipping)
-            </p>
+          <Reveal delay={150} className="mt-10 flex justify-center">
+            <SubscribeButton />
           </Reveal>
         </div>
       </section>

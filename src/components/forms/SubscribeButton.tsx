@@ -52,12 +52,12 @@ export function SubscribeButton() {
 
   return (
     <div className="grid gap-3">
-      <div className="flex gap-3">
+      <div className="flex gap-8">
         <button
           type="button"
           onClick={() => handleClick("uk")}
           disabled={!!loading}
-          className="focus-ring flex-1 min-h-11 border border-ink bg-ink px-5 text-sm font-semibold uppercase tracking-[0.1em] text-chalk transition hover:bg-graphite disabled:opacity-60"
+          className="focus-ring border border-ink bg-ink px-8 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-chalk transition hover:bg-graphite disabled:opacity-60"
         >
           {loading === "uk" ? "Opening…" : "UK Members"}
         </button>
@@ -65,7 +65,7 @@ export function SubscribeButton() {
           type="button"
           onClick={() => handleClick("intl")}
           disabled={!!loading}
-          className="focus-ring flex-1 min-h-11 border border-ink px-5 text-sm font-semibold uppercase tracking-[0.1em] text-ink transition hover:bg-ink hover:text-chalk disabled:opacity-60"
+          className="focus-ring border border-ink px-8 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-ink transition hover:bg-ink hover:text-chalk disabled:opacity-60"
         >
           {loading === "intl" ? "Opening…" : "International Members"}
         </button>
