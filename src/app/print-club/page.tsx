@@ -16,17 +16,12 @@ export default async function PrintClubPage() {
   return (
     <>
       {/* ─── Hero ─────────────────────────────────────────── */}
-      <section className="bg-paper py-10 md:py-14">
-        <div className="container-shell">
-          {/* Image box with title overlaid */}
-          <div className="relative flex min-h-[55vh] items-center justify-center overflow-hidden bg-mist">
-            <HeroSlider />
-            <div className="relative z-10 px-6 text-center">
-              <h1 className="font-title text-6xl text-ink md:text-8xl lg:text-9xl">
-                Print Club
-              </h1>
-            </div>
-          </div>
+      <section className="relative flex min-h-[55vh] items-center justify-center overflow-hidden bg-mist">
+        <HeroSlider />
+        <div className="relative z-10 px-6 text-center">
+          <h1 className="font-title text-6xl text-ink md:text-8xl lg:text-9xl">
+            Print Club
+          </h1>
         </div>
       </section>
 
