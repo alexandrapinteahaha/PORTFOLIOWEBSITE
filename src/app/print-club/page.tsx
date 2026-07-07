@@ -16,10 +16,21 @@ export default async function PrintClubPage() {
   return (
     <>
       {/* ─── Hero ─────────────────────────────────────────── */}
-      <section className="relative flex min-h-[55vh] items-center justify-center overflow-hidden bg-mist">
-        <HeroSlider />
+      <section className="relative flex min-h-[55vh] items-center justify-center overflow-hidden bg-ink">
+        {/* Background image with blur */}
+        <Image
+          src="/print-club-feature.png"
+          alt=""
+          fill
+          className="object-cover scale-110 blur-[6px] opacity-70"
+          sizes="100vw"
+          quality={90}
+          priority
+        />
+        {/* Dark overlay for contrast */}
+        <div className="absolute inset-0 bg-ink/40" />
         <div className="relative z-10 px-6 text-center">
-          <h1 className="font-title text-6xl text-ink md:text-8xl lg:text-9xl">
+          <h1 className="font-title text-6xl text-white md:text-8xl lg:text-9xl">
             Print Club
           </h1>
         </div>
