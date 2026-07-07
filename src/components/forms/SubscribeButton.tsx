@@ -4,79 +4,72 @@ import { useState } from "react";
 
 type Region = "uk" | "intl";
 
+async function checkout(
+  region: Region,
+  setLoading: (v: boolean) => void,
+  setError: (v: string) => void
+) {
+  setLoading(true);
+  setError("");
+
+  const response = await fetch("/api/stripe/create-checkout-session", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      productId: `print-club-subscription-${region}`,
+      quantity: 1,
+    }),
+  });
+
+  const payload = await response.json();
+  setLoading(false);
+
+  if (response.status === 401) {
+    window.location.assign("/print-club/membership");
+    return;
+  }
+
+  if (!response.ok) {
+    setError(payload.error ?? "Subscription checkout could not be started.");
+    return;
+  }
+
+  window.location.assign(payload.url);
+}
+
 export function SubscribeButton() {
-  const [region, setRegion] = useState<Region>("uk");
+  const [loading, setLoading] = useState<Region | null>(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  async function subscribe() {
-    setLoading(true);
-    setError("");
-
-    const response = await fetch("/api/stripe/create-checkout-session", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        productId: `print-club-subscription-${region}`,
-        quantity: 1,
-      }),
-    });
-
-    const payload = await response.json();
-    setLoading(false);
-
-    if (response.status === 401) {
-      window.location.assign("/print-club/membership");
-      return;
-    }
-
-    if (!response.ok) {
-      setError(payload.error ?? "Subscription checkout could not be started.");
-      return;
-    }
-
-    window.location.assign(payload.url);
+  function handleClick(region: Region) {
+    if (loading) return;
+    checkout(
+      region,
+      (v) => setLoading(v ? region : null),
+      setError
+    );
   }
 
   return (
     <div className="grid gap-3">
-      {/* Region selector */}
-      <div className="flex border border-chalk/20">
+      <div className="flex gap-3">
         <button
           type="button"
-          onClick={() => setRegion("uk")}
-          className={[
-            "flex-1 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors",
-            region === "uk"
-              ? "bg-chalk text-ink"
-              : "text-chalk/50 hover:text-chalk",
-          ].join(" ")}
+          onClick={() => handleClick("uk")}
+          disabled={!!loading}
+          className="focus-ring flex-1 min-h-11 border border-ink bg-ink px-5 text-sm font-semibold uppercase tracking-[0.1em] text-chalk transition hover:bg-graphite disabled:opacity-60"
         >
-          UK — £8/mo
+          {loading === "uk" ? "Opening…" : "UK Members"}
         </button>
         <button
           type="button"
-          onClick={() => setRegion("intl")}
-          className={[
-            "flex-1 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors",
-            region === "intl"
-              ? "bg-chalk text-ink"
-              : "text-chalk/50 hover:text-chalk",
-          ].join(" ")}
+          onClick={() => handleClick("intl")}
+          disabled={!!loading}
+          className="focus-ring flex-1 min-h-11 border border-ink px-5 text-sm font-semibold uppercase tracking-[0.1em] text-ink transition hover:bg-ink hover:text-chalk disabled:opacity-60"
         >
-          International — £10/mo
+          {loading === "intl" ? "Opening…" : "International Members"}
         </button>
       </div>
-
-      <button
-        type="button"
-        onClick={subscribe}
-        disabled={loading}
-        className="focus-ring min-h-11 border border-ink bg-ink px-5 text-sm font-semibold uppercase tracking-[0.1em] text-chalk transition hover:bg-graphite disabled:opacity-60"
-      >
-        {loading ? "Opening checkout…" : "Join Print Club"}
-      </button>
-
       {error ? <p className="text-sm text-rust">{error}</p> : null}
     </div>
   );
