@@ -108,11 +108,10 @@ export default async function HomePage() {
           Details listed as quiet facts, not bullet-point marketing.
       ──────────────────────────────────────────────────────────────────────── */}
       <section className="border-t border-line" style={{ backgroundColor: "#f0eeec" }}>
-        <div className="py-8 md:py-10">
-          <div className="grid md:grid-cols-[1fr_1fr] md:items-center">
+        <div className="grid md:grid-cols-[1fr_1fr] md:items-stretch">
 
-            {/* Left — image */}
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-mist">
+            {/* Left — image, no padding, flush to edges */}
+            <div className="relative aspect-[3/2] w-full overflow-hidden bg-mist md:aspect-auto md:min-h-[320px]">
               <Image
                 src="/print-club-feature.png"
                 alt="Print Club — monthly art print"
@@ -124,18 +123,18 @@ export default async function HomePage() {
             </div>
 
             {/* Right — text */}
-            <div className="px-10 md:px-16">
+            <div className="flex flex-col justify-center px-8 py-8 md:px-12 md:py-10">
               <h2
                 className="font-title font-bold text-ink"
-                style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", lineHeight: 1.15 }}
+                style={{ fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)", lineHeight: 1.15 }}
               >
                 The Print Club — Built For Collectors.
               </h2>
-              <p className="mt-5 leading-7 text-graphite max-w-xs" style={{ fontSize: "15px" }}>
+              <p className="mt-4 leading-7 text-graphite max-w-xs" style={{ fontSize: "14px" }}>
                 Receive a hand-signed, numbered print every month and exclusive access to Studio Archive.
               </p>
 
-              <div className="mt-8">
+              <div className="mt-6">
                 <ButtonLink href="/print-club" variant="primary">
                   Sign me up
                 </ButtonLink>
