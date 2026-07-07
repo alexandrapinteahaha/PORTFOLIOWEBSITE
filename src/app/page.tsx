@@ -18,9 +18,9 @@ export default async function HomePage() {
       ──────────────────────────────────────────────────────────────────────── */}
       <div className="border-b border-line bg-paper">
         <p className="py-2.5 text-center label text-graphite">
-          2026 Print Club — Applications Opening Soon.{" "}
+          2026 Print Club — Opening Soon.{" "}
           <Link href="/print-club" className="underline underline-offset-4 hover:text-ink transition-colors">
-            Learn more
+            Learn More
           </Link>
         </p>
       </div>
@@ -121,10 +121,10 @@ export default async function HomePage() {
                 className="mt-3 font-title font-bold text-ink"
                 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", lineHeight: 1.15 }}
               >
-                Become a Studio Collector.
+                The Print Club — Built For Collectors.
               </h2>
               <p className="mt-5 leading-7 text-graphite max-w-xs" style={{ fontSize: "15px" }}>
-                Receive a hand-signed print every month (including a birthday bonus).
+                Receive a hand-signed, numbered print every month and exclusive access to Studio Archive.
               </p>
 
               <div className="mt-8">

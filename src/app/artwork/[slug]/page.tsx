@@ -104,9 +104,6 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
             {artwork.editionInfo && (
               <MetaRow label="Edition" value={artwork.editionInfo} />
             )}
-            {artwork.priceGbp && isAvailable ? (
-              <MetaRow label="Price" value={`GBP ${artwork.priceGbp}`} />
-            ) : null}
           </dl>
 
           {artwork.description && (
