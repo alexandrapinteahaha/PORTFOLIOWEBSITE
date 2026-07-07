@@ -51,7 +51,7 @@ export default async function HomePage() {
 
           <h1
             className="font-title font-bold"
-            style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)", letterSpacing: "0.08em", lineHeight: 1.0, color: "rgba(0,0,0,0.5)" }}
+            style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)", letterSpacing: "0.08em", lineHeight: 1.0, color: "rgba(255,255,255,0.88)" }}
           >
             ALEXANDRA PINTEA
           </h1>
