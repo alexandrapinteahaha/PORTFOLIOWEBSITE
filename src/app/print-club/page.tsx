@@ -36,6 +36,8 @@ export default async function PrintClubPage() {
             </h2>
             <p className="mt-6 text-sm font-bold uppercase tracking-[0.12em] leading-8 text-ink">
               Subscribe before the 26th to receive the current month&apos;s print.
+            </p>
+            <p className="mt-3 text-xs uppercase tracking-[0.1em] text-ink opacity-50">
               New sign-ups will receive July&apos;s edition.
             </p>
           </Reveal>
