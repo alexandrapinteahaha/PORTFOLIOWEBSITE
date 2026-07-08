@@ -110,13 +110,13 @@ export default async function HomePage() {
       <section className="border-t border-line" style={{ backgroundColor: "#f0eeec" }}>
         <div className="grid md:grid-cols-[1fr_1fr] md:items-stretch">
 
-            {/* Left — square image, flush edges, fills full section height */}
+            {/* Left — image fills full height of section, flush to all edges */}
             <div className="relative aspect-square w-full overflow-hidden bg-mist md:aspect-auto md:self-stretch">
               <Image
                 src="/print-club-feature.png"
                 alt="Print Club — monthly art print"
                 fill
-                className="object-contain object-center scale-[0.78]"
+                className="object-cover object-center"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 quality={95}
               />
