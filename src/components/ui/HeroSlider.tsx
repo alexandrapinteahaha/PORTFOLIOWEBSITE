@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 
-// Add your image paths here when ready, e.g. ["/images/print-1.jpg", "/images/print-2.jpg"]
-const SLIDES: string[] = [];
+// Add more image paths here as new prints are released
+const SLIDES: string[] = ["/print-club-feature.png"];
 
 const PLACEHOLDERS = ["bg-mist", "bg-stone-200", "bg-zinc-200"];
 
@@ -29,8 +29,8 @@ export function HeroSlider() {
               src={src}
               alt=""
               className={[
-                "absolute inset-0 w-full h-full object-cover transition-opacity duration-1000",
-                i === current ? "opacity-100" : "opacity-0",
+                "absolute inset-0 w-full h-full object-cover scale-110 blur-[6px] transition-opacity duration-1000",
+                i === current ? "opacity-70" : "opacity-0",
               ].join(" ")}
             />
           ))
@@ -45,27 +45,27 @@ export function HeroSlider() {
             />
           ))}
 
-      {/* Left arrow */}
+      {/* Left arrow — no box, just the icon */}
       <button
         type="button"
         onClick={prev}
         aria-label="Previous slide"
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center border border-ink/20 bg-chalk/70 text-ink backdrop-blur-sm transition hover:bg-chalk"
+        className="absolute left-5 top-1/2 -translate-y-1/2 z-10 text-white/80 transition hover:text-white"
       >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M10 3L5 8l5 5" strokeLinecap="round" strokeLinejoin="round" />
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M18 5L9 14l9 9" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
-      {/* Right arrow */}
+      {/* Right arrow — no box, just the icon */}
       <button
         type="button"
         onClick={next}
         aria-label="Next slide"
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex h-10 w-10 items-center justify-center border border-ink/20 bg-chalk/70 text-ink backdrop-blur-sm transition hover:bg-chalk"
+        className="absolute right-5 top-1/2 -translate-y-1/2 z-10 text-white/80 transition hover:text-white"
       >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-          <path d="M6 3l5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M10 5l9 9-9 9" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
@@ -78,7 +78,7 @@ export function HeroSlider() {
             onClick={() => setCurrent(i)}
             className={[
               "h-1.5 rounded-full transition-all duration-300",
-              i === current ? "w-6 bg-ink" : "w-1.5 bg-ink/30",
+              i === current ? "w-6 bg-white" : "w-1.5 bg-white/40",
             ].join(" ")}
             aria-label={`Slide ${i + 1}`}
           />
