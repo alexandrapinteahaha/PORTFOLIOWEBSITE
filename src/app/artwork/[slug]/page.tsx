@@ -85,7 +85,7 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
             )}
           </div>
 
-          <h1 className="mt-5 font-serif text-5xl font-light leading-tight">
+          <h1 className="mt-5 font-title text-5xl leading-tight">
             {artwork.title}
           </h1>
           <p className="mt-2 text-base text-graphite">
@@ -94,15 +94,18 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
 
           <dl className="mt-8 grid gap-0 border-y border-line py-6 text-sm">
             {artwork.dimensions && (
-              <MetaRow label="Dimensions" value={artwork.dimensions} />
+              <MetaRow label="DIMENSIONS" value={artwork.dimensions} />
             )}
             {artwork.editionInfo && (
-              <MetaRow label="Edition" value={artwork.editionInfo} />
+              <MetaRow label="EDITION" value={artwork.editionInfo} />
             )}
             {artwork.medium && (
-              <MetaRow label="Materials" value={artwork.medium} />
+              <MetaRow label="MATERIALS" value={artwork.medium} />
             )}
           </dl>
+          <p className="mt-4 text-xs tracking-[0.1em] uppercase text-graphite/60">
+            COA and Archive Docs. Provided.
+          </p>
 
           {artwork.description && (
             <p className="mt-7 text-sm leading-8 text-graphite">
@@ -159,9 +162,9 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
 
 function MetaRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="grid grid-cols-[130px_1fr] gap-4 border-b border-line py-3 last:border-b-0">
-      <dt className="text-graphite">{label}</dt>
-      <dd>{value}</dd>
+    <div className="grid grid-cols-[140px_1fr] gap-4 border-b border-line py-3 last:border-b-0">
+      <dt className="text-xs font-semibold tracking-[0.1em] text-graphite">{label}</dt>
+      <dd className="text-sm text-ink">{value}</dd>
     </div>
   );
 }
