@@ -92,12 +92,9 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
             {artwork.year}
           </p>
 
-          <dl className="mt-8 grid gap-0 border-y border-line py-6 text-sm">
+          <dl className="mt-8 border border-line text-sm">
             {artwork.dimensions && (
               <MetaRow label="DIMENSIONS" value={artwork.dimensions} />
-            )}
-            {artwork.editionInfo && (
-              <MetaRow label="EDITION" value={artwork.editionInfo} />
             )}
             {artwork.medium && (
               <MetaRow label="MATERIALS" value={artwork.medium} />
@@ -162,9 +159,9 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
 
 function MetaRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="grid grid-cols-[140px_1fr] gap-4 border-b border-line py-3 last:border-b-0">
-      <dt className="text-xs font-semibold tracking-[0.1em] text-graphite">{label}</dt>
-      <dd className="text-sm text-ink">{value}</dd>
+    <div className="grid grid-cols-2 items-center border-b border-line px-6 py-3.5 last:border-b-0">
+      <dt className="text-xs font-semibold tracking-[0.1em] text-graphite text-center">{label}</dt>
+      <dd className="text-sm text-ink text-center">{value}</dd>
     </div>
   );
 }
