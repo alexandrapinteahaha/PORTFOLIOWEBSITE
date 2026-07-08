@@ -54,14 +54,6 @@ export default async function ArchivePage() {
                       </div>
                     )}
 
-                    {/* Price on hover */}
-                    {artwork.priceGbp && artwork.status === "available" && (
-                      <div className="absolute inset-x-0 bottom-0 translate-y-1 p-3 opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
-                        <span className="label bg-paper/90 px-2 py-1 text-ink backdrop-blur-sm">
-                          £{artwork.priceGbp}
-                        </span>
-                      </div>
-                    )}
                   </div>
 
                   {/* Info */}
@@ -72,9 +64,6 @@ export default async function ArchivePage() {
                         {artwork.year}
                         {artwork.medium ? ` — ${artwork.medium}` : ""}
                       </p>
-                      {artwork.status === "available" && artwork.priceGbp && (
-                        <p className="label text-ink">£{artwork.priceGbp}</p>
-                      )}
                       {artwork.status === "sold" && (
                         <p className="label text-graphite/50">Sold</p>
                       )}
