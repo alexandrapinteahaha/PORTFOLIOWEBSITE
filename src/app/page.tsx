@@ -110,20 +110,20 @@ export default async function HomePage() {
       <section className="border-t border-line" style={{ backgroundColor: "#f0eeec" }}>
         <div className="grid md:grid-cols-[1fr_1fr] md:items-stretch">
 
-            {/* Left — square image */}
-            <div className="relative aspect-square w-full overflow-hidden bg-mist">
+            {/* Left — square image, flush edges, fills full section height */}
+            <div className="relative aspect-square w-full overflow-hidden bg-mist md:aspect-auto md:self-stretch">
               <Image
                 src="/print-club-feature.png"
                 alt="Print Club — monthly art print"
                 fill
-                className="object-cover object-center scale-90"
+                className="object-contain object-center scale-[0.78]"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 quality={95}
               />
             </div>
 
             {/* Right — text */}
-            <div className="flex flex-col justify-center px-8 py-8 md:px-12 md:py-10">
+            <div className="flex flex-col justify-center px-8 py-10 md:px-12 md:py-12">
               <h2
                 className="font-title font-bold text-ink"
                 style={{ fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)", lineHeight: 1.15 }}
