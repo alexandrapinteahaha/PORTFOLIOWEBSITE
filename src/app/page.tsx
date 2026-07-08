@@ -111,7 +111,7 @@ export default async function HomePage() {
         <div className="grid md:grid-cols-[1fr_1fr] md:items-stretch">
 
             {/* Left — image fills full height of section, flush to all edges */}
-            <div className="relative aspect-square w-full overflow-hidden bg-mist md:aspect-auto md:self-stretch">
+            <div className="relative aspect-square w-full overflow-hidden bg-mist">
               <Image
                 src="/print-club-feature.png"
                 alt="Print Club — monthly art print"
