@@ -63,9 +63,9 @@ body {
   margin: 0;
   background: #f7f6f2;
   color: #171717;
-  font-family: "Minion Pro", Georgia, serif;
-  font-size: 20px;
-  line-height: 1.85;
+  font-family: var(--font-source-sans), sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -85,14 +85,14 @@ a {
 }
 
 button, input, select, textarea {
-  font-family: "Minion Pro", Georgia, serif;
+  font-family: var(--font-source-sans), sans-serif;
   font-size: inherit;
 }
 
 p {
-  font-family: "Minion Pro", Georgia, serif;
-  font-size: 20px;
-  line-height: 1.85;
+  font-family: var(--font-source-sans), sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
 }
 
 ::selection {
@@ -153,7 +153,7 @@ p {
 .legal-note {
   border-left: 1px dotted #d8d4cc;
   padding-left: 1rem;
-  font-family: "Minion Pro", Georgia, serif;
+  font-family: var(--font-source-sans), sans-serif;
   font-size: 13px;
   color: #4b4a47;
   line-height: 1.75;

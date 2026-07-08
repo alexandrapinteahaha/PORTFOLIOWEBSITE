@@ -16,9 +16,9 @@ const config: Config = {
       },
       fontFamily: {
         title: ["Myanmar Text", "serif"],
-        sans: ["Minion Pro", "Georgia", "serif"],
-        serif: ["Minion Pro", "Georgia", "serif"],
-        mono: ["Minion Pro", "Courier New", "monospace"]
+        sans: ["var(--font-source-sans)", "sans-serif"],
+        serif: ["var(--font-source-sans)", "sans-serif"],
+        mono: ["var(--font-source-sans)", "monospace"],
       },
       letterSpacing: {
         label: "0.22em",
