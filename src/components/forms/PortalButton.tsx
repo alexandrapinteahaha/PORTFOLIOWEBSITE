@@ -29,7 +29,7 @@ export function PortalButton() {
         type="button"
         onClick={openPortal}
         disabled={loading}
-        className="focus-ring min-h-11 border border-ink px-5 text-sm font-semibold uppercase tracking-[0.1em]"
+        className="focus-ring btn-fill min-h-11 border border-ink bg-ink px-8 text-xs font-semibold uppercase tracking-[0.18em] text-chalk transition hover:border-rust disabled:opacity-60"
       >
         {loading ? "Opening portal" : "Manage subscription"}
       </button>

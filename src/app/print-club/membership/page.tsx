@@ -106,7 +106,10 @@ export default async function MembershipPage({
       <section className="flex min-h-[70vh] items-center justify-center px-6 py-16">
         <div className="w-full max-w-md">
           <p className="label text-graphite mb-3 text-center">Print Club</p>
-          <h1 className="font-title text-3xl mb-8 text-center">Member Portal</h1>
+          <h1 className="font-title text-4xl mb-3 text-center">Manage Membership</h1>
+          <p className="text-sm text-graphite text-center mb-8">
+            Sign in to manage your subscription, update payment details, or cancel.
+          </p>
           <MemberAuthPanel />
         </div>
       </section>
@@ -222,11 +225,9 @@ export default async function MembershipPage({
   /* 5. Render */
   return (
     <section className="container-shell py-14 md:py-20">
-      <p className="label text-graphite mb-3">Print Club</p>
-      <h1 className="font-title text-3xl mb-10">Member Portal</h1>
 
       {justSubscribed && (
-        <div className="mb-8 max-w-2xl border border-moss bg-moss/5 px-5 py-4">
+        <div className="mb-8 max-w-xl border border-moss bg-moss/5 px-5 py-4">
           <p className="text-sm font-semibold text-moss">Welcome to Print Club!</p>
           <p className="mt-1 text-sm text-graphite">
             Your subscription is being set up — it may take a moment to appear below.
@@ -235,74 +236,86 @@ export default async function MembershipPage({
         </div>
       )}
 
-      {/* ── My subscription card ─────────────────────────────────────────── */}
-      <div className="max-w-2xl border border-line bg-chalk p-6">
-        <div className="flex flex-wrap items-start justify-between gap-5">
-          <div className="grid gap-1.5">
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-graphite">
-              My Subscription
-            </p>
-            {mySubscription ? (
-              <>
-                <StatusPill status={mySubscription.status} />
-                {mySubscription.current_period_end && (
-                  <p className="text-xs text-graphite">
-                    Renews {fmt(mySubscription.current_period_end)}
-                  </p>
-                )}
-              </>
-            ) : (
-              <p className="text-sm text-graphite">No active subscription</p>
-            )}
-          </div>
-          <div className="flex flex-wrap gap-3">
-            {isActive && <PortalButton />}
-            {!mySubscription && (
-              <ButtonLink href="/print-club">Join Print Club</ButtonLink>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* ── My details (all logged-in subscribers, not admin) ────────────── */}
+      {/* ── Customer subscription management ─────────────────────────────── */}
       {!isAdmin && (
-        <div className="mt-12 max-w-2xl border-t border-line pt-10">
-          <h2 className="font-title text-xl mb-2">My Details</h2>
-          <p className="text-sm text-graphite mb-6">
-            Update your name, shipping address, and billing address. We use your
-            birthday month to send a bonus print.
+        <div className="max-w-xl">
+          <p className="label text-graphite mb-3">Print Club</p>
+          <h1 className="font-title text-4xl md:text-5xl mb-2">Manage Membership</h1>
+          <p className="text-sm text-graphite mb-10">
+            Signed in as <span className="text-ink">{user.email}</span>
           </p>
-          <ProfileEditForm initial={myProfile} />
-        </div>
-      )}
 
-      {/* ── Member downloads (active non-admin subscribers) ──────────────── */}
-      {!isAdmin && isActive && (
-        <div className="mt-12 max-w-2xl">
-          <h2 className="font-title text-xl mb-5">Member Downloads</h2>
-          {storageFiles.length === 0 ? (
-            <p className="border border-line bg-chalk px-5 py-4 text-sm text-graphite">
-              No files available yet — check back after your first shipment.
-            </p>
-          ) : (
-            <div className="grid gap-2">
-              {storageFiles.map((file) => (
-                <div
-                  key={file.name}
-                  className="flex items-center justify-between gap-4 border border-line bg-chalk px-5 py-3"
-                >
-                  <p className="text-sm capitalize">{fileLabel(file.name)}</p>
-                  <a
-                    href={file.signedUrl}
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="focus-ring shrink-0 border border-line px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] transition hover:border-ink hover:text-ink"
-                  >
-                    Download
-                  </a>
+          {mySubscription ? (
+            <div className="border border-line bg-chalk p-8">
+              <div className="flex items-center justify-between mb-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-graphite">Your Subscription</p>
+                <StatusPill status={mySubscription.status} />
+              </div>
+
+              {mySubscription.current_period_end && (
+                <p className="text-sm text-graphite mb-8">
+                  {isActive ? "Renews" : "Ends"} {fmt(mySubscription.current_period_end)}
+                </p>
+              )}
+
+              {isActive ? (
+                <>
+                  <PortalButton />
+                  <p className="mt-4 text-xs text-graphite/70 leading-5">
+                    You&apos;ll be taken to the Stripe portal where you can update your payment method, change your plan, or cancel your subscription.
+                  </p>
+                </>
+              ) : (
+                <div className="mt-2">
+                  <ButtonLink href="/print-club">Reactivate subscription</ButtonLink>
                 </div>
-              ))}
+              )}
+            </div>
+          ) : (
+            <div className="border border-line bg-chalk p-8">
+              <p className="text-sm text-graphite mb-6">You don&apos;t have an active Print Club subscription.</p>
+              <ButtonLink href="/print-club">Join Print Club</ButtonLink>
+            </div>
+          )}
+
+          {/* My details */}
+          <div className="mt-12 border-t border-line pt-10">
+            <h2 className="font-title text-xl mb-2">Shipping Details</h2>
+            <p className="text-sm text-graphite mb-6">
+              Keep your shipping address up to date so your prints arrive correctly.
+            </p>
+            <ProfileEditForm initial={myProfile} />
+          </div>
+
+          {/* Member downloads */}
+          {isActive && (
+            <div className="mt-12 border-t border-line pt-10">
+              <h2 className="font-title text-xl mb-5">Member Downloads</h2>
+              {storageFiles.length === 0 ? (
+                <p className="border border-line bg-chalk px-5 py-4 text-sm text-graphite">
+                  No files available yet — check back after your first shipment.
+                </p>
+              ) : (
+                <div className="grid gap-2">
+                  {storageFiles.map((file) => (
+                    <div
+                      key={file.name}
+                      className="flex items-center justify-between gap-4 border border-line bg-chalk px-5 py-3"
+                    >
+                      <p className="text-sm capitalize">{fileLabel(file.name)}</p>
+                      <a
+                        href={file.signedUrl}
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="focus-ring shrink-0 border border-line px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] transition hover:border-ink hover:text-ink"
+                      >
+                        Download
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>
