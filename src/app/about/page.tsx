@@ -14,7 +14,7 @@ export default function AboutPage() {
         <div>
           <p className="font-title text-sm font-bold uppercase tracking-[0.2em] text-ink">Bio</p>
           <p className="mt-6 text-sm leading-8 text-ink">
-            Alexandra Pintea (b. 2006) is a Romanian-born, UK-based multidisciplinary artist whose
+            Alexandra Pintea (b. 2004) is a Romanian-born, UK-based multidisciplinary artist whose
             practice explores the relationship between folklore, spirituality and contemporary culture.
             Through symbolic imagery and the combination of organic and industrial materials, she
             examines the human soul, identity and the unseen forces that shape our understanding of
