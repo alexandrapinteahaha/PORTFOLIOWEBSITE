@@ -179,9 +179,9 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
 
 function MetaRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="grid grid-cols-2 items-center border-b border-line px-6 py-3.5 last:border-b-0">
-      <dt className="text-xs font-semibold tracking-[0.1em] text-graphite text-center">{label}</dt>
-      <dd className="text-sm text-ink text-center">{value}</dd>
+    <div className="grid grid-cols-2 items-center border-b border-line last:border-b-0">
+      <dt className="border-r border-line px-5 py-3.5 font-title text-xs font-bold tracking-[0.12em] text-graphite">{label}</dt>
+      <dd className="px-5 py-3.5 text-sm text-ink">{value}</dd>
     </div>
   );
 }
