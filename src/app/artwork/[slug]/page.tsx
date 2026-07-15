@@ -43,6 +43,16 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
   const isAvailable = artwork.status === "available";
   const isSold = artwork.status === "sold";
 
+  const categoryMedium = artwork.categories
+    .filter((c) => c !== "original")
+    .map((c) => {
+      if (c === "multimedia") return "Mixed Media";
+      if (c === "photography") return "Photography";
+      if (c === "digital") return "Digital";
+      if (c === "print") return "Print";
+      return c.charAt(0).toUpperCase() + c.slice(1);
+    })[0] ?? null;
+
   return (
     <section className="container-shell py-14 md:py-20">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -93,16 +103,26 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
           </p>
 
           <dl className="mt-8 border border-line text-sm">
-            {artwork.dimensions && (
-              <MetaRow label="DIMENSIONS" value={artwork.dimensions} />
+            {categoryMedium && (
+              <MetaRow label="MEDIUM" value={categoryMedium} />
             )}
             {artwork.medium && (
               <MetaRow label="MATERIALS" value={artwork.medium} />
             )}
+            {artwork.dimensions && (
+              <MetaRow label="SIZE" value={artwork.dimensions} />
+            )}
+            {artwork.editionInfo && (
+              <MetaRow label="RARITY" value={artwork.editionInfo} />
+            )}
+            {artwork.certificateNote && (
+              <MetaRow label="COA" value={artwork.certificateNote} />
+            )}
+            {artwork.shippingNotes && (
+              <MetaRow label="FRAME" value={artwork.shippingNotes} />
+            )}
+            <MetaRow label="SIGNATURE" value="Hand-signed by artist" />
           </dl>
-          <p className="mt-4 text-xs tracking-[0.1em] uppercase text-graphite/60">
-            COA and Archive Docs. Provided.
-          </p>
 
           {artwork.description && (
             <p className="mt-7 text-sm leading-8 text-graphite">

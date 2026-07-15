@@ -13,7 +13,7 @@ export function ButtonLink({ href, children, variant = "primary" }: ButtonLinkPr
       href={href}
       className={clsx(
         "focus-ring inline-flex min-h-11 items-center justify-center px-6 py-2.5",
-        "text-xs font-normal uppercase tracking-[0.18em] transition-all duration-300",
+        "text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300",
         variant === "primary" && [
           "btn-fill border border-ink bg-ink text-chalk",
           "hover:border-rust"

@@ -43,6 +43,8 @@ export async function updateArtwork(formData: FormData) {
     medium: String(formData.get("medium") ?? ""),
     dimensions: String(formData.get("dimensions") ?? ""),
     edition_info: String(formData.get("edition_info") ?? "") || null,
+    certificate_note: String(formData.get("certificate_note") ?? "") || null,
+    shipping_notes: String(formData.get("shipping_notes") ?? "") || null,
   }).eq("id", id);
   revalidatePath("/admin/artworks");
   revalidatePath("/archive");

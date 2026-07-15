@@ -9,12 +9,27 @@ export const metadata: Metadata = {
   title: "Admin: Artworks"
 };
 
+type AdminArtworkRow = {
+  id: string;
+  title: string;
+  slug: string;
+  year: number;
+  status: string;
+  print_available: boolean | null;
+  medium: string | null;
+  dimensions: string | null;
+  edition_info: string | null;
+  description: string | null;
+  certificate_note: string | null;
+  shipping_notes: string | null;
+};
+
 export default async function AdminArtworksPage() {
   await requireAdmin();
   const supabase = createSupabaseAdminClient();
   const { data } = await supabase
     .from("artworks")
-    .select("id,title,slug,year,status,print_available,medium,dimensions,edition_info,description")
+    .select("id,title,slug,year,status,print_available,medium,dimensions,edition_info,description,certificate_note,shipping_notes")
     .order("created_at", { ascending: false });
 
   return (
@@ -39,7 +54,7 @@ export default async function AdminArtworksPage() {
             {(data ?? []).length === 0 && (
               <p className="text-sm text-graphite">No artworks added yet.</p>
             )}
-            {(data ?? []).map((artwork) => (
+            {(data as AdminArtworkRow[] ?? []).map((artwork) => (
               <details
                 key={artwork.id}
                 className="border border-line bg-chalk"
@@ -76,6 +91,14 @@ export default async function AdminArtworksPage() {
                     <div className="grid gap-1">
                       <label className="text-xs text-graphite uppercase tracking-[0.12em]">Materials</label>
                       <input name="medium" defaultValue={artwork.medium ?? ""} className="border border-line bg-paper px-3 py-2 text-sm" />
+                    </div>
+                    <div className="grid gap-1">
+                      <label className="text-xs text-graphite uppercase tracking-[0.12em]">COA (certificate note)</label>
+                      <input name="certificate_note" defaultValue={artwork.certificate_note ?? ""} className="border border-line bg-paper px-3 py-2 text-sm" />
+                    </div>
+                    <div className="grid gap-1">
+                      <label className="text-xs text-graphite uppercase tracking-[0.12em]">Frame info</label>
+                      <input name="shipping_notes" defaultValue={artwork.shipping_notes ?? ""} className="border border-line bg-paper px-3 py-2 text-sm" />
                     </div>
                     <div className="grid gap-1">
                       <label className="text-xs text-graphite uppercase tracking-[0.12em]">Description</label>
