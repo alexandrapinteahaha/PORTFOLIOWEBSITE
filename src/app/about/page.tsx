@@ -15,12 +15,28 @@ export default function AboutPage() {
           <p className="font-title text-sm font-bold uppercase tracking-[0.2em] text-ink">Bio</p>
           <p className="mt-6 text-sm leading-8 text-ink">
             Alexandra Pintea (b. 2004) is a Romanian-born, UK-based multidisciplinary artist whose
-            practice explores the relationship between folklore, spirituality and contemporary culture.
-            Through symbolic imagery and the combination of organic and industrial materials, she
-            examines the human soul, identity and the unseen forces that shape our understanding of
-            ourselves. Working across painting, sculpture and mixed media, her practice is driven by
-            the creation of symbolic forms that invite reflection on the boundaries between the
-            physical and the intangible.
+            practice explores the relationship between the human soul and the contemporary world.
+            Working across painting, sculpture and mixed media, she examines identity, spirituality
+            and the ways meaning is carried through symbols, materials and form.
+          </p>
+          <p className="mt-6 text-sm leading-8 text-ink">
+            Her paintings draw upon Romanian folklore, traditional motifs and symbolic imagery,
+            reinterpreting inherited narratives through a contemporary lens. Rather than preserving
+            folklore as history, she transforms its visual language into new stories that explore
+            protection, femininity, freedom and the emotional complexities of human experience.
+          </p>
+          <p className="mt-6 text-sm leading-8 text-ink">
+            Alongside her paintings, Alexandra&apos;s sculptural practice investigates the
+            intersection of the organic and the industrial. Combining fluid forms with metal and
+            manufactured materials, her sculptures reflect the growing entanglement of humanity and
+            machine, questioning how the contemporary world shapes our understanding of the soul,
+            the body and identity.
+          </p>
+          <p className="mt-6 text-sm leading-8 text-ink">
+            Across her practice, symbolism functions as a universal language rather than a decorative
+            device. Whether through folklore or material contrast, Alexandra creates works that invite
+            viewers to consider the unseen forces that shape our lives and the enduring search for
+            connection beyond the physical.
           </p>
         </div>
 
