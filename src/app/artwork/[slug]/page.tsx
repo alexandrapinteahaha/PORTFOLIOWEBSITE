@@ -122,6 +122,9 @@ export default async function ArtworkPage({ params }: ArtworkPageProps) {
               <MetaRow label="FRAME" value={artwork.shippingNotes} />
             )}
             <MetaRow label="SIGNATURE" value="Hand-signed by artist" />
+            {artwork.series && (
+              <MetaRow label="COLLECTION" value={artwork.series} />
+            )}
           </dl>
 
           {artwork.description && (

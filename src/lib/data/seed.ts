@@ -11,7 +11,7 @@ export const seedArtworks: Artwork[] = [
     description: "",
     status: "available",
     categories: ["original", "painting"],
-    series: null,
+    series: "2026 Club Special",
     priceGbp: null,
     editionInfo: "Second Version",
     shippingNotes: "Not included",
