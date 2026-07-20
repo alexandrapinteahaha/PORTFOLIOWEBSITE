@@ -22,6 +22,7 @@ type AdminArtworkRow = {
   description: string | null;
   certificate_note: string | null;
   shipping_notes: string | null;
+  image_url: string | null;
 };
 
 export default async function AdminArtworksPage() {
@@ -29,7 +30,7 @@ export default async function AdminArtworksPage() {
   const supabase = createSupabaseAdminClient();
   const { data } = await supabase
     .from("artworks")
-    .select("id,title,slug,year,status,print_available,medium,dimensions,edition_info,description,certificate_note,shipping_notes")
+    .select("id,title,slug,year,status,print_available,medium,dimensions,edition_info,description,certificate_note,shipping_notes,image_url")
     .order("created_at", { ascending: false });
 
   return (
@@ -80,6 +81,15 @@ export default async function AdminArtworksPage() {
                 <div className="border-t border-line p-4">
                   <form action={updateArtwork} className="grid gap-4">
                     <input type="hidden" name="id" value={artwork.id} />
+                    <div className="grid gap-1">
+                      <label className="text-xs text-graphite uppercase tracking-[0.12em]">Replace Image</label>
+                      {artwork.image_url && (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={artwork.image_url} alt="Current" className="mb-2 h-24 w-24 object-cover border border-line" />
+                      )}
+                      <input type="file" name="image" accept="image/*" className="border border-line bg-paper px-3 py-2 text-sm file:mr-3 file:border-0 file:bg-ink file:px-3 file:py-1 file:text-xs file:text-chalk" />
+                      <p className="text-xs text-graphite/60">Leave empty to keep the current image.</p>
+                    </div>
                     <div className="grid gap-1">
                       <label className="text-xs text-graphite uppercase tracking-[0.12em]">Dimensions</label>
                       <input name="dimensions" defaultValue={artwork.dimensions ?? ""} className="border border-line bg-paper px-3 py-2 text-sm" />

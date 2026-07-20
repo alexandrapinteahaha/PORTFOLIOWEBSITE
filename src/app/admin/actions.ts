@@ -53,16 +53,34 @@ export async function updateArtwork(formData: FormData) {
   await requireAdmin();
   const supabase = createSupabaseAdminClient();
   const id = String(formData.get("id") ?? "");
-  await supabase.from("artworks").update({
+
+  const updates: Record<string, unknown> = {
     description: String(formData.get("description") ?? ""),
     medium: String(formData.get("medium") ?? ""),
     dimensions: String(formData.get("dimensions") ?? ""),
     edition_info: String(formData.get("edition_info") ?? "") || null,
     certificate_note: String(formData.get("certificate_note") ?? "") || null,
     shipping_notes: String(formData.get("shipping_notes") ?? "") || null,
-  }).eq("id", id);
+  };
+
+  // Upload new image if one was selected
+  const imageFile = formData.get("image") as File;
+  if (imageFile && imageFile.size > 0) {
+    const ext = imageFile.name.split(".").pop() ?? "jpg";
+    const fileName = `${id}-${Date.now()}.${ext}`;
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from("artworks")
+      .upload(fileName, imageFile, { contentType: imageFile.type, upsert: true });
+    if (!uploadError && uploadData) {
+      const { data: urlData } = supabase.storage.from("artworks").getPublicUrl(fileName);
+      updates.image_url = urlData.publicUrl;
+    }
+  }
+
+  await supabase.from("artworks").update(updates).eq("id", id);
   revalidatePath("/admin/artworks");
   revalidatePath("/archive");
+  revalidatePath("/");
 }
 
 export async function deleteArtwork(formData: FormData) {
