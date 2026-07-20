@@ -1,5 +1,6 @@
 "use server";
 
+import { Resend } from "resend";
 import { commissionSchema } from "@/lib/validation";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -7,6 +8,45 @@ type FormState = {
   ok: boolean;
   message: string;
 };
+
+function buildNotificationEmail(data: {
+  name: string;
+  email: string;
+  phone?: string;
+  commissionType: string;
+  budgetRange: string;
+  timeframe: string;
+  message: string;
+}) {
+  return `
+New commission enquiry from ${data.name}
+
+Email: ${data.email}
+${data.phone ? `Phone: ${data.phone}\n` : ""}
+Type: ${data.commissionType}
+Budget: ${data.budgetRange}
+Timeframe: ${data.timeframe}
+
+Message:
+${data.message}
+
+—
+View in admin: ${process.env.NEXT_PUBLIC_SITE_URL}/admin/commissions
+  `.trim();
+}
+
+function buildConfirmationEmail(name: string) {
+  return `
+Hi ${name},
+
+Thank you for your commission enquiry. I have received your message and will be in touch shortly.
+
+Once your enquiry is reviewed and accepted, you will receive an invoice for a 50% non-refundable deposit to secure your place in the schedule.
+
+Alexandra Pintea
+alexandrapintea.art
+  `.trim();
+}
 
 export async function submitCommissionEnquiry(
   _previousState: FormState,
@@ -43,19 +83,39 @@ export async function submitCommissionEnquiry(
       status: "new"
     });
 
-    if (error) {
-      throw error;
+    if (error) throw error;
+
+    // Send emails if Resend is configured
+    const resendKey = process.env.RESEND_API_KEY;
+    const notifyEmail = process.env.NOTIFICATION_EMAIL;
+    if (resendKey && notifyEmail) {
+      const resend = new Resend(resendKey);
+      await Promise.all([
+        // Notification to Alexandra
+        resend.emails.send({
+          from: "Alexandra Pintea <noreply@alexandrapintea.art>",
+          to: notifyEmail,
+          subject: `New commission enquiry — ${parsed.data.name}`,
+          text: buildNotificationEmail(parsed.data),
+        }),
+        // Confirmation to enquirer
+        resend.emails.send({
+          from: "Alexandra Pintea <noreply@alexandrapintea.art>",
+          to: parsed.data.email,
+          subject: "Commission enquiry received — Alexandra Pintea",
+          text: buildConfirmationEmail(parsed.data.name),
+        }),
+      ]);
     }
 
     return {
       ok: true,
-      message: "Thank you. Your enquiry has been received."
+      message: "Thank you. Your enquiry has been received — a confirmation has been sent to your email."
     };
   } catch {
     return {
       ok: false,
-      message:
-        "The enquiry form is ready, but Supabase is not connected yet. Add credentials to store enquiries."
+      message: "Something went wrong. Please try again or contact directly."
     };
   }
 }
