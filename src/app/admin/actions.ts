@@ -4,25 +4,37 @@ import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/access";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
+async function ensureBucket(supabase: ReturnType<typeof createSupabaseAdminClient>) {
+  const { data: buckets } = await supabase.storage.listBuckets();
+  const exists = buckets?.some((b) => b.name === "artworks");
+  if (!exists) {
+    await supabase.storage.createBucket("artworks", { public: true });
+  }
+}
+
+async function uploadImage(
+  supabase: ReturnType<typeof createSupabaseAdminClient>,
+  imageFile: File,
+  prefix: string
+): Promise<string> {
+  await ensureBucket(supabase);
+  const ext = imageFile.name.split(".").pop() ?? "jpg";
+  const fileName = `${prefix}-${Date.now()}.${ext}`;
+  const { data, error } = await supabase.storage
+    .from("artworks")
+    .upload(fileName, imageFile, { contentType: imageFile.type, upsert: true });
+  if (error || !data) return "";
+  const { data: urlData } = supabase.storage.from("artworks").getPublicUrl(fileName);
+  return urlData.publicUrl;
+}
+
 export async function createArtwork(formData: FormData) {
   await requireAdmin();
   const supabase = createSupabaseAdminClient();
 
-  // Upload image to Supabase Storage
   const imageFile = formData.get("image") as File;
-  let imageUrl = "";
-  if (imageFile && imageFile.size > 0) {
-    const ext = imageFile.name.split(".").pop() ?? "jpg";
-    const slug = String(formData.get("slug") ?? "artwork");
-    const fileName = `${slug}-${Date.now()}.${ext}`;
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from("artworks")
-      .upload(fileName, imageFile, { contentType: imageFile.type, upsert: true });
-    if (!uploadError && uploadData) {
-      const { data: urlData } = supabase.storage.from("artworks").getPublicUrl(fileName);
-      imageUrl = urlData.publicUrl;
-    }
-  }
+  const slug = String(formData.get("slug") ?? "artwork");
+  const imageUrl = imageFile?.size > 0 ? await uploadImage(supabase, imageFile, slug) : "";
 
   const mediumType = String(formData.get("medium_type") ?? "painting");
 
@@ -63,18 +75,9 @@ export async function updateArtwork(formData: FormData) {
     shipping_notes: String(formData.get("shipping_notes") ?? "") || null,
   };
 
-  // Upload new image if one was selected
   const imageFile = formData.get("image") as File;
-  if (imageFile && imageFile.size > 0) {
-    const ext = imageFile.name.split(".").pop() ?? "jpg";
-    const fileName = `${id}-${Date.now()}.${ext}`;
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from("artworks")
-      .upload(fileName, imageFile, { contentType: imageFile.type, upsert: true });
-    if (!uploadError && uploadData) {
-      const { data: urlData } = supabase.storage.from("artworks").getPublicUrl(fileName);
-      updates.image_url = urlData.publicUrl;
-    }
+  if (imageFile?.size > 0) {
+    updates.image_url = await uploadImage(supabase, imageFile, id);
   }
 
   await supabase.from("artworks").update(updates).eq("id", id);
