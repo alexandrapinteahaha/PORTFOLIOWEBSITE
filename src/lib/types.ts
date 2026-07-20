@@ -2,6 +2,7 @@ export type ArtworkStatus = "available" | "sold" | "archived" | "hidden";
 
 export type ArtworkCategory =
   | "original"
+  | "painting"
   | "sculpture"
   | "multimedia"
   | "photography"
