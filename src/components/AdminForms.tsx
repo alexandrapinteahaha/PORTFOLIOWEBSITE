@@ -106,15 +106,25 @@ export function PrintClubMonthForm() {
   return (
     <form action={createPrintClubMonth} className="grid gap-3 border border-line bg-chalk p-4">
       <h2 className="font-title text-3xl">Add Print Club Month</h2>
-      <Field name="project_id" label="Project ID (optional)" />
+      <label className="grid gap-1 text-xs uppercase tracking-[0.12em] text-graphite">
+        Images
+        <input
+          type="file"
+          name="images"
+          accept="image/*"
+          multiple
+          required
+          className="focus-ring border border-line bg-paper px-3 py-2 text-sm file:mr-3 file:border-0 file:bg-ink file:px-3 file:py-1 file:text-xs file:text-chalk"
+        />
+        <p className="text-xs text-graphite/60">Select one or more images. The first will be the main image.</p>
+      </label>
       <Field name="title" label="Title" required />
-      <Field name="month" label="Month" type="number" required />
+      <Field name="month" label="Month (1–12)" type="number" required />
       <Field name="year" label="Year" type="number" required />
       <label className="grid gap-1 text-xs uppercase tracking-[0.12em] text-graphite">
         Description
         <textarea name="description" rows={4} className="focus-ring border border-line bg-paper p-3 text-sm" />
       </label>
-      <Field name="image_url" label="Main artwork image URL" required />
       <button className="focus-ring min-h-10 border border-ink bg-ink px-4 text-xs font-semibold uppercase tracking-[0.14em] text-chalk transition hover:bg-graphite">
         Save Month
       </button>

@@ -4,27 +4,31 @@ import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/access";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
-async function ensureBucket(supabase: ReturnType<typeof createSupabaseAdminClient>) {
+async function ensureBucket(
+  supabase: ReturnType<typeof createSupabaseAdminClient>,
+  bucketName: string = "artworks"
+) {
   const { data: buckets } = await supabase.storage.listBuckets();
-  const exists = buckets?.some((b) => b.name === "artworks");
+  const exists = buckets?.some((b) => b.name === bucketName);
   if (!exists) {
-    await supabase.storage.createBucket("artworks", { public: true });
+    await supabase.storage.createBucket(bucketName, { public: true });
   }
 }
 
 async function uploadImage(
   supabase: ReturnType<typeof createSupabaseAdminClient>,
   imageFile: File,
-  prefix: string
+  prefix: string,
+  bucket: string = "artworks"
 ): Promise<string> {
-  await ensureBucket(supabase);
+  await ensureBucket(supabase, bucket);
   const ext = imageFile.name.split(".").pop() ?? "jpg";
   const fileName = `${prefix}-${Date.now()}.${ext}`;
   const { data, error } = await supabase.storage
-    .from("artworks")
+    .from(bucket)
     .upload(fileName, imageFile, { contentType: imageFile.type, upsert: true });
   if (error || !data) return "";
-  const { data: urlData } = supabase.storage.from("artworks").getPublicUrl(fileName);
+  const { data: urlData } = supabase.storage.from(bucket).getPublicUrl(fileName);
   return urlData.publicUrl;
 }
 
@@ -126,13 +130,27 @@ export async function deleteProduct(formData: FormData) {
 export async function createPrintClubMonth(formData: FormData) {
   await requireAdmin();
   const supabase = createSupabaseAdminClient();
+
+  const month = Number(formData.get("month") ?? 1);
+  const year = Number(formData.get("year") ?? new Date().getFullYear());
+
+  const imageFiles = formData.getAll("images") as File[];
+  const validFiles = imageFiles.filter((f) => f?.size > 0);
+
+  let imageUrl = "";
+  const gallery: string[] = [];
+  for (const [i, file] of validFiles.entries()) {
+    const url = await uploadImage(supabase, file, `pcm-${year}-${month}-${i}`, "print-club");
+    if (i === 0) imageUrl = url;
+    else if (url) gallery.push(url);
+  }
+
   await supabase.from("print_club_months").insert({
-    project_id: String(formData.get("project_id") ?? "") || null,
     title: String(formData.get("title") ?? ""),
-    month: Number(formData.get("month") ?? 1),
-    year: Number(formData.get("year") ?? new Date().getFullYear()),
+    month,
+    year,
     description: String(formData.get("description") ?? ""),
-    image_url: String(formData.get("image_url") ?? ""),
+    image_url: imageUrl,
     subscriber_only: true,
     shipping_status: "pending"
   });
