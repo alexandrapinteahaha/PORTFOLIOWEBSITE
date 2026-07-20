@@ -7,6 +7,25 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 export async function createArtwork(formData: FormData) {
   await requireAdmin();
   const supabase = createSupabaseAdminClient();
+
+  // Upload image to Supabase Storage
+  const imageFile = formData.get("image") as File;
+  let imageUrl = "";
+  if (imageFile && imageFile.size > 0) {
+    const ext = imageFile.name.split(".").pop() ?? "jpg";
+    const slug = String(formData.get("slug") ?? "artwork");
+    const fileName = `${slug}-${Date.now()}.${ext}`;
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from("artworks")
+      .upload(fileName, imageFile, { contentType: imageFile.type, upsert: true });
+    if (!uploadError && uploadData) {
+      const { data: urlData } = supabase.storage.from("artworks").getPublicUrl(fileName);
+      imageUrl = urlData.publicUrl;
+    }
+  }
+
+  const mediumType = String(formData.get("medium_type") ?? "painting");
+
   await supabase.from("artworks").insert({
     title: String(formData.get("title") ?? ""),
     slug: String(formData.get("slug") ?? ""),
@@ -15,23 +34,19 @@ export async function createArtwork(formData: FormData) {
     dimensions: String(formData.get("dimensions") ?? ""),
     description: String(formData.get("description") ?? ""),
     status: String(formData.get("status") ?? "available"),
-    categories: String(formData.get("categories") ?? "")
-      .split(",")
-      .map((item) => item.trim())
-      .filter(Boolean),
+    categories: ["original", mediumType],
     series: String(formData.get("series") ?? "") || null,
-    price_gbp: formData.get("price_gbp") ? Number(formData.get("price_gbp")) : null,
+    price_gbp: null,
     edition_info: String(formData.get("edition_info") ?? "") || null,
     shipping_notes: String(formData.get("shipping_notes") ?? "") || null,
-    certificate_note:
-      String(formData.get("certificate_note") ?? "") ||
-      "Supplied with a signed certificate of authenticity.",
-    print_available: formData.get("print_available") === "on",
-    image_url: String(formData.get("image_url") ?? ""),
+    certificate_note: String(formData.get("certificate_note") ?? "") || null,
+    print_available: false,
+    image_url: imageUrl,
     gallery: []
   });
   revalidatePath("/admin/artworks");
-  revalidatePath("/portfolio");
+  revalidatePath("/archive");
+  revalidatePath("/");
 }
 
 export async function updateArtwork(formData: FormData) {
