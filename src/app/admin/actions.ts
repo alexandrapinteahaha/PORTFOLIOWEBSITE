@@ -98,6 +98,17 @@ export async function deleteArtwork(formData: FormData) {
   revalidatePath("/portfolio");
 }
 
+export async function archiveSubscriber(formData: FormData) {
+  await requireAdmin();
+  const supabase = createSupabaseAdminClient();
+  const stripeCustomerId = String(formData.get("stripe_customer_id"));
+  await supabase
+    .from("subscriptions")
+    .update({ status: "admin_archived" })
+    .eq("stripe_customer_id", stripeCustomerId);
+  revalidatePath("/admin/subscribers");
+}
+
 export async function createProduct(formData: FormData) {
   await requireAdmin();
   const supabase = createSupabaseAdminClient();
