@@ -2,6 +2,25 @@ import type { Artwork, PrintClubMonth, Product } from "@/lib/types";
 
 export const seedArtworks: Artwork[] = [
   {
+    id: "august",
+    slug: "august",
+    title: "August",
+    year: 2026,
+    medium: "Wood, Polymer Clay and Make-up",
+    dimensions: "15.24cm x 20.32cm",
+    description: "",
+    status: "available",
+    categories: ["original", "painting"],
+    series: null,
+    priceGbp: null,
+    editionInfo: "Second Version",
+    shippingNotes: "Not included",
+    certificateNote: "Included",
+    printAvailable: false,
+    imageUrl: "/artworks/august.png",
+    gallery: []
+  },
+  {
     id: "baby-machine",
     slug: "baby-machine",
     title: "Baby Machine",
@@ -12,7 +31,7 @@ export const seedArtworks: Artwork[] = [
     status: "available",
     categories: ["original", "sculpture"],
     series: null,
-    priceGbp: 2500,
+    priceGbp: null,
     editionInfo: "Original 1 of 1",
     shippingNotes: "D-ring on the back",
     certificateNote: "Included",
