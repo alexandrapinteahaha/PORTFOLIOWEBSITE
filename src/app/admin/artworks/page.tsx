@@ -104,17 +104,15 @@ export default async function AdminArtworksPage() {
                       <label className="text-xs text-graphite uppercase tracking-[0.12em]">Description</label>
                       <textarea name="description" defaultValue={artwork.description ?? ""} rows={5} className="border border-line bg-paper px-3 py-2 text-sm" />
                     </div>
-                    <div className="flex gap-3">
-                      <button type="submit" className="focus-ring border border-ink bg-ink px-4 py-2 text-xs text-chalk transition hover:bg-graphite">
-                        Save
-                      </button>
-                      <form action={deleteArtwork}>
-                        <input type="hidden" name="id" value={artwork.id} />
-                        <button className="focus-ring border border-rust px-4 py-2 text-xs text-rust transition hover:bg-rust hover:text-chalk">
-                          Delete
-                        </button>
-                      </form>
-                    </div>
+                    <button type="submit" className="focus-ring border border-ink bg-ink px-4 py-2 text-xs text-chalk transition hover:bg-graphite">
+                      Save
+                    </button>
+                  </form>
+                  <form action={deleteArtwork} className="mt-2">
+                    <input type="hidden" name="id" value={artwork.id} />
+                    <button type="submit" className="focus-ring border border-rust px-4 py-2 text-xs text-rust transition hover:bg-rust hover:text-chalk">
+                      Delete
+                    </button>
                   </form>
                 </div>
               </details>
