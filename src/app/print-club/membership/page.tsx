@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { MemberAuthPanel } from "@/components/forms/MemberAuthPanel";
 import { PortalButton } from "@/components/forms/PortalButton";
 import { ButtonLink } from "@/components/ui/ButtonLink";

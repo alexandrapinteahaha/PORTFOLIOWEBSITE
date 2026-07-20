@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 
 // Add more image paths here as new prints are released
 const SLIDES: string[] = ["/print-club-feature.png"];
@@ -24,12 +25,13 @@ export function HeroSlider() {
       {/* Slides */}
       {SLIDES.length > 0
         ? SLIDES.map((src, i) => (
-            <img
+            <Image
               key={src}
               src={src}
               alt=""
+              fill
               className={[
-                "absolute inset-0 w-full h-full object-cover scale-110 blur-[6px] transition-opacity duration-1000",
+                "object-cover scale-110 blur-[6px] transition-opacity duration-1000",
                 i === current ? "opacity-70" : "opacity-0",
               ].join(" ")}
             />
