@@ -4,7 +4,6 @@ const links = [
   ["Dashboard", "/admin"],
   ["Artworks", "/admin/artworks"],
   ["Products", "/admin/products"],
-  ["Print Club", "/admin/print-club"],
   ["Subscribers", "/print-club/membership"],
   ["Commissions", "/admin/commissions"],
   ["Newsletter", "/admin/newsletter"],

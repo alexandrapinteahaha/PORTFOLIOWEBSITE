@@ -127,36 +127,6 @@ export async function deleteProduct(formData: FormData) {
   revalidatePath("/shop");
 }
 
-export async function createPrintClubMonth(formData: FormData) {
-  await requireAdmin();
-  const supabase = createSupabaseAdminClient();
-
-  const month = Number(formData.get("month") ?? 1);
-  const year = Number(formData.get("year") ?? new Date().getFullYear());
-
-  const imageFiles = formData.getAll("images") as File[];
-  const validFiles = imageFiles.filter((f) => f?.size > 0);
-
-  let imageUrl = "";
-  const gallery: string[] = [];
-  for (const [i, file] of validFiles.entries()) {
-    const url = await uploadImage(supabase, file, `pcm-${year}-${month}-${i}`, "print-club");
-    if (i === 0) imageUrl = url;
-    else if (url) gallery.push(url);
-  }
-
-  await supabase.from("print_club_months").insert({
-    title: String(formData.get("title") ?? ""),
-    month,
-    year,
-    description: String(formData.get("description") ?? ""),
-    image_url: imageUrl,
-    subscriber_only: true,
-    shipping_status: "pending"
-  });
-  revalidatePath("/admin/print-club");
-  revalidatePath("/print-club");
-}
 
 export async function updateCommissionStatus(formData: FormData) {
   await requireAdmin();
