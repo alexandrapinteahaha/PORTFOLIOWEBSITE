@@ -150,14 +150,12 @@ function SubscriberCard({ sub, currentMonth }: { sub: Subscriber; currentMonth: 
             </div>
           </details>
 
-          {isCancelled && (
-            <form action={archiveSubscriber}>
-              <input type="hidden" name="stripe_customer_id" value={sub.stripe_customer_id} />
-              <button type="submit" className="border border-red-300 px-3 py-1.5 text-xs text-red-500 transition hover:border-red-600 hover:bg-red-600 hover:text-white">
-                Remove
-              </button>
-            </form>
-          )}
+          <form action={archiveSubscriber}>
+            <input type="hidden" name="stripe_customer_id" value={sub.stripe_customer_id} />
+            <button type="submit" className="border border-red-300 px-3 py-1.5 text-xs text-red-500 transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+              Remove
+            </button>
+          </form>
         </div>
       </div>
     </details>
