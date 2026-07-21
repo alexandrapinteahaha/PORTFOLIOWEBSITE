@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const adminLinks = [
   ["Artworks", "/admin/artworks", "Manage the archive, add works, update status"],
   ["Products", "/admin/products", "Original works, prints, digital editions, and shop listings"],
-  ["Print Club", "/admin/print-club", "Monthly entries, project management, file references"],
+  ["Subscribers", "/admin/subscribers", "View subscribers, addresses, birthday months, and cancellations"],
   ["Commissions", "/admin/commissions", "Review and respond to enquiries"],
   ["Newsletter", "/admin/newsletter", "Consented email signups"]
 ];
@@ -39,7 +39,7 @@ export default async function AdminPage() {
       <div className="mb-8">
         <h1 className="font-title text-4xl font-bold">Admin dashboard</h1>
         <p className="mt-2 text-sm text-graphite">
-          Manage the archive, shop, Print Club, enquiries, and newsletter.
+          Manage the archive, shop, subscribers, enquiries, and newsletter.
         </p>
       </div>
 
