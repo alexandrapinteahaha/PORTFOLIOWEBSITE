@@ -43,73 +43,66 @@ type Subscriber = {
 function SubscriberCard({ sub, currentMonth }: { sub: Subscriber; currentMonth: number }) {
   const isBirthday = sub.birthday_month !== null && sub.birthday_month === currentMonth;
   const isCancelled = CANCELLED_STATUSES.includes(sub.status);
-  const isActive = ACTIVE_STATUSES.includes(sub.status);
   const displayName = sub.name ?? sub.email;
-  const birthdayMonthName = sub.birthday_month ? MONTHS[sub.birthday_month - 1] : null;
 
   return (
-    <div className="border-b border-line py-5 last:border-b-0">
-      <div className="flex items-start justify-between gap-6">
-        <div className="grid gap-3 min-w-0">
-          <p className={["font-title text-2xl font-bold leading-tight", isCancelled ? "text-red-600" : "text-ink"].join(" ")}>
-            {isBirthday && <span className="mr-2">🎂</span>}
-            {displayName}
-          </p>
+    <div className="flex items-start gap-4 border-b border-line py-4 last:border-b-0">
 
-          <div className="flex items-center gap-3">
-            {isActive && (
-              <span className="inline-block border-2 border-green-600 bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-green-600">
-                Active
-              </span>
-            )}
-            {isCancelled && (
-              <span className="inline-block border-2 border-red-600 bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-red-600">
-                Cancelled
-              </span>
-            )}
-            {!isActive && !isCancelled && (
-              <span className="inline-block border border-line bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.1em] text-graphite">
-                {sub.status}
-              </span>
-            )}
-          </div>
-
-          <p className="text-xs text-graphite">
-            <span className="font-semibold uppercase tracking-[0.08em]">Joined</span>{" "}
-            {formatDate(sub.joined_at)}
-            {sub.current_period_end && (
-              <>
-                <span className="mx-2 text-line">·</span>
-                <span className="font-semibold uppercase tracking-[0.08em]">
-                  {isCancelled ? "Ended" : "Renews"}
-                </span>{" "}
-                {formatDate(sub.current_period_end)}
-              </>
-            )}
-          </p>
-
-          <p className="text-xs text-graphite">
-            <span className="font-semibold uppercase tracking-[0.08em]">Birthday</span>{" "}
-            {birthdayMonthName ?? "Not set"}
-            {isBirthday && " 🎂"}
-          </p>
-
-          <div>
-            <p className="mb-1 text-xs font-semibold uppercase tracking-[0.08em] text-graphite">Address</p>
-            {sub.shipping_address ? (
-              <p className="whitespace-pre-line text-xs leading-5 text-graphite">{sub.shipping_address}</p>
-            ) : (
-              <p className="text-xs text-graphite/50">No address provided</p>
-            )}
-          </div>
-
-          <p className="text-xs text-graphite/50">{sub.email}</p>
-        </div>
-
+      {/* Left indicator — fixed width so names always align */}
+      <div className="w-24 shrink-0 pt-0.5 text-left">
+        {isBirthday && !isCancelled && (
+          <span className="text-xl">🎂</span>
+        )}
         {isCancelled && (
-          <form action={archiveSubscriber} className="shrink-0">
+          <span className="text-xs font-bold uppercase tracking-[0.08em] text-red-600">
+            {isBirthday && "🎂 "}Cancelled
+          </span>
+        )}
+      </div>
+
+      {/* Centre — name + address */}
+      <div className="min-w-0 flex-1 grid gap-1">
+        <p className={[
+          "font-title text-lg font-bold leading-snug",
+          isCancelled ? "text-red-600" : "text-ink",
+        ].join(" ")}>
+          {displayName}
+        </p>
+
+        {sub.shipping_address ? (
+          <p className="whitespace-pre-line text-xs leading-5 text-graphite">
+            {sub.shipping_address}
+          </p>
+        ) : (
+          <p className="text-xs text-graphite/40">No address provided</p>
+        )}
+
+        <p className="mt-1 text-xs text-graphite/50">
+          {sub.email}
+          {sub.birthday_month && (
+            <span className="ml-3 text-graphite/40">
+              Birthday: {MONTHS[sub.birthday_month - 1]}
+            </span>
+          )}
+        </p>
+
+        <p className="text-xs text-graphite/50">
+          Joined {formatDate(sub.joined_at)}
+          {sub.current_period_end && (
+            <> · {isCancelled ? "Ended" : "Renews"} {formatDate(sub.current_period_end)}</>
+          )}
+        </p>
+      </div>
+
+      {/* Right — actions */}
+      <div className="shrink-0">
+        {isCancelled && (
+          <form action={archiveSubscriber}>
             <input type="hidden" name="stripe_customer_id" value={sub.stripe_customer_id} />
-            <button type="submit" className="border border-red-300 px-4 py-1.5 text-xs text-red-500 transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+            <button
+              type="submit"
+              className="border border-red-300 px-3 py-1.5 text-xs text-red-500 transition hover:border-red-600 hover:bg-red-600 hover:text-white"
+            >
               Remove
             </button>
           </form>
@@ -190,7 +183,10 @@ export default async function AdminSubscribersPage({
         current_period_end: sub.current_period_end ?? null,
         joined_at: sub.created_at ?? null,
       };
-    });
+    })
+    .sort((a, b) =>
+      (a.name ?? a.email).localeCompare(b.name ?? b.email)
+    );
 
   const currentMonth = new Date().getMonth() + 1;
 
@@ -202,17 +198,16 @@ export default async function AdminSubscribersPage({
   const stats = [
     { label: "Total Active", value: subscribers.filter((s) => ACTIVE_STATUSES.includes(s.status)).length },
     { label: "UK Active", value: ukSubs.filter((s) => ACTIVE_STATUSES.includes(s.status)).length },
-    { label: "International Active", value: intlSubs.filter((s) => ACTIVE_STATUSES.includes(s.status)).length },
+    { label: "International", value: intlSubs.filter((s) => ACTIVE_STATUSES.includes(s.status)).length },
     { label: "Cancelled", value: cancelledSubs.length },
-    { label: `🎂 Birthdays in ${MONTHS[currentMonth - 1]}`, value: birthdaySubs.length },
+    { label: `🎂 ${MONTHS[currentMonth - 1]}`, value: birthdaySubs.length },
   ];
 
-  // Apply filter
   const sections: { title: string; subscribers: Subscriber[] }[] =
-    filter === "uk" ? [{ title: "United Kingdom", subscribers: ukSubs }]
+    filter === "uk"           ? [{ title: "United Kingdom", subscribers: ukSubs }]
     : filter === "international" ? [{ title: "International", subscribers: intlSubs }]
-    : filter === "cancelled" ? [{ title: "Cancelled", subscribers: cancelledSubs }]
-    : filter === "birthday" ? [{ title: `🎂 Birthdays — ${MONTHS[currentMonth - 1]}`, subscribers: birthdaySubs }]
+    : filter === "cancelled"  ? [{ title: "Cancelled", subscribers: cancelledSubs }]
+    : filter === "birthday"   ? [{ title: `🎂 Birthdays — ${MONTHS[currentMonth - 1]}`, subscribers: birthdaySubs }]
     : [
         { title: "United Kingdom", subscribers: ukSubs },
         { title: "International", subscribers: intlSubs },
@@ -225,12 +220,12 @@ export default async function AdminSubscribersPage({
       <div className="mb-8">
         <h1 className="font-title text-4xl font-bold">Subscribers</h1>
         <p className="mt-2 text-sm text-graphite">
-          Statuses update automatically via Stripe. Cancelled subscribers can be removed manually.
+          Updates automatically from Stripe. Name and address changes made by subscribers reflect here instantly.
         </p>
       </div>
 
       {/* Stats */}
-      <div className="mb-8 grid grid-cols-2 gap-3 sm:grid-cols-5">
+      <div className="mb-8 grid grid-cols-5 gap-3">
         {stats.map(({ label, value }) => (
           <div key={label} className="border border-line bg-chalk p-4">
             <p className="font-title text-3xl font-bold">{value}</p>
@@ -244,7 +239,6 @@ export default async function AdminSubscribersPage({
         <FilterSelect current={filter} />
       </div>
 
-      {/* Subscriber sections */}
       <div className="grid gap-6">
         {sections.map((s) => (
           <SubscriberSection key={s.title} title={s.title} subscribers={s.subscribers} currentMonth={currentMonth} />
