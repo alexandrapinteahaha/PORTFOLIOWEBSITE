@@ -98,6 +98,22 @@ export async function deleteArtwork(formData: FormData) {
   revalidatePath("/portfolio");
 }
 
+export async function updateSubscriberProfile(formData: FormData) {
+  await requireAdmin();
+  const supabase = createSupabaseAdminClient();
+  const profileId = String(formData.get("profile_id"));
+  const birthdayRaw = formData.get("birthday_month");
+  await supabase
+    .from("profiles")
+    .update({
+      name: String(formData.get("name") ?? ""),
+      birthday_month: birthdayRaw ? Number(birthdayRaw) : null,
+      shipping_address: String(formData.get("shipping_address") ?? "") || null,
+    })
+    .eq("id", profileId);
+  revalidatePath("/admin/subscribers");
+}
+
 export async function archiveSubscriber(formData: FormData) {
   await requireAdmin();
   const supabase = createSupabaseAdminClient();

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { archiveSubscriber } from "@/app/admin/actions";
+import { archiveSubscriber, updateSubscriberProfile } from "@/app/admin/actions";
 import { AdminNav } from "@/components/layout/AdminNav";
 import { FilterSelect } from "./FilterSelect";
+import { CopyButton } from "./CopyButton";
 import { requireAdmin } from "@/lib/access";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -40,75 +41,123 @@ type Subscriber = {
   joined_at: string | null;
 };
 
+const inputCls = "w-full border border-line bg-paper px-3 py-2 text-xs focus:outline-none focus:border-ink";
+
 function SubscriberCard({ sub, currentMonth }: { sub: Subscriber; currentMonth: number }) {
   const isBirthday = sub.birthday_month !== null && sub.birthday_month === currentMonth;
   const isCancelled = CANCELLED_STATUSES.includes(sub.status);
+  const isActive = ACTIVE_STATUSES.includes(sub.status);
   const displayName = sub.name ?? sub.email;
+  const copyText = [displayName, sub.shipping_address].filter(Boolean).join("\n");
 
   return (
-    <div className="flex items-start gap-4 border-b border-line py-4 last:border-b-0">
+    <details className="border-b border-line last:border-b-0">
+      <summary className="flex cursor-pointer list-none items-center gap-4 py-3 hover:bg-chalk/50">
 
-      {/* Left indicator — fixed width so names always align */}
-      <div className="w-24 shrink-0 pt-0.5 text-left">
-        {isBirthday && !isCancelled && (
-          <span className="text-xl">🎂</span>
-        )}
-        {isCancelled && (
-          <span className="text-xs font-bold uppercase tracking-[0.08em] text-red-600">
-            {isBirthday && "🎂 "}Cancelled
-          </span>
-        )}
-      </div>
+        {/* Left indicator */}
+        <div className="w-28 shrink-0 text-left">
+          {isCancelled ? (
+            <span className="text-xs font-bold uppercase tracking-[0.06em] text-red-600">
+              {isBirthday && "🍰 "}Cancelled
+            </span>
+          ) : isBirthday ? (
+            <span className="text-lg">🍰</span>
+          ) : null}
+        </div>
 
-      {/* Centre — name + address */}
-      <div className="min-w-0 flex-1 grid gap-1">
+        {/* Name */}
         <p className={[
-          "font-title text-lg font-bold leading-snug",
+          "flex-1 font-title text-base font-bold leading-snug",
           isCancelled ? "text-red-600" : "text-ink",
         ].join(" ")}>
           {displayName}
         </p>
 
-        {sub.shipping_address ? (
-          <p className="whitespace-pre-line text-xs leading-5 text-graphite">
-            {sub.shipping_address}
-          </p>
-        ) : (
-          <p className="text-xs text-graphite/40">No address provided</p>
-        )}
+        {/* Status badge */}
+        <div className="shrink-0">
+          {isActive && (
+            <span className="border-2 border-green-600 px-2 py-0.5 text-xs font-bold text-green-600">Active</span>
+          )}
+          {isCancelled && (
+            <span className="border-2 border-red-600 px-2 py-0.5 text-xs font-bold text-red-600">Cancelled</span>
+          )}
+        </div>
 
-        <p className="mt-1 text-xs text-graphite/50">
+        <span className="shrink-0 text-xs text-graphite/40">▾</span>
+      </summary>
+
+      {/* Expanded content */}
+      <div className="pb-5 pl-28 pr-2">
+        {/* Address */}
+        <div className="mb-3">
+          {sub.shipping_address ? (
+            <p className="whitespace-pre-line text-xs leading-5 text-graphite">{sub.shipping_address}</p>
+          ) : (
+            <p className="text-xs text-graphite/40">No address provided</p>
+          )}
+        </div>
+
+        {/* Meta */}
+        <p className="mb-1 text-xs text-graphite/50">
           {sub.email}
           {sub.birthday_month && (
-            <span className="ml-3 text-graphite/40">
-              Birthday: {MONTHS[sub.birthday_month - 1]}
-            </span>
+            <span className="ml-3">Birthday: {MONTHS[sub.birthday_month - 1]}</span>
           )}
         </p>
-
-        <p className="text-xs text-graphite/50">
+        <p className="mb-4 text-xs text-graphite/50">
           Joined {formatDate(sub.joined_at)}
           {sub.current_period_end && (
             <> · {isCancelled ? "Ended" : "Renews"} {formatDate(sub.current_period_end)}</>
           )}
         </p>
-      </div>
 
-      {/* Right — actions */}
-      <div className="shrink-0">
-        {isCancelled && (
-          <form action={archiveSubscriber}>
-            <input type="hidden" name="stripe_customer_id" value={sub.stripe_customer_id} />
-            <button
-              type="submit"
-              className="border border-red-300 px-3 py-1.5 text-xs text-red-500 transition hover:border-red-600 hover:bg-red-600 hover:text-white"
-            >
-              Remove
-            </button>
-          </form>
-        )}
+        {/* Action buttons row */}
+        <div className="flex flex-wrap items-center gap-2">
+          <CopyButton text={copyText} />
+
+          {/* Edit toggle using details */}
+          <details className="inline-block">
+            <summary className="cursor-pointer list-none border border-line px-3 py-1.5 text-xs text-graphite transition hover:border-ink hover:text-ink">
+              Edit
+            </summary>
+            <div className="absolute z-10 mt-1 w-72 border border-line bg-white p-4 shadow-md">
+              <form action={updateSubscriberProfile} className="grid gap-3">
+                <input type="hidden" name="profile_id" value={sub.id} />
+                <label className="grid gap-1 text-xs uppercase tracking-[0.1em] text-graphite">
+                  Name
+                  <input name="name" defaultValue={sub.name ?? ""} className={inputCls} />
+                </label>
+                <label className="grid gap-1 text-xs uppercase tracking-[0.1em] text-graphite">
+                  Birthday month
+                  <select name="birthday_month" defaultValue={sub.birthday_month ?? ""} className={inputCls}>
+                    <option value="">Not set</option>
+                    {MONTHS.map((m, i) => (
+                      <option key={m} value={i + 1}>{m}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className="grid gap-1 text-xs uppercase tracking-[0.1em] text-graphite">
+                  Shipping address
+                  <textarea name="shipping_address" defaultValue={sub.shipping_address ?? ""} rows={4} className={inputCls} />
+                </label>
+                <button type="submit" className="border border-ink bg-ink px-4 py-2 text-xs font-semibold text-chalk transition hover:bg-graphite">
+                  Save changes
+                </button>
+              </form>
+            </div>
+          </details>
+
+          {isCancelled && (
+            <form action={archiveSubscriber}>
+              <input type="hidden" name="stripe_customer_id" value={sub.stripe_customer_id} />
+              <button type="submit" className="border border-red-300 px-3 py-1.5 text-xs text-red-500 transition hover:border-red-600 hover:bg-red-600 hover:text-white">
+                Remove
+              </button>
+            </form>
+          )}
+        </div>
       </div>
-    </div>
+    </details>
   );
 }
 
@@ -184,9 +233,7 @@ export default async function AdminSubscribersPage({
         joined_at: sub.created_at ?? null,
       };
     })
-    .sort((a, b) =>
-      (a.name ?? a.email).localeCompare(b.name ?? b.email)
-    );
+    .sort((a, b) => (a.name ?? a.email).localeCompare(b.name ?? b.email));
 
   const currentMonth = new Date().getMonth() + 1;
 
@@ -200,14 +247,14 @@ export default async function AdminSubscribersPage({
     { label: "UK Active", value: ukSubs.filter((s) => ACTIVE_STATUSES.includes(s.status)).length },
     { label: "International", value: intlSubs.filter((s) => ACTIVE_STATUSES.includes(s.status)).length },
     { label: "Cancelled", value: cancelledSubs.length },
-    { label: `🎂 ${MONTHS[currentMonth - 1]}`, value: birthdaySubs.length },
+    { label: `🍰 ${MONTHS[currentMonth - 1]}`, value: birthdaySubs.length },
   ];
 
   const sections: { title: string; subscribers: Subscriber[] }[] =
-    filter === "uk"           ? [{ title: "United Kingdom", subscribers: ukSubs }]
+    filter === "uk"            ? [{ title: "United Kingdom", subscribers: ukSubs }]
     : filter === "international" ? [{ title: "International", subscribers: intlSubs }]
-    : filter === "cancelled"  ? [{ title: "Cancelled", subscribers: cancelledSubs }]
-    : filter === "birthday"   ? [{ title: `🎂 Birthdays — ${MONTHS[currentMonth - 1]}`, subscribers: birthdaySubs }]
+    : filter === "cancelled"   ? [{ title: "Cancelled", subscribers: cancelledSubs }]
+    : filter === "birthday"    ? [{ title: `🍰 Birthdays — ${MONTHS[currentMonth - 1]}`, subscribers: birthdaySubs }]
     : [
         { title: "United Kingdom", subscribers: ukSubs },
         { title: "International", subscribers: intlSubs },
@@ -224,7 +271,6 @@ export default async function AdminSubscribersPage({
         </p>
       </div>
 
-      {/* Stats */}
       <div className="mb-8 grid grid-cols-5 gap-3">
         {stats.map(({ label, value }) => (
           <div key={label} className="border border-line bg-chalk p-4">
@@ -234,7 +280,6 @@ export default async function AdminSubscribersPage({
         ))}
       </div>
 
-      {/* Filter */}
       <div className="mb-6">
         <FilterSelect current={filter} />
       </div>
