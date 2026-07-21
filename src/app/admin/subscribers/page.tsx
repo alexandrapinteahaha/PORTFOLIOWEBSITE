@@ -87,23 +87,26 @@ function SubscriberCard({ sub, currentMonth }: { sub: Subscriber; currentMonth: 
       </summary>
 
       {/* Expanded content */}
-      <div className="pb-5 pl-28 pr-2">
+      <div className="pb-5 pt-1">
         {/* Address */}
         <div className="mb-3">
           {sub.shipping_address ? (
-            <p className="whitespace-pre-line text-xs leading-5 text-graphite">{sub.shipping_address}</p>
+            <p className="whitespace-pre-line text-sm leading-6 text-ink">{sub.shipping_address}</p>
           ) : (
             <p className="text-xs text-graphite/40">No address provided</p>
           )}
         </div>
 
+        {/* Birthday — prominent */}
+        {sub.birthday_month && (
+          <p className={["mb-2 text-sm font-semibold", isBirthday ? "text-ink" : "text-graphite"].join(" ")}>
+            🍰 {MONTHS[sub.birthday_month - 1]}
+            {isBirthday && <span className="ml-2 text-xs font-normal text-graphite">(This month)</span>}
+          </p>
+        )}
+
         {/* Meta */}
-        <p className="mb-1 text-xs text-graphite/50">
-          {sub.email}
-          {sub.birthday_month && (
-            <span className="ml-3">Birthday: {MONTHS[sub.birthday_month - 1]}</span>
-          )}
-        </p>
+        <p className="mb-1 text-xs text-graphite/50">{sub.email}</p>
         <p className="mb-4 text-xs text-graphite/50">
           Joined {formatDate(sub.joined_at)}
           {sub.current_period_end && (
@@ -280,7 +283,7 @@ export default async function AdminSubscribersPage({
         ))}
       </div>
 
-      <div className="mb-6">
+      <div className="mb-6 flex justify-end">
         <FilterSelect current={filter} />
       </div>
 
