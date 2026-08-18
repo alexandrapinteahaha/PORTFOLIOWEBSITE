@@ -34,7 +34,7 @@ export default async function HomePage() {
       <section className="relative flex min-h-[42vh] flex-col items-center justify-center px-8 py-14 md:px-14" style={{ backgroundColor: "#171717" }}>
         {/* Background image */}
         <Image
-          src="/hero-bg.jpg"
+          src="/hero-bg.avif"
           alt=""
           fill
           className="object-cover"
