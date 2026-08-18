@@ -54,7 +54,7 @@ export default async function HomePage() {
             priority
           />
 
-          <p className="label -mt-20" style={{ color: "rgba(255,255,255,0.55)" }}>
+          <p className="label -mt-20" style={{ color: "rgba(255,255,255,1)" }}>
             Contemporary Artist · United Kingdom
           </p>
         </div>
