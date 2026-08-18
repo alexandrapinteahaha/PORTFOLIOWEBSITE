@@ -31,19 +31,21 @@ export default async function HomePage() {
           Black box is a deliberate placeholder for a full-bleed artwork image.
           Name is large but not the only thing on screen.
       ──────────────────────────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-[42vh] flex-col items-center justify-center px-8 py-14 md:px-14" style={{ backgroundColor: "#f5e6e0" }}>
+      <section className="relative flex min-h-[42vh] flex-col items-center justify-center px-8 py-14 md:px-14" style={{ backgroundColor: "#171717" }}>
         {/* Background image */}
         <Image
-          src="/hero-bg.jpg"
+          src="/hero-bg.avif"
           alt=""
           fill
           className="object-cover"
           sizes="100vw"
           priority
         />
+        {/* Dark overlay so white text remains legible */}
+        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.52)" }} />
 
         <div className="relative z-10 flex flex-col items-center text-center">
-          <p className="label mb-5" style={{ color: "rgba(0,0,0,0.55)" }}>
+          <p className="label mb-5" style={{ color: "rgba(255,255,255,0.55)" }}>
             Contemporary Artist · United Kingdom
           </p>
 
