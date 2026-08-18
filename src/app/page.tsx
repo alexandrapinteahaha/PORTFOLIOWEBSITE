@@ -54,7 +54,7 @@ export default async function HomePage() {
             alt="Alexandra Pintea"
             width={1100}
             height={220}
-            className="w-full max-w-[clamp(340px,90vw,1100px)] object-contain"
+            className="w-full max-w-[clamp(340px,90vw,1100px)] object-contain opacity-75"
             priority
           />
         </div>
