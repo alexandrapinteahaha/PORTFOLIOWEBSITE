@@ -31,7 +31,7 @@ export default async function PrintClubPage() {
             alt="Collectors Club"
             width={900}
             height={200}
-            className="w-full max-w-[clamp(280px,80vw,900px)] object-contain"
+            className="w-full max-w-[clamp(280px,80vw,900px)] object-contain opacity-75"
             priority
           />
         </div>
