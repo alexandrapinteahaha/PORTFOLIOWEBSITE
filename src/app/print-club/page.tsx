@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { SubscribeButton } from "@/components/forms/SubscribeButton";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { Reveal } from "@/components/ui/Reveal";
-import { HeroSlider } from "@/components/ui/HeroSlider";
 export const metadata: Metadata = {
   title: "Print Club"
 };
@@ -12,14 +12,28 @@ export default async function PrintClubPage() {
   return (
     <>
       {/* ─── Hero ─────────────────────────────────────────── */}
-      <section className="relative flex min-h-[55vh] items-center justify-center overflow-hidden bg-ink">
-        <HeroSlider />
-        {/* Dark overlay for contrast — pointer-events-none so slider arrows stay clickable */}
-        <div className="absolute inset-0 bg-ink/40 z-[1] pointer-events-none" />
-        <div className="relative z-10 px-6 text-center">
-          <h1 className="font-title text-6xl text-white md:text-8xl lg:text-9xl">
-            Print Club
-          </h1>
+      <section className="relative flex min-h-[42vh] flex-col items-center justify-center overflow-hidden" style={{ backgroundColor: "#171717" }}>
+        {/* Same concrete texture as homepage */}
+        <Image
+          src="/hero-bg.avif"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.52)" }} />
+
+        <div className="relative z-10 flex flex-col items-center text-center px-6">
+          <Image
+            src="/print-club-logo.png"
+            alt="Collectors Club"
+            width={900}
+            height={200}
+            className="w-full max-w-[clamp(280px,80vw,900px)] object-contain"
+            priority
+          />
         </div>
       </section>
 
