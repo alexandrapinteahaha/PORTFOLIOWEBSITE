@@ -45,6 +45,10 @@ export default async function HomePage() {
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(0,0,0,0.52)" }} />
 
         <div className="relative z-10 flex flex-col items-center text-center">
+          <p className="label mb-5" style={{ color: "rgba(255,255,255,0.55)" }}>
+            Contemporary Artist · United Kingdom
+          </p>
+
           <Image
             src="/name-logo.png"
             alt="Alexandra Pintea"
@@ -53,10 +57,6 @@ export default async function HomePage() {
             className="w-full max-w-[clamp(340px,90vw,1100px)] object-contain"
             priority
           />
-
-          <p className="label -mt-20" style={{ color: "rgba(255,255,255,1)" }}>
-            Contemporary Artist · United Kingdom
-          </p>
         </div>
       </section>
 
