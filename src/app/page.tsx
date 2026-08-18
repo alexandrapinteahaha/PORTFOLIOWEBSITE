@@ -52,9 +52,9 @@ export default async function HomePage() {
           <Image
             src="/name-logo.png"
             alt="Alexandra Pintea"
-            width={700}
-            height={160}
-            className="w-full max-w-[clamp(280px,70vw,700px)] object-contain"
+            width={1100}
+            height={220}
+            className="w-full max-w-[clamp(340px,90vw,1100px)] object-contain"
             priority
           />
         </div>
