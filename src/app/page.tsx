@@ -49,12 +49,14 @@ export default async function HomePage() {
             Contemporary Artist · United Kingdom
           </p>
 
-          <h1
-            className="font-title font-bold"
-            style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)", letterSpacing: "0.08em", lineHeight: 1.0, color: "rgba(255,255,255,0.88)" }}
-          >
-            ALEXANDRA PINTEA
-          </h1>
+          <Image
+            src="/name-logo.png"
+            alt="Alexandra Pintea"
+            width={700}
+            height={160}
+            className="w-full max-w-[clamp(280px,70vw,700px)] object-contain"
+            priority
+          />
         </div>
       </section>
 
