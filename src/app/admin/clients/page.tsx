@@ -2,14 +2,19 @@ import type { Metadata } from "next";
 import { AdminNav } from "@/components/layout/AdminNav";
 import { requireAdmin } from "@/lib/access";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { createPortalClient } from "@/app/admin/portal-actions";
+import { createPortalClient, deletePortalClient } from "@/app/admin/portal-actions";
 import { formatDate } from "@/lib/portal";
 
 export const metadata: Metadata = { title: "Admin: Clients" };
 export const dynamic = "force-dynamic";
 
-export default async function AdminClientsPage() {
+export default async function AdminClientsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
   await requireAdmin();
+  const { error } = await searchParams;
   const supabase = createSupabaseAdminClient();
 
   const [{ data: clients }, { data: commissions }] = await Promise.all([
@@ -35,21 +40,28 @@ export default async function AdminClientsPage() {
     <section className="container-shell py-14">
       <AdminNav />
 
-      <div className="mb-8 flex items-start justify-between gap-4">
-        <div>
-          <h1 className="font-title text-4xl font-bold">Clients</h1>
-          <p className="mt-2 text-sm text-graphite">
-            Commission portal clients. Each client can log in to their private portal using their email address.
+      <div className="mb-8">
+        <h1 className="font-title text-4xl font-bold">Clients</h1>
+        <p className="mt-2 text-sm text-graphite">
+          Commission portal clients. Each client logs in with a magic link to their private portal.
+        </p>
+      </div>
+
+      {error === "has_commissions" && (
+        <div className="mb-6 border border-red-300 bg-red-50 px-5 py-4">
+          <p className="text-sm font-semibold text-red-800">Cannot delete client</p>
+          <p className="mt-1 text-sm text-red-700">
+            This client has active commissions. Archive or delete the commissions first.
           </p>
         </div>
-      </div>
+      )}
 
       <div className="grid gap-10 lg:grid-cols-[1fr_340px]">
 
         {/* ── Client list ─────────────────────────────────────────────────── */}
         <div>
           {(clients ?? []).length === 0 ? (
-            <p className="text-sm text-graphite">No clients yet. Add one using the form.</p>
+            <p className="text-sm text-graphite">No clients yet. Add one using the form →</p>
           ) : (
             <div className="grid gap-3">
               {(clients ?? []).map((client) => {
@@ -63,10 +75,25 @@ export default async function AdminClientsPage() {
                         {client.phone && (
                           <p className="mt-0.5 text-xs text-graphite">{client.phone}</p>
                         )}
+                        <p className="mt-1 text-xs text-graphite/40">Added {formatDate(client.created_at)}</p>
                       </div>
-                      <p className="text-xs text-graphite/50">
-                        Added {formatDate(client.created_at)}
-                      </p>
+                      {/* Delete — only shown if no commissions */}
+                      {clientCommissions.length === 0 && (
+                        <form action={deletePortalClient}>
+                          <input type="hidden" name="client_id" value={client.id} />
+                          <button
+                            type="submit"
+                            className="text-xs text-red-400 hover:text-red-600 underline underline-offset-4"
+                            onClick={(e) => {
+                              if (!confirm(`Delete ${client.name}? This cannot be undone.`)) {
+                                e.preventDefault();
+                              }
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </form>
+                      )}
                     </div>
 
                     <div className="px-5 py-3">
@@ -104,10 +131,11 @@ export default async function AdminClientsPage() {
         </div>
 
         {/* ── Add new client ───────────────────────────────────────────────── */}
-        <div className="border border-line bg-chalk p-6">
-          <h2 className="mb-4 font-title text-sm font-bold uppercase tracking-[0.12em]">
+        <div className="self-start border border-line bg-chalk p-6">
+          <h2 className="mb-1 font-title text-sm font-bold uppercase tracking-[0.12em]">
             Add client
           </h2>
+          <p className="mb-4 text-xs text-graphite/60">Fill in and submit — form stays open to add more.</p>
           <form action={createPortalClient} className="grid gap-4">
             <Label text="Full name *">
               <input

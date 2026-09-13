@@ -62,6 +62,32 @@ export async function createPortalClient(formData: FormData) {
   redirect("/admin/clients");
 }
 
+// ─── Delete portal client ─────────────────────────────────────────────────────
+
+export async function deletePortalClient(formData: FormData) {
+  await requireAdmin();
+  const supabase = createSupabaseAdminClient();
+  const clientId = String(formData.get("client_id") ?? "");
+  if (!clientId) return;
+
+  // Only allow deletion if client has no commissions
+  const { count } = await supabase
+    .from("commissions")
+    .select("id", { count: "exact", head: true })
+    .eq("client_id", clientId);
+
+  if (count && count > 0) {
+    // Cannot delete client with active commissions — redirect with error
+    revalidatePath("/admin/clients");
+    redirect("/admin/clients?error=has_commissions");
+  }
+
+  await supabase.from("portal_clients").delete().eq("id", clientId);
+
+  revalidatePath("/admin/clients");
+  redirect("/admin/clients");
+}
+
 // ─── Commission creation ──────────────────────────────────────────────────────
 
 export async function createCommission(formData: FormData) {
