@@ -12,22 +12,26 @@ const adminLinks = [
   ["Artworks", "/admin/artworks", "Manage the archive, add works, update status"],
   ["Products", "/admin/products", "Original works, prints, digital editions, and shop listings"],
   ["Subscribers", "/admin/subscribers", "View subscribers, addresses, birthday months, and cancellations"],
-  ["Commissions", "/admin/commissions", "Review and respond to enquiries"],
-  ["Newsletter", "/admin/newsletter", "Consented email signups"]
+  ["Commissions", "/admin/commissions", "Review enquiries and manage active commissions"],
+  ["Clients", "/admin/clients", "Commission portal clients — create commissions and send invitations"],
+  ["Newsletter", "/admin/newsletter", "Consented email signups"],
 ];
 
 export default async function AdminPage() {
   await requireAdmin();
 
   let artworks = { count: 0 }, products = { count: 0 }, enquiries = { count: 0 }, signups = { count: 0 };
+  let activeCommissions = { count: 0 }, portalClients = { count: 0 };
   try {
     const supabase = createSupabaseAdminClient();
-    [artworks, products, enquiries, signups] = await Promise.all([
+    [artworks, products, enquiries, signups, activeCommissions, portalClients] = await Promise.all([
       supabase.from("artworks").select("id", { count: "exact", head: true }),
       supabase.from("products").select("id", { count: "exact", head: true }),
       supabase.from("commission_enquiries").select("id", { count: "exact", head: true }),
-      supabase.from("newsletter_signups").select("id", { count: "exact", head: true })
-    ]) as [typeof artworks, typeof products, typeof enquiries, typeof signups];
+      supabase.from("newsletter_signups").select("id", { count: "exact", head: true }),
+      supabase.from("commissions").select("id", { count: "exact", head: true }).neq("status", "archived"),
+      supabase.from("portal_clients").select("id", { count: "exact", head: true }),
+    ]) as [typeof artworks, typeof products, typeof enquiries, typeof signups, typeof activeCommissions, typeof portalClients];
   } catch {
     // Supabase not configured — show zero counts
   }
@@ -43,11 +47,13 @@ export default async function AdminPage() {
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
         <Metric label="Artworks" value={artworks.count ?? 0} />
         <Metric label="Products" value={products.count ?? 0} />
         <Metric label="Enquiries" value={enquiries.count ?? 0} />
         <Metric label="Newsletter" value={signups.count ?? 0} />
+        <Metric label="Commissions" value={activeCommissions.count ?? 0} href="/admin/commissions" />
+        <Metric label="Clients" value={portalClients.count ?? 0} href="/admin/clients" />
       </div>
 
       <div className="mt-10 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -68,11 +74,13 @@ export default async function AdminPage() {
   );
 }
 
-function Metric({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="border border-line bg-chalk p-5">
+function Metric({ label, value, href }: { label: string; value: number; href?: string }) {
+  const inner = (
+    <div className="border border-line bg-chalk p-5 transition hover:border-ink">
       <p className="text-xs font-semibold uppercase tracking-[0.12em] text-graphite">{label}</p>
       <p className="mt-3 font-serif text-4xl font-light">{value}</p>
     </div>
   );
+  if (href) return <Link href={href}>{inner}</Link>;
+  return inner;
 }

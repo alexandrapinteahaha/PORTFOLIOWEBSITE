@@ -48,6 +48,51 @@ export async function POST(request: Request) {
       });
     }
 
+    // ── Commission payment ───────────────────────────────────────────────
+    // payment_type = "commission_payment" set in commission-checkout route
+    if (session.metadata?.payment_type === "commission_payment") {
+      const commissionPaymentId = session.metadata?.commission_payment_id;
+      const clientId = session.metadata?.client_id;
+      const commissionId = session.metadata?.commission_id;
+
+      if (commissionPaymentId && clientId && commissionId) {
+        // Mark payment as paid — Stripe webhook is the ONLY source of truth
+        const { data: payment } = await supabase
+          .from("commission_payments")
+          .update({
+            status: "paid",
+            stripe_checkout_session_id: session.id,
+            paid_at: new Date().toISOString(),
+          })
+          .eq("id", commissionPaymentId)
+          .eq("client_id", clientId) // double-check ownership
+          .select("payment_type")
+          .single();
+
+        // Write audit log
+        await supabase.from("audit_logs").insert({
+          commission_id: commissionId,
+          actor: "stripe_webhook",
+          action: "payment_confirmed",
+          details: {
+            payment_id: commissionPaymentId,
+            payment_type: payment?.payment_type,
+            checkout_session_id: session.id,
+            amount_total: session.amount_total,
+          },
+        });
+
+        // Auto-advance commission status if deposit is paid
+        if (payment?.payment_type === "deposit") {
+          await supabase
+            .from("commissions")
+            .update({ status: "in_production" })
+            .eq("id", commissionId)
+            .eq("status", "awaiting_deposit"); // only advance if currently awaiting
+        }
+      }
+    }
+
     if (productType === "print_club_subscription") {
       const stripeCustomerId = String(session.customer);
       const userId = session.metadata?.user_id;

@@ -6,6 +6,7 @@ const links = [
   ["Products", "/admin/products"],
   ["Subscribers", "/admin/subscribers"],
   ["Commissions", "/admin/commissions"],
+  ["Clients", "/admin/clients"],
   ["Newsletter", "/admin/newsletter"],
 ];
 
