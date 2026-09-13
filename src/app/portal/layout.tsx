@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { signOutPortal } from "./actions";
 
 export const metadata: Metadata = {
@@ -44,7 +45,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
         <div className="container-shell flex flex-wrap items-center gap-4 py-6 text-xs text-graphite/50">
           <span>© {new Date().getFullYear()} Alexandra Pintea</span>
           <a href="/privacy-policy" className="hover:text-ink">Privacy Policy</a>
-          <a href="/" className="hover:text-ink">alexandrapintea.art</a>
+          <Link href="/" className="hover:text-ink">alexandrapintea.art</Link>
         </div>
       </footer>
     </div>

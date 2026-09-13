@@ -46,7 +46,7 @@ export default async function AdminCommissionsPage() {
         </div>
 
         {(commissions ?? []).length === 0 ? (
-          <p className="text-sm text-graphite">No active commissions. Create one from a client's record.</p>
+          <p className="text-sm text-graphite">No active commissions. Create one from a client&apos;s record.</p>
         ) : (
           <div className="grid gap-3">
             {(commissions ?? []).map((c) => {

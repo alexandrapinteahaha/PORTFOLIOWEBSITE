@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdminNav } from "@/components/layout/AdminNav";
 import { requireAdmin } from "@/lib/access";
@@ -124,7 +125,7 @@ export default async function AdminCommissionDetailPage({
       {/* ── Header ──────────────────────────────────────────────────────────── */}
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
         <div>
-          <a href="/admin/commissions" className="text-xs text-graphite underline underline-offset-4 hover:text-ink">
+          <Link href="/admin/commissions" className="text-xs text-graphite underline underline-offset-4 hover:text-ink">
             ← All commissions
           </a>
           <h1 className="mt-2 font-title text-3xl font-bold">{commission.artwork_title}</h1>
