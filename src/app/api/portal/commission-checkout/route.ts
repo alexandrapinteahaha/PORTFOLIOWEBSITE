@@ -3,7 +3,14 @@ import Stripe from "stripe";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+export const dynamic = "force-dynamic";
+
+function getStripeClient() {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    throw new Error("STRIPE_SECRET_KEY is not configured");
+  }
+  return new Stripe(process.env.STRIPE_SECRET_KEY);
+}
 
 /**
  * POST /api/portal/commission-checkout
@@ -104,6 +111,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         ? "Final Payment"
         : "Payment";
 
+  const stripe = getStripeClient();
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
     currency: "gbp",

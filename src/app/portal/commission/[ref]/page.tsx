@@ -109,7 +109,7 @@ export default async function CommissionDetailPage({
   const pendingPayment = (payments ?? []).find((p) => p.status === "pending");
 
   // The active/latest concept that needs action
-  const activeConcept = (concepts ?? []).find((c) => c.status === "pending");
+  // activeConcept reserved for future use
   const isCompleted = ["completed", "delivered", "archived"].includes(commission.status);
 
   return (

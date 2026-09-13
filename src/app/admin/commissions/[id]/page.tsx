@@ -127,7 +127,7 @@ export default async function AdminCommissionDetailPage({
         <div>
           <Link href="/admin/commissions" className="text-xs text-graphite underline underline-offset-4 hover:text-ink">
             ← All commissions
-          </a>
+          </Link>
           <h1 className="mt-2 font-title text-3xl font-bold">{commission.artwork_title}</h1>
           <p className="mt-1 text-sm text-graphite">
             {commission.reference}
