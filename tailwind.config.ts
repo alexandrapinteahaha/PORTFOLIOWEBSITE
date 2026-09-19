@@ -15,10 +15,12 @@ const config: Config = {
         moss: "#566654"
       },
       fontFamily: {
-        title: ["Myanmar Text", "serif"],
-        sans: ["var(--font-source-sans)", "sans-serif"],
-        serif: ["var(--font-source-sans)", "sans-serif"],
-        mono: ["var(--font-source-sans)", "monospace"],
+        // Display — Helvetica Neue for all large headings and hero text
+        title: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+        // Functional — Inter for all body, UI, nav, labels, buttons
+        sans:  ["var(--font-inter)", "Helvetica Neue", "sans-serif"],
+        serif: ["var(--font-inter)", "sans-serif"],
+        mono:  ["var(--font-inter)", "monospace"],
       },
       letterSpacing: {
         label: "0.22em",
