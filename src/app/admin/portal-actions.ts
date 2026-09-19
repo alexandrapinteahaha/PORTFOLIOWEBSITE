@@ -499,7 +499,7 @@ export async function sendPortalInvitation(formData: FormData) {
       type: "magiclink",
       email: client.email,
       options: {
-        redirectTo: `${siteUrl}/auth/callback?next=/portal/dashboard`,
+        redirectTo: `${siteUrl}/portal/auth/callback`,
       },
     });
 
@@ -534,7 +534,7 @@ alexandrapintea.art`,
       email: client.email,
       options: {
         shouldCreateUser: true, // creates auth user on first invitation
-        emailRedirectTo: `${siteUrl}/auth/callback?next=/portal/dashboard`,
+        emailRedirectTo: `${siteUrl}/portal/auth/callback`,
       },
     });
   }
