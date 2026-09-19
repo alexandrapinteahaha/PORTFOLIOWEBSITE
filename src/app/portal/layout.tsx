@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 
 export default function PortalLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="border-b border-line bg-paper">
+      <header className="border-b border-line bg-white">
         <div className="container-shell flex items-center justify-between py-4">
           <div className="flex items-center gap-3">
             <a

@@ -307,31 +307,58 @@ export default async function PortalDashboardPage() {
       {/* ── Row 2: Action Required + Payment Summary ──────────────────────────── */}
       <div className="mb-4 grid gap-4 lg:grid-cols-2">
 
-        {/* Action Required */}
+        {/* Client Tasks */}
         <div className={card}>
-          <p className="mb-5 text-xs text-graphite">Action Required</p>
+          <p className="mb-5 text-xs text-graphite">Client Tasks</p>
           {tasks.length === 0 ? (
-            <div className="py-1">
-              <p className="font-title text-base font-bold">You&apos;re all caught up.</p>
-              <p className="mt-1.5 text-xs leading-6 text-graphite">There are no actions required from you right now.</p>
+            <div className="flex items-center gap-3 py-1">
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink text-[10px] font-bold text-chalk">✓</span>
+              <div>
+                <p className="text-sm font-medium text-graphite/50">All tasks complete</p>
+                <p className="text-xs text-graphite/40">No actions required from you right now.</p>
+              </div>
             </div>
           ) : (
-            <div className="grid gap-3">
-              {tasks.map((task, i) => (
-                <div key={i} className={`rounded-xl p-4 ${task.urgent ? "bg-ink text-chalk" : "bg-white"}`}>
-                  {task.urgent && <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-chalk/60">Needs your attention</p>}
-                  <p className={`font-title text-sm font-bold ${task.urgent ? "text-chalk" : "text-ink"}`}>{task.title}</p>
-                  <p className={`mt-1.5 text-xs leading-5 ${task.urgent ? "text-chalk/70" : "text-graphite"}`}>{task.desc}</p>
-                  <div className="mt-3">
-                    {task.href && (
-                      <Link href={task.href} className={`text-xs font-semibold underline underline-offset-4 ${task.urgent ? "text-chalk hover:text-chalk/70" : "hover:text-graphite"}`}>
-                        View →
-                      </Link>
-                    )}
-                    {task.paymentId && <PayButton paymentId={task.paymentId} urgent={task.urgent} />}
+            <div className="divide-y divide-line">
+              {tasks.map((task, i) => {
+                const tag = task.paymentId
+                  ? { label: "Payment", cls: "bg-emerald-50 text-emerald-700" }
+                  : task.href
+                  ? { label: "Review", cls: "bg-blue-50 text-blue-700" }
+                  : { label: "Action", cls: "bg-amber-50 text-amber-700" };
+                return (
+                  <div key={i} className="flex items-start gap-3 py-3.5 first:pt-0 last:pb-0">
+                    <div className="mt-0.5 shrink-0">
+                      <span className={`flex h-5 w-5 items-center justify-center rounded-full ${
+                        task.urgent ? "border-2 border-ink" : "border border-line"
+                      }`}>
+                        {task.urgent && <span className="h-2 w-2 rounded-full bg-ink" />}
+                      </span>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="text-sm font-medium">{task.title}</p>
+                        <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ${tag.cls}`}>{tag.label}</span>
+                        {task.urgent && (
+                          <span className="shrink-0 rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold text-red-600">Urgent</span>
+                        )}
+                      </div>
+                      <p className="mt-0.5 text-xs leading-5 text-graphite line-clamp-2">{task.desc}</p>
+                      <div className="mt-2.5 flex gap-3">
+                        {task.href && (
+                          <Link href={task.href} className="text-xs font-semibold underline underline-offset-4 hover:text-graphite">
+                            View →
+                          </Link>
+                        )}
+                        {task.paymentId && <PayButton paymentId={task.paymentId} urgent={task.urgent} />}
+                      </div>
+                    </div>
+                    <span className="mt-0.5 shrink-0 text-xs text-graphite/40">
+                      {new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "2-digit" })}
+                    </span>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </div>
@@ -440,15 +467,20 @@ export default async function PortalDashboardPage() {
           {(documents ?? []).length === 0 ? (
             <p className="text-xs leading-6 text-graphite">Documents will appear here as your commission progresses — agreements, invoices, certificates and more.</p>
           ) : (
-            <div className="grid gap-2">
+            <div className="divide-y divide-line">
               {(documents ?? []).map((doc) => (
                 <a key={doc.id} href={`/api/portal/documents/${doc.id}`} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-between rounded-xl bg-white px-4 py-3 transition hover:bg-white/80">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-medium">{doc.label}</p>
-                    <p className="mt-0.5 text-xs text-graphite">{DOCUMENT_TYPE_LABELS[doc.document_type] ?? doc.document_type} · {formatDate(doc.uploaded_at)}</p>
+                  className="flex items-center gap-3 py-3 first:pt-0 last:pb-0 transition hover:opacity-70">
+                  <div className="shrink-0 flex h-9 w-9 items-center justify-center rounded-lg bg-zinc-200/70">
+                    <svg className="h-4 w-4 text-graphite/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                    </svg>
                   </div>
-                  <span className="ml-3 shrink-0 text-xs text-graphite/60">View →</span>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium">{doc.label}</p>
+                    <p className="text-xs text-graphite">{DOCUMENT_TYPE_LABELS[doc.document_type] ?? doc.document_type} · {formatDate(doc.uploaded_at)}</p>
+                  </div>
+                  <span className="shrink-0 text-xs text-graphite/40">↗</span>
                 </a>
               ))}
             </div>
