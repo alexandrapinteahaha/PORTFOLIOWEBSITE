@@ -489,27 +489,28 @@ export async function sendPortalInvitation(formData: FormData) {
 
   if (!commission) return;
 
-  // Generate magic link via Supabase admin
-  const { data: linkData } = await supabase.auth.admin.generateLink({
-    type: "magiclink",
-    email: client.email,
-    options: {
-      redirectTo: `${siteUrl}/auth/callback?next=/portal/dashboard`,
-    },
-  });
-
-  const magicLink = linkData?.properties?.action_link;
-  if (!magicLink) return;
-
-  // Send via Resend
+  // Send magic link via Supabase (handles email delivery automatically)
+  // Falls back to Resend if API key is configured (for branded email)
   const resendKey = process.env.RESEND_API_KEY;
+
   if (resendKey) {
-    const resend = new Resend(resendKey);
-    await resend.emails.send({
-      from: "Alexandra Pintea <noreply@alexandrapintea.art>",
-      to:   client.email,
-      subject: "Your commission portal is ready",
-      text: `Hi ${client.name},
+    // Branded email via Resend — generate link then send ourselves
+    const { data: linkData } = await supabase.auth.admin.generateLink({
+      type: "magiclink",
+      email: client.email,
+      options: {
+        redirectTo: `${siteUrl}/auth/callback?next=/portal/dashboard`,
+      },
+    });
+
+    const magicLink = linkData?.properties?.action_link;
+    if (magicLink) {
+      const resend = new Resend(resendKey);
+      await resend.emails.send({
+        from: "Alexandra Pintea <noreply@alexandrapintea.art>",
+        to:   client.email,
+        subject: "Your commission portal is ready",
+        text: `Hi ${client.name},
 
 Your private commission portal is ready.
 
@@ -524,6 +525,17 @@ Your commission: ${commission.artwork_title} (${commission.reference})
 
 Alexandra Pintea
 alexandrapintea.art`,
+      });
+    }
+  } else {
+    // No Resend key — use Supabase's built-in email delivery
+    // Supabase sends the magic link email automatically via signInWithOtp
+    await supabase.auth.signInWithOtp({
+      email: client.email,
+      options: {
+        shouldCreateUser: true, // creates auth user on first invitation
+        emailRedirectTo: `${siteUrl}/auth/callback?next=/portal/dashboard`,
+      },
     });
   }
 
