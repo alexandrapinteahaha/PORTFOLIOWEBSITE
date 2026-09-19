@@ -22,7 +22,7 @@ export async function requestPortalMagicLink(formData: FormData) {
     await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${siteUrl}/portal/auth/callback`,
+        emailRedirectTo: `${siteUrl}/auth/callback`,
         shouldCreateUser: true, // creates auth user if needed; access check happens at dashboard
       },
     });

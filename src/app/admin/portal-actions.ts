@@ -529,12 +529,11 @@ alexandrapintea.art`,
     }
   } else {
     // No Resend key — use Supabase's built-in email delivery
-    // Supabase sends the magic link email automatically via signInWithOtp
     await supabase.auth.signInWithOtp({
       email: client.email,
       options: {
-        shouldCreateUser: true, // creates auth user on first invitation
-        emailRedirectTo: `${siteUrl}/portal/auth/callback`,
+        shouldCreateUser: true,
+        emailRedirectTo: `${siteUrl}/auth/callback`,
       },
     });
   }

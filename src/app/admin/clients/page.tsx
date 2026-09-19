@@ -115,12 +115,18 @@ export default async function AdminClientsPage({
                       )}
                     </div>
 
-                    <div className="border-t border-line px-5 py-3">
+                    <div className="flex items-center justify-between gap-4 border-t border-line px-5 py-3">
                       <a
                         href={`/admin/commissions/new?client_id=${client.id}`}
                         className="text-xs underline underline-offset-4 hover:text-ink"
                       >
                         + Create commission for {client.name.split(" ")[0]}
+                      </a>
+                      <a
+                        href={`/admin/portal/${client.id}`}
+                        className="shrink-0 border border-ink bg-ink px-3 py-1.5 text-xs font-semibold text-chalk transition hover:bg-graphite"
+                      >
+                        Open portal →
                       </a>
                     </div>
                   </article>
