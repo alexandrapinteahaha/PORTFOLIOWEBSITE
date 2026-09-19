@@ -149,6 +149,18 @@ function getProgressIndex(status: string): number {
   return map[status] ?? 0;
 }
 
+const MONTH_NAMES = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function buildMonthCalendar(year: number, month: number): (number | null)[] {
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const startOffset = firstDay === 0 ? 6 : firstDay - 1;
+  const cells: (number | null)[] = Array(startOffset).fill(null);
+  for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+  while (cells.length % 7 !== 0) cells.push(null);
+  return cells;
+}
+
 // ── Metadata ──────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({
@@ -244,6 +256,14 @@ export default async function AdminPortalPage({
     : null;
   const isShipped   = !!shipping?.shipped_at;
   const isDelivered = !!shipping?.delivered_at;
+
+  const today       = new Date();
+  const calYear     = today.getFullYear();
+  const calMonth    = today.getMonth();
+  const calToday    = today.getDate();
+  const calGrid     = buildMonthCalendar(calYear, calMonth);
+  const estCompDate = commission?.estimated_completion ? new Date(commission.estimated_completion) : null;
+  const estCompDay  = estCompDate && estCompDate.getFullYear() === calYear && estCompDate.getMonth() === calMonth ? estCompDate.getDate() : null;
 
   type Task = { title: string; desc: string; href?: string; paymentId?: string; urgent?: boolean };
   const tasks: Task[] = [];
@@ -344,7 +364,7 @@ export default async function AdminPortalPage({
         </div>
 
         {!commission ? (
-          <div className="border border-line bg-chalk p-8">
+          <div className="rounded-2xl bg-zinc-50 p-8">
             <p className="mb-4 text-sm text-graphite">No active commission for this client yet.</p>
             {!isPreview && (
               <Link
@@ -358,11 +378,11 @@ export default async function AdminPortalPage({
         ) : (
           <>
 
-            {/* ── Row 1: Commission Status + Studio card ─────────────────────── */}
+            {/* ── Row 1: Commission Status + Mini Calendar ───────────────────── */}
             <div className="mb-5 grid gap-4 lg:grid-cols-[1fr_272px]">
 
               {/* Commission status */}
-              <div className="border border-line bg-white">
+              <div className="rounded-2xl bg-zinc-50">
                 <div className="p-6 lg:p-8">
                   <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
                     <div>
@@ -415,7 +435,7 @@ export default async function AdminPortalPage({
 
                 {/* Edit: commission status + details */}
                 {!isPreview && (
-                  <div className="border-t border-line bg-chalk/40">
+                  <div className="rounded-b-2xl border-t border-line bg-zinc-100">
                     <details>
                       <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-3 text-xs font-semibold text-graphite hover:text-ink [&::-webkit-details-marker]:hidden">
                         <span>✎ Edit commission</span>
@@ -474,23 +494,42 @@ export default async function AdminPortalPage({
                 )}
               </div>
 
-              {/* Studio / Book a call */}
-              <div className="flex flex-col border border-line bg-chalk p-6">
-                <p className="mb-1 text-xs text-graphite">Studio</p>
-                <h3 className="font-title text-xl font-bold">Book a call</h3>
-                <p className="mt-3 flex-1 text-xs leading-6 text-graphite">
-                  Schedule a conversation with Alexandra to discuss your commission, review progress, or ask any questions.
-                </p>
-                <div className="mt-6 grid gap-2">
+              {/* Mini Calendar */}
+              <div className="flex flex-col rounded-2xl bg-zinc-900 p-5">
+                <h3 className="mb-4 font-title text-sm font-bold text-white">
+                  {MONTH_NAMES[calMonth]} <span className="font-normal text-white/40">{calYear}</span>
+                </h3>
+                <div className="mb-1 grid grid-cols-7">
+                  {["M","T","W","T","F","S","S"].map((d, i) => (
+                    <span key={i} className="text-center text-[10px] font-semibold text-white/30">{d}</span>
+                  ))}
+                </div>
+                <div className="grid grid-cols-7 gap-y-0.5">
+                  {calGrid.map((day, i) => {
+                    const isToday = day === calToday;
+                    const isEst   = day !== null && day === estCompDay;
+                    return (
+                      <span key={i} className={[
+                        "flex h-7 w-7 items-center justify-center text-[11px] mx-auto",
+                        isToday ? "rounded-full bg-white font-bold text-zinc-900" :
+                        isEst   ? "rounded-full border border-white/40 font-semibold text-white" :
+                        day     ? "text-white/60" : "",
+                      ].join(" ")}>
+                        {day ?? ""}
+                      </span>
+                    );
+                  })}
+                </div>
+                <div className="mt-auto pt-5 grid gap-2">
                   <a
                     href={`mailto:hello@alexandrapintea.art?subject=Book a call — ${commission.reference}&body=Hi Alexandra,%0A%0AI'd like to schedule a call regarding my commission (${commission.reference}).%0A%0A`}
-                    className="block border border-ink bg-ink px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.1em] text-chalk transition hover:bg-graphite"
+                    className="block rounded-xl bg-white/10 px-4 py-2.5 text-center text-xs font-semibold text-white transition hover:bg-white/20"
                   >
                     Request a call →
                   </a>
                   <a
                     href={`mailto:hello@alexandrapintea.art?subject=${commission.reference}`}
-                    className="block border border-line bg-white px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.1em] text-graphite transition hover:border-ink hover:text-ink"
+                    className="block rounded-xl bg-white/5 px-4 py-2.5 text-center text-xs font-semibold text-white/60 transition hover:text-white"
                   >
                     Email the studio
                   </a>
@@ -502,7 +541,7 @@ export default async function AdminPortalPage({
             <div className="mb-5 grid gap-4 lg:grid-cols-2">
 
               {/* Action Required */}
-              <div className="border border-line bg-white p-6">
+              <div className="rounded-2xl bg-zinc-50 p-6">
                 <p className="mb-5 text-xs text-graphite">Action Required</p>
                 {tasks.length === 0 ? (
                   <div className="py-1">
@@ -514,10 +553,10 @@ export default async function AdminPortalPage({
                 ) : (
                   <div className="grid gap-3">
                     {tasks.map((task, i) => (
-                      <div key={i} className={`border p-4 ${task.urgent ? "border-ink" : "border-line bg-chalk"}`}>
-                        {task.urgent && <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-graphite">Needs attention</p>}
+                      <div key={i} className={`rounded-xl p-4 ${task.urgent ? "bg-ink text-chalk" : "bg-white"}`}>
+                        {task.urgent && <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-chalk/50">Needs attention</p>}
                         <p className="font-title text-sm font-bold">{task.title}</p>
-                        <p className="mt-1.5 text-xs leading-5 text-graphite">{task.desc}</p>
+                        <p className={`mt-1.5 text-xs leading-5 ${task.urgent ? "text-chalk/70" : "text-graphite"}`}>{task.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -530,7 +569,7 @@ export default async function AdminPortalPage({
               </div>
 
               {/* Payment Summary */}
-              <div className="border border-line bg-white">
+              <div className="rounded-2xl bg-zinc-50">
                 <div className="p-6">
                   <p className="mb-5 text-xs text-graphite">Payments</p>
                   {(payments ?? []).length === 0 && !commission.agreed_price_gbp ? (
@@ -577,7 +616,7 @@ export default async function AdminPortalPage({
                 </div>
                 {/* Edit: Add payment */}
                 {!isPreview && (
-                  <div className="border-t border-line bg-chalk/40">
+                  <div className="rounded-b-2xl border-t border-line bg-zinc-100">
                     <details>
                       <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-3 text-xs font-semibold text-graphite hover:text-ink [&::-webkit-details-marker]:hidden">
                         <span>✎ Add payment record</span>
@@ -620,7 +659,7 @@ export default async function AdminPortalPage({
 
             {/* ── Row 3: Commission Journey ──────────────────────────────────────── */}
             {(timeline ?? []).length > 0 && (
-              <div className="mb-5 border border-line bg-white p-6 lg:p-8">
+              <div className="mb-5 rounded-2xl bg-zinc-50 p-6 lg:p-8">
                 <p className="mb-6 text-xs text-graphite">Commission Journey</p>
                 <div className="divide-y divide-line">
                   {(timeline ?? []).map((stage) => {
@@ -672,7 +711,7 @@ export default async function AdminPortalPage({
             <div className="mb-5 grid gap-4 lg:grid-cols-2">
 
               {/* Documents */}
-              <div className="border border-line bg-white">
+              <div className="rounded-2xl bg-zinc-50">
                 <div className="p-6">
                   <p className="mb-5 text-xs text-graphite">Latest Documents</p>
                   {(documents ?? []).length === 0 ? (
@@ -680,7 +719,7 @@ export default async function AdminPortalPage({
                   ) : (
                     <div className="grid gap-2">
                       {(documents ?? []).map((doc) => (
-                        <div key={doc.id} className="flex items-center justify-between border border-line px-4 py-3">
+                        <div key={doc.id} className="flex items-center justify-between rounded-xl bg-white px-4 py-3">
                           <div className="min-w-0">
                             <div className="flex items-center gap-2">
                               <p className="truncate text-sm font-medium">{doc.label}</p>
@@ -701,7 +740,7 @@ export default async function AdminPortalPage({
                   )}
                 </div>
                 {!isPreview && (
-                  <div className="border-t border-line bg-chalk/40">
+                  <div className="rounded-b-2xl border-t border-line bg-zinc-100">
                     <div className="flex items-center justify-between px-6 py-3">
                       <span className="text-xs font-semibold text-graphite">✎ Manage documents</span>
                       <Link href={`/admin/commissions/${commission.id}`} className="text-xs text-graphite underline underline-offset-4 hover:text-ink">
@@ -713,7 +752,7 @@ export default async function AdminPortalPage({
               </div>
 
               {/* Studio Updates */}
-              <div className="border border-line bg-white">
+              <div className="rounded-2xl bg-zinc-50">
                 <div className="p-6">
                   <p className="mb-5 text-xs text-graphite">Studio Updates</p>
                   {(updates ?? []).length === 0 ? (
@@ -739,7 +778,7 @@ export default async function AdminPortalPage({
                 </div>
                 {/* Edit: Post update */}
                 {!isPreview && (
-                  <div className="border-t border-line bg-chalk/40">
+                  <div className="rounded-b-2xl border-t border-line bg-zinc-100">
                     <details>
                       <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-3 text-xs font-semibold text-graphite hover:text-ink [&::-webkit-details-marker]:hidden">
                         <span>✎ Post studio update</span>
@@ -773,7 +812,7 @@ export default async function AdminPortalPage({
             </div>
 
             {/* ── Row 5: Shipping ─────────────────────────────────────────────────── */}
-            <div className="mb-5 border border-line bg-white">
+            <div className="mb-5 rounded-2xl bg-zinc-50">
               {isShipped && shipping && (
                 <div className="p-6 lg:p-8">
                   <p className="mb-5 text-xs text-graphite">Delivery</p>
@@ -795,7 +834,7 @@ export default async function AdminPortalPage({
               )}
               {/* Edit: Shipping */}
               {!isPreview && (
-                <div className={`${isShipped ? "border-t" : ""} border-line bg-chalk/40`}>
+                <div className={`${isShipped ? "border-t border-line" : ""} rounded-b-2xl bg-zinc-100`}>
                   <details>
                     <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-3 text-xs font-semibold text-graphite hover:text-ink [&::-webkit-details-marker]:hidden">
                       <span>✎ {isShipped ? "Edit" : "Add"} shipping info</span>
@@ -826,7 +865,7 @@ export default async function AdminPortalPage({
                 <p className="mb-3 text-xs text-graphite">Other commissions</p>
                 <div className="grid gap-2">
                   {otherComms.map((c) => (
-                    <div key={c.id} className="flex items-center justify-between border border-line bg-chalk px-5 py-4">
+                    <div key={c.id} className="flex items-center justify-between rounded-xl bg-zinc-50 px-5 py-4">
                       <div>
                         <p className="text-xs text-graphite">{c.reference}</p>
                         <p className="font-title mt-0.5 text-sm font-bold">{c.artwork_title}</p>
