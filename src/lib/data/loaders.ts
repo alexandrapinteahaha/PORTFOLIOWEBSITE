@@ -6,7 +6,8 @@ import type {
   ArtworkStatus,
   PrintClubMonth,
   Product,
-  ProductType
+  ProductType,
+  ShippingOption
 } from "@/lib/types";
 
 type ArtworkRow = {
@@ -41,6 +42,8 @@ type ProductRow = {
   is_active: boolean;
   image_url: string | null;
   stripe_price_id: string | null;
+  shipping_notes: string | null;
+  shipping_option: ShippingOption | null;
 };
 
 function mapArtwork(row: ArtworkRow): Artwork {
@@ -77,7 +80,9 @@ function mapProduct(row: ProductRow): Product {
     stockQuantity: row.stock_quantity,
     isActive: row.is_active,
     imageUrl: row.image_url ?? "",
-    stripePriceId: row.stripe_price_id
+    stripePriceId: row.stripe_price_id,
+    shippingNotes: row.shipping_notes ?? null,
+    shippingOption: row.shipping_option ?? null
   };
 }
 

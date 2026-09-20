@@ -4,6 +4,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getSiteUrl, getStripe } from "@/lib/stripe";
 import { checkoutSchema } from "@/lib/validation";
 import { seedProducts } from "@/lib/data/seed";
+import { CHECKOUT_ALLOWED_COUNTRIES } from "@/lib/shipping-config";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
@@ -101,20 +102,7 @@ export async function POST(request: Request) {
       artwork_id: product.artwork_id ?? ""
     },
     shipping_address_collection: {
-      allowed_countries: [
-        "GB",
-        "US",
-        "CA",
-        "AU",
-        "NZ",
-        "IE",
-        "FR",
-        "DE",
-        "IT",
-        "ES",
-        "NL",
-        "BE"
-      ]
+      allowed_countries: [...CHECKOUT_ALLOWED_COUNTRIES]
     }
   });
 

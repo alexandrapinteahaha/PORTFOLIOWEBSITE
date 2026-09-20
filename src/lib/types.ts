@@ -17,6 +17,12 @@ export type ProductType =
   | "commission_enquiry"
   | "archive_only";
 
+export type ShippingOption =
+  | "artist_shipping_only"
+  | "artist_all_inclusive"
+  | "buyer_responsible"
+  | "confirmed_separately";
+
 export type Artwork = {
   id: string;
   slug: string;
@@ -49,6 +55,8 @@ export type Product = {
   isActive: boolean;
   imageUrl: string;
   stripePriceId: string | null;
+  shippingNotes: string | null;
+  shippingOption: ShippingOption | null;
 };
 
 export type PrintClubMonth = {

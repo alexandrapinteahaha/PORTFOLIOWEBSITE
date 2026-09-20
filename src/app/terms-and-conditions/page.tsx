@@ -83,14 +83,20 @@ export default function TermsPage() {
           </div>
 
           <div className="policy-section">
-            <h2 className="font-title text-xl font-bold">International purchases and customs</h2>
-            <div className="mt-4 text-sm leading-7 text-graphite">
+            <h2 className="font-title text-xl font-bold">International purchases, shipping and customs</h2>
+            <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
               <p>
-                Alexandra ships from the United Kingdom. International buyers
-                are solely responsible for all customs duties, import taxes,
-                tariffs, local charges, and handling fees charged by their
-                country. These costs are not included in the purchase price and
-                are payable by the buyer upon delivery or customs clearance.
+                Alexandra ships from the United Kingdom. International orders may be subject to import duties, VAT, sales taxes, customs charges and other local fees depending on the destination.
+              </p>
+              <p>
+                Responsibility for shipping costs, import duties and taxes is stated on the individual product page and — where applicable — in the Contract of Sale. Where the artist has agreed to cover these charges for a specific work, this will be clearly stated before purchase. Where they are not included, the collector is responsible for any applicable import charges assessed on arrival.
+              </p>
+              <p>
+                For full details, see the{" "}
+                <a href="/shipping-returns" className="underline underline-offset-4 hover:text-ink transition-colors">
+                  Shipping &amp; Returns
+                </a>{" "}
+                page.
               </p>
             </div>
           </div>

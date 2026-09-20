@@ -140,7 +140,9 @@ export async function createProduct(formData: FormData) {
       : null,
     is_active: formData.get("is_active") === "on",
     image_url: String(formData.get("image_url") ?? ""),
-    stripe_price_id: String(formData.get("stripe_price_id") ?? "") || null
+    stripe_price_id: String(formData.get("stripe_price_id") ?? "") || null,
+    shipping_option: String(formData.get("shipping_option") ?? "") || null,
+    shipping_notes: String(formData.get("shipping_notes") ?? "") || null
   });
   revalidatePath("/admin/products");
   revalidatePath("/shop");

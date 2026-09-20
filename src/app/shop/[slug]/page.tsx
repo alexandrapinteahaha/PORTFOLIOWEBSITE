@@ -7,6 +7,8 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { StatusLabel } from "@/components/ui/StatusLabel";
 import { getProductBySlug } from "@/lib/data/loaders";
 import { ACQUISITION_CONFIG } from "@/lib/acquisition-config";
+import { SHIPPING_OPTION_LABELS } from "@/lib/shipping-config";
+import type { ShippingOption } from "@/lib/types";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -78,11 +80,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <p className="mt-3 text-sm font-medium text-rust">This work has been sold.</p>
             )}
 
-            <p className="mt-4 text-xs leading-6 text-graphite">
-              Ships from the UK. International buyers are responsible for customs
-              duties, import taxes, tariffs, and local handling fees charged by
-              their country.
-            </p>
+            <ShippingInfo
+              option={product.shippingOption}
+              notes={product.shippingNotes}
+              productType={product.productType}
+            />
 
             {isOriginal && (
               <p className="mt-3 text-xs leading-6 text-graphite">
@@ -126,6 +128,42 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       </div>
     </section>
+  );
+}
+
+function ShippingInfo({
+  option,
+  notes,
+  productType,
+}: {
+  option: ShippingOption | null;
+  notes: string | null;
+  productType: string;
+}) {
+  const isDigital = productType === "digital_download";
+  if (isDigital) return null;
+
+  const detail = option ? SHIPPING_OPTION_LABELS[option].detail : null;
+
+  return (
+    <div className="mt-4 grid gap-1.5">
+      {detail ? (
+        <p className="text-xs leading-6 text-graphite">{detail}</p>
+      ) : (
+        <p className="text-xs leading-6 text-graphite">
+          Ships from the UK. International orders may be subject to import
+          duties, VAT and local charges. Responsibility for these costs will
+          be confirmed on this page or as part of the individual transaction.{" "}
+          <Link href="/shipping-returns" className="underline underline-offset-4 hover:text-ink transition-colors">
+            Shipping policy
+          </Link>
+          .
+        </p>
+      )}
+      {notes && (
+        <p className="text-xs leading-6 text-graphite/70">{notes}</p>
+      )}
+    </div>
   );
 }
 

@@ -90,6 +90,20 @@ export function ProductForm() {
       <Field name="stock_quantity" label="Stock quantity" type="number" />
       <Field name="image_url" label="Image URL" required />
       <Field name="stripe_price_id" label="Stripe Price ID (optional)" />
+      <label className="grid gap-1 text-xs uppercase tracking-[0.12em] text-graphite">
+        Shipping option
+        <select name="shipping_option" className="focus-ring min-h-10 border border-line bg-paper px-3 text-sm">
+          <option value="">— Not set —</option>
+          <option value="artist_shipping_only">Shipping included (collector pays duties)</option>
+          <option value="artist_all_inclusive">Shipping + import charges included</option>
+          <option value="buyer_responsible">Collector responsible for shipping &amp; duties</option>
+          <option value="confirmed_separately">Confirmed per transaction (high-value originals)</option>
+        </select>
+      </label>
+      <label className="grid gap-1 text-xs uppercase tracking-[0.12em] text-graphite">
+        Shipping notes
+        <textarea name="shipping_notes" rows={2} placeholder="Optional — displayed on product page" className="focus-ring border border-line bg-paper p-3 text-sm" />
+      </label>
       <label className="flex gap-2 text-sm">
         <input type="checkbox" name="is_active" defaultChecked />
         Active

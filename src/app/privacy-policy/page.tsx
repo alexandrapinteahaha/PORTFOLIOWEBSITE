@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ACQUISITION_CONFIG as CFG } from "@/lib/acquisition-config";
+import { SHIPPING_CARRIERS, SHIPPING_POLICY } from "@/lib/shipping-config";
 
 export const metadata: Metadata = {
   title: "Policies"
@@ -454,6 +455,85 @@ export default function PoliciesPage() {
                     This policy sets out the commercial framework for original artwork acquisitions
                     and does not constitute legal advice. It does not replace the individual
                     Contract of Sale applicable to each transaction. Version {CFG.policyVersion} &middot; {CFG.policyEffectiveDate}.
+                  </p>
+                </div>
+
+              </div>
+            </details>
+          </article>
+
+          {/* International Shipping & Duties */}
+          <article className="policy-section">
+            <details>
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                <h2 className="font-title text-xl font-bold">International Shipping &amp; Duties</h2>
+                <span className="shrink-0 text-sm text-graphite/40">+</span>
+              </summary>
+              <div className="mt-6 grid gap-6 text-sm leading-7 text-graphite">
+
+                <div>
+                  <h3 className="font-title text-base font-bold text-ink mb-2">Shipping</h3>
+                  <p>
+                    Original artworks are shipped using {SHIPPING_CARRIERS.originalArtwork}, selected according to the artwork&apos;s value, size, fragility and destination. Prints and other artwork-related physical products are shipped using {SHIPPING_CARRIERS.internationalStandard} or a suitable tracked courier or postal service.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-title text-base font-bold text-ink mb-2">International orders</h3>
+                  <p>
+                    International delivery times vary depending on destination, carrier availability and customs clearance. Estimated delivery information is provided on the relevant product page where available.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-title text-base font-bold text-ink mb-2">Duties &amp; taxes</h3>
+                  <p>
+                    International orders may be subject to import duties, VAT, sales or use taxes, customs charges or other local fees. Responsibility for these costs will be clearly stated on the relevant product page or agreed as part of the individual transaction. Where the artist has agreed to cover shipping and applicable import charges, this will be stated before purchase.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-title text-base font-bold text-ink mb-2">Original artworks</h3>
+                  <p>
+                    For original artworks, shipping, insurance and import-charge arrangements are confirmed according to the individual artwork and destination. The applicable product page, order confirmation or Contract of Sale will identify which costs are included and which remain the responsibility of the collector.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-title text-base font-bold text-ink mb-2">Tracking</h3>
+                  <p>
+                    A dispatch confirmation with tracking information will be provided once the artwork or print has been shipped. Tracking information is also accessible through the collector portal where applicable.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-title text-base font-bold text-ink mb-2">Delivery address</h3>
+                  <p>
+                    Collectors are responsible for ensuring their delivery details are accurate and complete. Address changes after dispatch may not be possible.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-title text-base font-bold text-ink mb-2">Customs</h3>
+                  <p>
+                    Collectors may be required to provide information or documentation to customs authorities or the carrier. Failure to respond may result in delays, return of the shipment or additional charges where the collector was responsible for the failure.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-title text-base font-bold text-ink mb-2">Returns</h3>
+                  <p>
+                    Returns and cancellations are subject to the individual transaction terms and applicable law. See the{" "}
+                    <Link href="/shipping-returns" className="underline underline-offset-4 hover:text-ink transition-colors">
+                      Shipping &amp; Returns
+                    </Link>{" "}
+                    page for full details.
+                  </p>
+                </div>
+
+                <div className="border-t border-line pt-5">
+                  <p className="text-xs leading-6 text-graphite/50">
+                    Version {SHIPPING_POLICY.version} &middot; {SHIPPING_POLICY.effectiveDate}
                   </p>
                 </div>
 
