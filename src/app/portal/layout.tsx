@@ -38,7 +38,7 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
       <footer className="border-t border-line">
         <div className="container-shell flex flex-wrap items-center gap-5 py-6 text-xs text-graphite/40">
           <span>© {new Date().getFullYear()} Alexandra Pintea</span>
-          <a href="/privacy-policy" className="hover:text-ink">Privacy Policy</a>
+          <a href="/privacy-policy" className="hover:text-ink">Policies</a>
           <Link href="/" className="hover:text-ink">alexandrapintea.art ↗</Link>
         </div>
       </footer>

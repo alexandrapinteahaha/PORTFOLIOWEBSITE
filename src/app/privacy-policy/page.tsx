@@ -1,94 +1,155 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy"
+  title: "Policies"
 };
 
 export default function PrivacyPolicyPage() {
   return (
-    <section className="container-shell py-14 md:py-20">
-      <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr]">
-        <div>
-          <h1 className="font-title text-5xl font-bold leading-tight">
-            Privacy Policy
-          </h1>
-          <p className="mt-4 text-sm text-graphite">
-            How Alexandra Pintea collects and uses personal data.
-          </p>
-          <div className="mt-6 legal-note">
-            This is a placeholder privacy policy. It should be reviewed and
-            completed by an appropriate professional before the site is launched.
-            UK GDPR and the Data Protection Act 2018 will apply.
-          </div>
-        </div>
+    <section className="container-shell py-16 md:py-24">
+      <div className="max-w-2xl">
 
-        <div className="grid gap-0">
-          <div className="policy-section">
-            <h2 className="font-title text-xl font-bold">Data collected</h2>
-            <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
-              <p>
-                This site collects the following categories of personal data in
-                order to provide its services:
-              </p>
-              <ul className="ml-4 grid gap-2 list-disc">
-                <li>Email addresses submitted via the newsletter signup form</li>
-                <li>Contact details submitted via the commission enquiry form</li>
-                <li>Account information created on signup or via Supabase Auth</li>
-                <li>Order records needed to fulfil purchases</li>
-                <li>Subscription records needed to manage Print Club access</li>
-              </ul>
+        <p className="label text-graphite">Legal</p>
+        <h1 className="mt-2 font-title text-4xl md:text-6xl">Privacy Policy</h1>
+
+        <div className="mt-12 space-y-10 text-graphite">
+
+          <div>
+            <p>
+              Alexandra Pintea is committed to providing quality services to you and this policy
+              outlines our ongoing obligations to you in respect of how we manage your Personal
+              Information.
+            </p>
+            <p className="mt-4">
+              We have adopted the principles contained in the UK General Data Protection Regulation
+              (UK GDPR) and the Data Protection Act 2018. These principles govern the way in which
+              we collect, use, disclose, store, secure and dispose of your Personal Information.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-title text-xl mb-4">Personal Information</h2>
+            <p>We collect your Personal Information for the primary purpose of providing our services to you, including:</p>
+            <ul className="mt-4 space-y-2 list-disc pl-5">
+              <li>Processing and delivering orders</li>
+              <li>Sending you service messages and order updates via email or message</li>
+              <li>Sending you information about new products or announcements</li>
+              <li>Fraud prevention and detection against both you and Alexandra Pintea</li>
+            </ul>
+            <p className="mt-4">
+              We only collect the personal information you choose to provide, including names,
+              addresses, email addresses, and phone numbers.
+            </p>
+            <p className="mt-4">
+              You may unsubscribe from our mailing list at any time by clicking the unsubscribe
+              link located at the bottom of any email received, or by contacting us at{" "}
+              <a href="mailto:hello@alexandrapintea.art" className="underline underline-offset-4 hover:text-ink transition-colors">
+                hello@alexandrapintea.art
+              </a>.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-title text-xl mb-4">Payment Information</h2>
+            <p>
+              Payment information collected is used solely to take payment, to give refunds, and
+              to prevent and detect fraud against either you or Alexandra Pintea. Payment details
+              are processed by Stripe. Alexandra Pintea does not store or handle card information
+              directly. Stripe is a PCI DSS compliant payment processor.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-title text-xl mb-4">Third Parties</h2>
+            <p>
+              Where reasonable and practicable to do so, we will collect your Personal Information
+              only from you. However, in some circumstances we may be provided with information by
+              third parties. In such a case we will take reasonable steps to ensure that you are
+              made aware of the information provided to us by the third party.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-title text-xl mb-4">Security of Personal Information</h2>
+            <p>
+              Your Personal Information is stored in a manner that reasonably protects it from
+              misuse and loss and from unauthorised access, modification or disclosure.
+            </p>
+            <p className="mt-4">
+              When your Personal Information is no longer needed for the purpose for which it was
+              obtained, we will take reasonable steps to destroy or permanently de-identify your
+              Personal Information. However, most of the Personal Information is or will be stored
+              in client files which will be kept by us for a minimum of 7 years.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-title text-xl mb-4">Access to Your Personal Information</h2>
+            <p>
+              You have the right to access the Personal Information we hold about you and to
+              update and/or correct it, subject to certain exceptions. If you wish to access your
+              Personal Information, please contact us in writing.
+            </p>
+            <p className="mt-4">
+              Alexandra Pintea will not charge any fee for your access request.
+            </p>
+            <p className="mt-4">
+              In order to protect your Personal Information we may require identification from you
+              before releasing the requested information.
+            </p>
+            <p className="mt-4">
+              It is important to us that your Personal Information is up to date. We will take
+              reasonable steps to make sure that your Personal Information is accurate, complete
+              and up-to-date. If you find that the information we have is not up to date or is
+              inaccurate, please advise us as soon as practicable so we can update our records and
+              ensure we can continue to provide quality services to you.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-title text-xl mb-4">Your Rights Under UK GDPR</h2>
+            <p>Under UK GDPR you have the right to:</p>
+            <ul className="mt-4 space-y-2 list-disc pl-5">
+              <li>Request a copy of the personal data we hold about you</li>
+              <li>Request that we correct any inaccurate or incomplete data</li>
+              <li>Request that we delete your personal data</li>
+              <li>Object to or restrict our processing of your data</li>
+              <li>Withdraw consent at any time where processing is based on consent</li>
+            </ul>
+            <p className="mt-4">
+              To exercise any of these rights, please contact us at{" "}
+              <a href="mailto:hello@alexandrapintea.art" className="underline underline-offset-4 hover:text-ink transition-colors">
+                hello@alexandrapintea.art
+              </a>.
+              You also have the right to lodge a complaint with the Information Commissioner&apos;s
+              Office (ICO) at{" "}
+              <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-ink transition-colors">
+                ico.org.uk
+              </a>{" "}
+              if you believe your data has been handled unlawfully.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="font-title text-xl mb-4">Policy Updates</h2>
+            <p>
+              This Policy may change from time to time and is available on our website.
+            </p>
+          </div>
+
+          <div className="border-t border-line pt-8">
+            <h2 className="font-title text-xl mb-4">Contact Us</h2>
+            <p>
+              If you have any queries or complaints about our Privacy Policy please contact us at:
+            </p>
+            <div className="mt-4">
+              <p className="font-title text-sm">Alexandra Pintea</p>
+              <a href="mailto:hello@alexandrapintea.art" className="underline underline-offset-4 hover:text-ink transition-colors">
+                hello@alexandrapintea.art
+              </a>
             </div>
           </div>
 
-          <div className="policy-section">
-            <h2 className="font-title text-xl font-bold">Payment processing</h2>
-            <div className="mt-4 text-sm leading-7 text-graphite">
-              <p>
-                Payment details are processed by Stripe. Alexandra Pintea does
-                not store or handle card information directly. Stripe is a PCI
-                DSS compliant payment processor. Please refer to Stripe&apos;s
-                privacy policy for details of how Stripe handles payment data.
-              </p>
-            </div>
-          </div>
-
-          <div className="policy-section">
-            <h2 className="font-title text-xl font-bold">How data is used</h2>
-            <div className="mt-4 grid gap-4 text-sm leading-7 text-graphite">
-              <p>
-                Personal data is used only for the purposes for which it was
-                collected: to fulfil orders, manage subscriptions, respond to
-                commission enquiries, and send newsletters where consent has
-                been given.
-              </p>
-              <p>
-                Newsletter signups require explicit consent. You can withdraw
-                consent at any time by contacting the studio.
-              </p>
-            </div>
-          </div>
-
-          <div className="policy-section">
-            <h2 className="font-title text-xl font-bold">Data retention</h2>
-            <div className="mt-4 text-sm leading-7 text-graphite">
-              <p>
-                Data retention periods and deletion rights should be defined
-                before launch, in line with UK GDPR requirements. Contact the
-                studio to request deletion of your personal data.
-              </p>
-            </div>
-          </div>
-
-          <div className="policy-section">
-            <h2 className="font-title text-xl font-bold">Contact</h2>
-            <div className="mt-4 text-sm leading-7 text-graphite">
-              <p>
-                For any data or privacy enquiries, contact the studio via the
-                contact page. The full data controller contact details should be
-                added here before launch.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
