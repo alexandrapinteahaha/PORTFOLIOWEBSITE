@@ -179,8 +179,8 @@ export default function PoliciesPage() {
                   <h3 className="font-title text-base font-bold text-ink mb-2">Certificate of Authenticity</h3>
                   <p>
                     Every original work is accompanied by a signed certificate of authenticity
-                    confirming the title, medium, dimensions, year of creation, and the artist's
-                    signature. This certificate should be retained as part of the work's provenance.
+                    confirming the title, medium, dimensions, year of creation, and the artist&apos;s
+                    signature. This certificate should be retained as part of the work&apos;s provenance.
                   </p>
                 </div>
 
