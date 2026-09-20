@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { requirePortalClient } from "@/lib/access";
+import { getSiteUrl } from "@/lib/stripe";
 
 /**
  * Magic link request for the commission portal.
@@ -15,7 +16,7 @@ export async function requestPortalMagicLink(formData: FormData) {
   const email = String(formData.get("email") ?? "").toLowerCase().trim();
   if (!email) redirect("/portal?error=invalid");
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const siteUrl = getSiteUrl();
 
   try {
     const supabase = await createSupabaseServerClient();
