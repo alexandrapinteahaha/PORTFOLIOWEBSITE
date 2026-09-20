@@ -6,7 +6,7 @@ const footerLinks: [string, string][] = [
   ["Commission", "/commissions"],
   ["About", "/about"],
   ["Contact", "/contact"],
-  ["Privacy", "/privacy"],
+  ["Policies", "/privacy-policy"],
   ["Admin", "/admin"],
 ];
 
