@@ -7,6 +7,7 @@ const footerLinks: [string, string][] = [
   ["About", "/about"],
   ["Contact", "/contact"],
   ["Policies", "/privacy-policy"],
+  ["Acquisition", "/original-artwork-purchase-policy"],
   ["Admin", "/admin"],
 ];
 

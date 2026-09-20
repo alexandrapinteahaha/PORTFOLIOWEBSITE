@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { CheckoutButton } from "@/components/forms/CheckoutButton";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { StatusLabel } from "@/components/ui/StatusLabel";
 import { getProductBySlug } from "@/lib/data/loaders";
+import { ACQUISITION_CONFIG } from "@/lib/acquisition-config";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -31,6 +33,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
     product.productType === "archive_only";
   const soldOut = product.stockQuantity === 0;
   const isOriginal = product.productType === "original";
+  const isHighValue =
+    isOriginal &&
+    product.priceGbp !== null &&
+    product.priceGbp >= ACQUISITION_CONFIG.highValueThresholdGbp;
 
   const primaryLabel = isOriginal
     ? "Collect this work"
@@ -86,6 +92,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
             )}
           </div>
 
+          {isHighValue && !soldOut && (
+            <div className="mt-6 border border-line p-5">
+              <p className="label text-graphite/60">High-Value Acquisition</p>
+              <p className="mt-2 text-sm leading-6 text-graphite">
+                This work is subject to additional acquisition terms. A reservation deposit,
+                collector verification and a separate Contract of Sale may be required.
+              </p>
+              <Link
+                href="/original-artwork-purchase-policy"
+                className="mt-3 inline-block text-xs underline underline-offset-4 hover:text-ink transition-colors text-graphite/70"
+              >
+                View Original Artwork Purchase Policy →
+              </Link>
+            </div>
+          )}
+
           <div className="mt-7 flex flex-wrap gap-3">
             {isEnquiryOnly ? (
               <ButtonLink href="/commissions">Send enquiry</ButtonLink>
@@ -94,6 +116,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 productId={product.id}
                 disabled={soldOut}
                 label={soldOut ? "Sold" : primaryLabel}
+                isOriginal={isOriginal}
               />
             )}
             <ButtonLink href="/shipping-returns" variant="quiet">
