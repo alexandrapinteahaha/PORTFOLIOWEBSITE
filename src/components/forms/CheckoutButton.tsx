@@ -56,7 +56,7 @@ export function CheckoutButton({
           <span className="text-xs leading-5 text-graphite">
             I acknowledge that this acquisition may be subject to additional{" "}
             <Link
-              href="/original-artwork-purchase-policy"
+              href="/privacy-policy"
               target="_blank"
               className="underline underline-offset-4 hover:text-ink transition-colors"
             >

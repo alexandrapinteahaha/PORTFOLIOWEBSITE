@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         destination: "/privacy-policy",
         permanent: true,
       },
+      {
+        source: "/original-artwork-purchase-policy",
+        destination: "/privacy-policy",
+        permanent: true,
+      },
     ];
   },
   experimental: {

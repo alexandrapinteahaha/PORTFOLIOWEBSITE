@@ -100,7 +100,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 collector verification and a separate Contract of Sale may be required.
               </p>
               <Link
-                href="/original-artwork-purchase-policy"
+                href="/privacy-policy"
                 className="mt-3 inline-block text-xs underline underline-offset-4 hover:text-ink transition-colors text-graphite/70"
               >
                 View Original Artwork Purchase Policy →
